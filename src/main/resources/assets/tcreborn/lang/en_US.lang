@@ -1,0 +1,15 @@
+# -- Research --
+# Formatting:
+#   §l 	    Bold
+#   §m 	    Strikethrough
+#   §n 	    Underline
+#   §o 	    Italic
+#   §r      Reset
+#   <BR>    LineBreak
+#   <LINE>  Fancy LineBreak
+#
+# Template:
+#   tcreborn_research_name.KEY = Research name
+#   tcreborn_research_text.KEY = Research subtext
+#   tcreborn_research_page.KEY.NUMBER = Research text on page of number NUMBER
+#

@@ -1,0 +1,16 @@
+[
+    {
+        "modid": "NemexLib",
+        "name": "NemexLib",
+        "description": "Library mod for Thenemex's mods. Needs Thaumcraft 4 for running",
+        "version": ${version},
+        "mcversion": ${mcversion},
+        "url": "",
+        "updateUrl": "",
+        "authorList": ["Thenemex"],
+        "credits": "",
+        "logoFile": "",
+        "screenshots": [],
+        "dependencies": ["thaumcraft"]
+    }
+]
