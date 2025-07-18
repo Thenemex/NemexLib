@@ -1,6 +1,7 @@
 package nemexlib.api.thaumcraft;
 
 import nemexlib.api.util.Util;
+import nemexlib.api.util.exceptions.IndexOutOfBoundsException;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import nemexlib.api.thaumcraft.research.Research;
@@ -8,6 +9,7 @@ import nemexlib.api.util.exceptions.ParameterIsNullOrEmpty;
 import nemexlib.api.util.exceptions.ResearchDoesNotExists;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.research.ResearchItem;
+import thaumcraft.api.research.ResearchPage;
 
 import static thaumcraft.api.research.ResearchCategories.registerCategory;
 import static thaumcraft.api.research.ResearchCategories.researchCategories;
@@ -38,6 +40,7 @@ public class API {
      * @return The research
      */
     public static Research newResearch(String tag, String tab, AspectList aspects, int x, int y, int complexity, ItemStack icon) {
+        if (tag == null || tab == null || aspects == null || icon == null) throw new ParameterIsNullOrEmpty();
         return new Research(tag, tab, aspects, x, y, complexity, icon);
     }
 
@@ -67,8 +70,7 @@ public class API {
      */
     public static void addParents(String tab, String tag, boolean hidden, String ... parents) {
         if (parents == null || parents.length == 0) throw new ParameterIsNullOrEmpty();
-        ResearchItem research = API.getResearch(tab, tag);
-        addParents(research, hidden, parents);
+        addParents(getResearch(tab, tag), hidden, parents);
     }
     /**
      * Allows to add prereqs to a research
@@ -78,7 +80,7 @@ public class API {
      * @throws ParameterIsNullOrEmpty If one of the parameter is null, or that the array is empty
      */
     public static void addParents(ResearchItem research, boolean hidden, String ... parentsToAdd) {
-        if (research == null || parentsToAdd == null || parentsToAdd.length == 0) throw new ParameterIsNullOrEmpty();
+        if (research == null || parentsToAdd == null) throw new ParameterIsNullOrEmpty();
         if (hidden) {
             if (research.parentsHidden == null)
                 research.setParentsHidden(parentsToAdd);
@@ -90,5 +92,20 @@ public class API {
             else
                 research.setParents(Util.deepCopyTabAndAdd(research.parents, parentsToAdd));
         }
+    }
+
+    public static ResearchPage removePage(String tab, String tag, int nb) {
+        return removePage(getResearch(tab, tag), nb);
+    }
+    public static ResearchPage removePage(ResearchItem research, int index) {
+        if (research == null) throw new ParameterIsNullOrEmpty();
+        if (research.getPages() == null) return null;
+        ResearchPage[] pages = research.getPages();
+        if (pages.length == 0) return null;
+        if (index < 1 || index > pages.length) throw new IndexOutOfBoundsException(index, pages.length);
+        // All checks are done, proceeding to remove element
+        ResearchPage removedPage = pages[index];
+        research.setPages(Util.removeIndex(index - 1, pages));
+        return removedPage;
     }
 }
