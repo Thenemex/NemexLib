@@ -52,4 +52,39 @@ public class API {
         if (research == null) throw new ResearchDoesNotExists(tab, tag);
         return research;
     }
+
+    /**
+     * Allows to add hidden prereqs to a research
+     * @param tab The Thaumonomicon tab/category
+     * @param tag The research tab/key
+     * @param hiddenParents The hidden parents to add
+     * @throws ParameterIsNullOrEmpty If one of the parameter is null, or that the array is empty
+     * @throws ResearchDoesNotExists If no research with such tab and tag is found
+     */
+    public static void addHiddenParents(String tab, String tag, String ... hiddenParents) {
+        if (hiddenParents == null || hiddenParents.length == 0) throw new ParameterIsNullOrEmpty();
+        ResearchItem research = API.getResearch(tab, tag);
+        addHiddenParents(research, hiddenParents);
+    }
+    /**
+     * Allows to add hidden prereqs to a research
+     * @param research The research
+     * @param hiddenParents The hidden parents to add
+     * @throws ParameterIsNullOrEmpty If one of the parameter is null, or that the array is empty
+     */
+    public static void addHiddenParents(ResearchItem research, String ... hiddenParents) {
+        if (research == null || hiddenParents == null || hiddenParents.length == 0) throw new ParameterIsNullOrEmpty();
+        if (research.parentsHidden == null)
+            research.setParentsHidden(hiddenParents);
+        else
+            research.setParentsHidden(deepCopyTabAndAdd(research.parentsHidden, hiddenParents));
+    }
+
+    private static String[] deepCopyTabAndAdd(String[] tab, String... newElements) {
+        if (tab == null) throw new ParameterIsNullOrEmpty();
+        String[] deepCopy = new String[tab.length + newElements.length];
+        System.arraycopy(tab, 0, deepCopy, 0, tab.length);
+        System.arraycopy(newElements, 0, deepCopy, deepCopy.length - newElements.length - 1, newElements.length);
+        return deepCopy;
+    }
 }
