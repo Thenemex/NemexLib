@@ -74,6 +74,9 @@ public abstract class AResearch {
         return setNewResearch(x, y, 1);
     }
 
+    public ResearchPage[] getPages() {
+        return research.getPages();
+    }
     public AResearch setPages(ResearchPage ... pages) {
         this.research.setPages(pages);
         return this;
