@@ -2,6 +2,7 @@ package nemexlib.api.thaumcraft;
 
 import nemexlib.api.util.Util;
 import nemexlib.api.util.exceptions.IndexOutOfBoundsException;
+import nemexlib.api.util.exceptions.ResearchDoesNotHaveAnyPages;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import nemexlib.api.thaumcraft.research.Research;
@@ -128,5 +129,42 @@ public class API {
         ResearchPage removedPage = pages[index];
         research.setPages(Util.removeIndex(index - 1, pages));
         return removedPage;
+    }
+
+    /**
+     * Replace a page by another in the research
+     * @param tab Thaumonomicon tab
+     * @param tag Research tag/key
+     * @param pageToAdd The page to replace the one at index position
+     * @param index The index at which it will replace the page
+     * <p>NB: The index start from 1 and not 0</p>
+     * @return The old page replaced
+     * @throws ParameterIsNullOrEmpty If one of the parameters is null
+     * @throws ResearchDoesNotHaveAnyPages If the research pages is null or empty
+     * @throws IndexOutOfBoundsException If the index is not matching any slot in the research pages array
+     */
+    public static ResearchPage replacePage(String tab, String tag, ResearchPage pageToAdd, int index) {
+        return replacePage(getResearch(tab, tag), pageToAdd, index);
+    }
+    /**
+     * Replace a page by another in the research
+     * @param research The research
+     * @param pageToAdd The page to replace the one at index position
+     * @param index The index at which it will replace the page
+     * <p>NB: The index start from 1 and not 0</p>
+     * @return The old page replaced
+     * @throws ParameterIsNullOrEmpty If one of the parameters is null
+     * @throws ResearchDoesNotHaveAnyPages If the research pages is null or empty
+     * @throws IndexOutOfBoundsException If the index is not matching any slot in the research pages array
+     */
+    public static ResearchPage replacePage(ResearchItem research, ResearchPage pageToAdd, int index) {
+        if (research == null || pageToAdd == null) throw new ParameterIsNullOrEmpty();
+        if (research.getPages() == null) throw new ResearchDoesNotHaveAnyPages(research.key);
+        ResearchPage[] pages = research.getPages();
+        if (pages.length == 0) throw new ResearchDoesNotHaveAnyPages(research.key);
+        if (index < 1 || index > pages.length) throw new IndexOutOfBoundsException(index, pages.length);
+        ResearchPage pageRemoved = pages[index];
+        pages[index] = pageToAdd;
+        return pageRemoved;
     }
 }
