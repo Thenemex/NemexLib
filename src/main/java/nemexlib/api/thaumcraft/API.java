@@ -47,7 +47,7 @@ public class API {
     /**
      * Get the research from the Thaumcraft 4 registry
      * @param tab Thaumonomicon Tab
-     * @param tag Research's Tag
+     * @param tag Research tag/key
      * @return The research
      * @throws ParameterIsNullOrEmpty If one of the parameters is null
      * @throws ResearchDoesNotExists If no research with such tab and tag is found
@@ -94,9 +94,30 @@ public class API {
         }
     }
 
-    public static ResearchPage removePage(String tab, String tag, int nb) {
-        return removePage(getResearch(tab, tag), nb);
+    /**
+     * Remove a page from a research
+     * @param tab Thaumonomicon tab
+     * @param tag Research tag/key
+     * @param index The index at which the page will be removed
+     * <p>NB: The index start from 1 and not 0</p>
+     * @return The page removed from the research pages, in case you need it
+     * <p>Returns null if research pages is null or empty</p>
+     * @throws ParameterIsNullOrEmpty If research is null
+     * @throws IndexOutOfBoundsException If the index is not matching any slot in the research pages array
+     */
+    public static ResearchPage removePage(String tab, String tag, int index) {
+        return removePage(getResearch(tab, tag), index);
     }
+    /**
+     * Remove a page from a research
+     * @param research The research
+     * @param index The index at which the page will be removed
+     * <p>NB: The index start from 1 and not 0</p>
+     * @return The page removed from the research pages, in case you need it
+     * <p>Returns null if research pages is null or empty</p>
+     * @throws ParameterIsNullOrEmpty If research is null
+     * @throws IndexOutOfBoundsException If the index is not matching any slot in the research pages array
+     */
     public static ResearchPage removePage(ResearchItem research, int index) {
         if (research == null) throw new ParameterIsNullOrEmpty();
         if (research.getPages() == null) return null;
