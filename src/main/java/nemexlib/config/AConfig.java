@@ -12,23 +12,25 @@ public abstract class AConfig {
     private Configuration config;
 
     public AConfig(FMLPreInitializationEvent event) {
+        if (event == null) throw new ParameterIsNullOrEmpty();
         this.createFiles(event.getSuggestedConfigurationFile());
     }
     public AConfig(FMLPreInitializationEvent event, String fileName) {
+        if (event == null || fileName == null) throw new ParameterIsNullOrEmpty();
         this.createFiles(event.getModConfigurationDirectory(), fileName);
     }
     public AConfig(FMLPreInitializationEvent event, String folderName, String fileName) {
+        if (event == null || folderName == null || fileName == null) throw new ParameterIsNullOrEmpty();
         File folder = new File(event.getModConfigurationDirectory(), folderName);
         folder.mkdirs();
         this.createFiles(new File(folder, fileName.concat(".cfg")));
     }
 
     private void createFiles(File configFile) {
-        if (configFile == null) throw new ParameterIsNullOrEmpty();
         this.config = new Configuration(configFile);
     }
     private void createFiles(File configFolder, String fileName) {
-        if (configFolder == null || fileName == null) throw new ParameterIsNullOrEmpty();
+        if (configFolder == null) throw new ParameterIsNullOrEmpty();
         this.config = new Configuration(new File(configFolder, fileName.concat(".cfg")));
     }
 
