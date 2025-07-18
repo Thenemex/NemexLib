@@ -96,6 +96,41 @@ public class API {
     }
 
     /**
+     * Add pages at the end of the research pages
+     * <p>If the research pages is null or empty, it will replace the whole pages with the pages to add</p>
+     * @param tab Thaumonomicon tab
+     * @param tag Research tag/key
+     * @param pagesToAdd The pages to add
+     * @throws ParameterIsNullOrEmpty If one of the parameters is null
+     */
+    public static void addPage(String tab, String tag, ResearchPage ... pagesToAdd) {
+        if (tab == null || tag == null) throw new ParameterIsNullOrEmpty();
+        addPage(getResearch(tab, tag), pagesToAdd);
+    }
+    /**
+     * Add pages at the end of the research pages
+     * <p>If the research pages is null or empty, it will replace the whole pages with the pages to add</p>
+     * @param research The research
+     * @param pagesToAdd The pages to add
+     * @throws ParameterIsNullOrEmpty If one of the parameters is null
+     */
+    public static void addPage(ResearchItem research, ResearchPage ... pagesToAdd) {
+        if (research == null || pagesToAdd == null) throw new ParameterIsNullOrEmpty();
+        if (pagesToAdd.length == 0) throw new ParameterIsNullOrEmpty();
+        if (research.getPages() == null) research.setPages(pagesToAdd);
+        else if (research.getPages().length == 0) research.setPages(pagesToAdd);
+        else {
+            ResearchPage[] pages = research.getPages();
+            ResearchPage[] newPages = new ResearchPage[pages.length + pagesToAdd.length];
+            // Copying all pages from the research pages
+            System.arraycopy(pages, 0, newPages, 0, pages.length);
+            // Adding all the pages to add at the end of the array
+            System.arraycopy(pagesToAdd, 0, newPages, pages.length, newPages.length);
+            research.setPages(newPages);
+        }
+    }
+
+    /**
      * Fits a page at the given index.
      * <p>All researches from that index value will be pushed at slot+1</p>
      * <p>Ex : If a research got 2 pages, and you wanted to add the page at index 2 :</p>
@@ -110,6 +145,7 @@ public class API {
      * @throws IndexOutOfBoundsException If the index exceeds the size of the pages array of more than +1
      */
     public static void addPage(String tab, String tag, ResearchPage pageToAdd, int index) {
+        if (tab == null || tag == null) throw new ParameterIsNullOrEmpty();
         addPage(getResearch(tab, tag), pageToAdd, index);
     }
     /**
@@ -148,11 +184,11 @@ public class API {
      * @param index The index at which the page will be removed
      * <p>NB: The index start from 1 and not 0</p>
      * @return The page removed from the research pages, in case you need it
-     * <p>Returns null if research pages is null or empty</p>
      * @throws ParameterIsNullOrEmpty If research is null
      * @throws IndexOutOfBoundsException If the index is not matching any slot in the research pages array
      */
     public static ResearchPage removePage(String tab, String tag, int index) {
+        if (tab == null || tag == null) throw new ParameterIsNullOrEmpty();
         return removePage(getResearch(tab, tag), index);
     }
     /**
@@ -161,15 +197,15 @@ public class API {
      * @param index The index at which the page will be removed
      * <p>NB: The index start from 1 and not 0</p>
      * @return The page removed from the research pages, in case you need it
-     * <p>Returns null if research pages is null or empty</p>
      * @throws ParameterIsNullOrEmpty If research is null
+     * @throws ResearchDoesNotHaveAnyPages If the research pages is null or empty
      * @throws IndexOutOfBoundsException If the index is not matching any slot in the research pages array
      */
     public static ResearchPage removePage(ResearchItem research, int index) {
         if (research == null) throw new ParameterIsNullOrEmpty();
-        if (research.getPages() == null) return null;
+        if (research.getPages() == null) throw new ResearchDoesNotHaveAnyPages(research.key);
         ResearchPage[] pages = research.getPages();
-        if (pages.length == 0) return null;
+        if (pages.length == 0) throw new ResearchDoesNotHaveAnyPages(research.key);
         if (index < 1 || index > pages.length) throw new IndexOutOfBoundsException(index, pages.length);
         // All checks are done, proceeding to remove element
         ResearchPage removedPage = pages[index];
@@ -190,6 +226,7 @@ public class API {
      * @throws IndexOutOfBoundsException If the index is not matching any slot in the research pages array
      */
     public static ResearchPage replacePage(String tab, String tag, ResearchPage pageToAdd, int index) {
+        if (tab == null || tag == null) throw new ParameterIsNullOrEmpty();
         return replacePage(getResearch(tab, tag), pageToAdd, index);
     }
     /**
