@@ -96,6 +96,52 @@ public class API {
     }
 
     /**
+     * Fits a page at the given index.
+     * <p>All researches from that index value will be pushed at slot+1</p>
+     * <p>Ex : If a research got 2 pages, and you wanted to add the page at index 2 :</p>
+     * <p>Page at slot 1 will stay 1, the new page will go at slot 2, and the actual page at slot 2 will go at slot 3</p>
+     * @param tab Thaumonomicon tab
+     * @param tag Research tag/key
+     * @param pageToAdd The page to fit at index
+     * @param index The index at which the page will be removed
+     * <p>NB: The index start from 1 and not 0</p>
+     * @throws ParameterIsNullOrEmpty If one of the parameters is null
+     * @throws ResearchDoesNotHaveAnyPages If the research pages is null or empty
+     * @throws IndexOutOfBoundsException If the index exceeds the size of the pages array of more than +1
+     */
+    public static void addPage(String tab, String tag, ResearchPage pageToAdd, int index) {
+        addPage(getResearch(tab, tag), pageToAdd, index);
+    }
+    /**
+     * Fits a page at the given index.
+     * <p>All researches from that index value will be pushed at slot+1</p>
+     * <p>Ex : If a research got 2 pages, and you wanted to add the page at index 2 :</p>
+     * <p>Page at slot 1 will stay 1, the new page will go at slot 2, and the actual page at slot 2 will go at slot 3</p>
+     * @param research The research
+     * @param pageToAdd The page to fit at index
+     * @param index The index at which the page will be removed
+     * <p>NB: The index start from 1 and not 0</p>
+     * @throws ParameterIsNullOrEmpty If one of the parameters is null
+     * @throws ResearchDoesNotHaveAnyPages If the research pages is null or empty
+     * @throws IndexOutOfBoundsException If the index exceeds the size of the pages array of more than +1
+     */
+    public static void addPage(ResearchItem research, ResearchPage pageToAdd, int index) {
+        if (research == null || pageToAdd == null) throw new ParameterIsNullOrEmpty();
+        if (research.getPages() == null) throw new ResearchDoesNotHaveAnyPages(research.key);
+        ResearchPage[] pages = research.getPages();
+        if (pages.length == 0) throw new ResearchDoesNotHaveAnyPages(research.key);
+        if (index < 1 || index > pages.length + 1) throw new IndexOutOfBoundsException(index, pages.length);
+        ResearchPage[] newPages = new ResearchPage[pages.length + 1];
+        // Copying while not meeting the index
+        System.arraycopy(pages, 0, newPages, 0, index - 1);
+        // Adding the page at index
+        newPages[index - 1] = pageToAdd;
+        // Copying the rest of the pages
+        System.arraycopy(pages, index - 1, newPages, index, newPages.length);
+        research.setPages(newPages);
+    }
+
+    /**
      * Remove a page from a research
      * @param tab Thaumonomicon tab
      * @param tag Research tag/key
