@@ -9,6 +9,8 @@ import thaumcraft.api.crafting.CrucibleRecipe;
 
 public class CrucibleAdder {
 
+    private CrucibleAdder(){}
+
     /**
      * Adds a single crucible recipe
      * @param tag Research's tag
@@ -52,7 +54,6 @@ public class CrucibleAdder {
     public static CrucibleRecipe[] addMultipleRecipe(String tag, Aspects aspects, ItemStack[] output, int nb, ItemStack ... input) {
         return addMultipleRecipe(tag, aspects, DeepCopy.i(output, nb), input);
     }
-
 
     /**
      * Adds multiple crucible recipe that all output the same ItemStack

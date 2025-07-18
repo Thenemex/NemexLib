@@ -11,6 +11,8 @@ import java.util.List;
 @SuppressWarnings("rawtypes")
 public class CompoundAdder {
 
+    private CompoundAdder(){}
+
     /**
      * Create and register a compound recipe to the TC4 registry
      * @param tag The recipe tag

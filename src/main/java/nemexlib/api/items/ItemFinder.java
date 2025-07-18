@@ -16,6 +16,8 @@ import thaumcraft.common.Thaumcraft;
 @SuppressWarnings("unused")
 public class ItemFinder {
 
+    private ItemFinder(){}
+
     /**
      * Will search item at the GameRegistry
      * @param mod modID

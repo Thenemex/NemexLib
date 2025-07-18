@@ -4,6 +4,8 @@ import nemexlib.api.util.exceptions.ParameterIsNullOrEmpty;
 
 public class Util {
 
+    private Util(){}
+
     public static String[] deepCopyTabAndAdd(String[] tab, String... newElements) {
         if (tab == null) throw new ParameterIsNullOrEmpty();
         String[] deepCopy = new String[tab.length + newElements.length];

@@ -17,6 +17,8 @@ import java.util.ArrayList;
 @SuppressWarnings("unchecked, unused")
 public class ArcaneAdder {
 
+    private ArcaneAdder(){}
+
     protected static ShapedArcaneRecipe registerShapedArcanePRIORITY(String research, ItemStack result, AspectList aspects, Object... recipe) {
         ShapedArcaneRecipe r = new ShapedArcaneRecipe(research, result, aspects, recipe);
         ThaumcraftApi.getCraftingRecipes().add(0, r);

@@ -10,6 +10,8 @@ import nemexlib.api.util.exceptions.ParameterValueIsNegativeOrZero;
 @SuppressWarnings("unused")
 public class DeepCopy {
 
+    private DeepCopy(){}
+
     /**
      * Make a deep copy of the given ItemStack
      * @param item The Itemstack to deep-copy

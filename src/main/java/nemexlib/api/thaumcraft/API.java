@@ -15,6 +15,8 @@ import static thaumcraft.api.research.ResearchCategories.researchCategories;
 @SuppressWarnings({"UnusedReturnValue", "unused"})
 public class API {
 
+    private API(){}
+
     /**
      * Create a new tab in the Thaumonomicon, with the default TC4 background
      * @param tag Tab tag

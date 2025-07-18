@@ -12,6 +12,8 @@ import java.util.ArrayList;
 public class WorkbenchAdder {
 // Example for Object : new Object[]{"CRC","RRR","CRC", 'C', Blocks.coal_block, 'R', Items.redstone});
 
+    private WorkbenchAdder(){}
+
     /**
      * Adds a single recipe from multiple items
      * @param output The output ItemStack
