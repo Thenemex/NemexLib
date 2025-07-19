@@ -21,6 +21,7 @@ public class WorkbenchRemover extends ARecipeRemover {
      * Remove all recipes that have the ItemStack as output.
      * <p>This method checks : Item</p>
      */
+    @Override
     public void removeItem(ItemStack output) {
         this.refresh();
         if (recipes == null || output == null || recipes.isEmpty()) throw new ParameterIsNullOrEmpty();
@@ -37,6 +38,7 @@ public class WorkbenchRemover extends ARecipeRemover {
      * Remove all recipes that have the ItemStack as output.
      * <p>This method checks : Item and Amount</p>
      */
+    @Override
     public void removeAmount(ItemStack output) {
         this.refresh();
         if (recipes == null || output == null || recipes.isEmpty()) throw new ParameterIsNullOrEmpty();
@@ -54,6 +56,7 @@ public class WorkbenchRemover extends ARecipeRemover {
      * Remove all recipes that have the ItemStack as output.
      * <p>This method checks : Item and metadata.</p>
      */
+    @Override
     public void removeMeta(ItemStack output) {
         this.refresh();
         if (recipes == null || output == null || recipes.isEmpty()) throw new ParameterIsNullOrEmpty();
@@ -72,6 +75,7 @@ public class WorkbenchRemover extends ARecipeRemover {
      * Remove all recipes that have the ItemStack as output.
      * <p>This method checks : Item, metadata, amount.</p>
      */
+    @Override
     public void removePrecise(ItemStack output) {
         this.refresh();
         if (recipes == null || output == null || recipes.isEmpty()) throw new ParameterIsNullOrEmpty();
@@ -91,6 +95,7 @@ public class WorkbenchRemover extends ARecipeRemover {
     /**
      * Refresh the collection with the vanilla recipes
      */
+    @Override
     public void refresh() {
         recipes = CraftingManager.getInstance().getRecipeList();
     }
