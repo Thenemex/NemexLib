@@ -14,11 +14,30 @@ public abstract class ARecipeRemover {
 
     protected ARecipeRemover() {}
 
+    /**
+     * Remove all recipes that have the ItemStack as output.
+     * <p>This method checks : Item</p>
+     */
     public abstract void removeItem(ItemStack output);
+    /**
+     * Remove all recipes that have the ItemStack as output.
+     * <p>This method checks : Item and Amount</p>
+     */
     public abstract void removeAmount(ItemStack output);
+    /**
+     * Remove all recipes that have the ItemStack as output.
+     * <p>This method checks : Item and metadata.</p>
+     */
     public abstract void removeMeta(ItemStack output);
+    /**
+     * Remove all recipes that have the ItemStack as output.
+     * <p>This method checks : Item, metadata, amount.</p>
+     */
     public abstract void removePrecise(ItemStack output);
 
+    /**
+     * Refresh the collection with the recipe registry chosen
+     */
     public abstract void refresh();
 
     /**
