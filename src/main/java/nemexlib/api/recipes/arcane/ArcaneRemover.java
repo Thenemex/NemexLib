@@ -29,7 +29,7 @@ public class ArcaneRemover extends ARecipeRemover {
             try {
                 boolean condition = r.getRecipeOutput().getItem().equals(output.getItem());
                 if (condition) this.recipesToRemove.add(r);
-            } catch (NullPointerException ignored) {}
+            } catch (NullPointerException | ClassCastException ignored) {}
         }
         removeFoundRecipes();
     }
@@ -47,7 +47,7 @@ public class ArcaneRemover extends ARecipeRemover {
                 boolean condition = r.getRecipeOutput().getItem().equals(output.getItem())
                         && r.getRecipeOutput().stackSize == output.stackSize;
                 if (condition) this.recipesToRemove.add(r);
-            } catch (NullPointerException ignored) {}
+            } catch (NullPointerException | ClassCastException ignored) {}
         }
         removeFoundRecipes();
     }
@@ -66,7 +66,7 @@ public class ArcaneRemover extends ARecipeRemover {
                         && r.getRecipeOutput().getItem().equals(output.getItem())
                         && r.getRecipeOutput().getItemDamage() == output.getItemDamage();
                 if (condition) this.recipesToRemove.add(r);
-            } catch (NullPointerException ignored) {}
+            } catch (NullPointerException | ClassCastException ignored) {}
         }
         removeFoundRecipes();
     }
@@ -86,7 +86,7 @@ public class ArcaneRemover extends ARecipeRemover {
                         && r.getRecipeOutput().stackSize == output.stackSize
                         && r.getRecipeOutput().getItemDamage() == output.getItemDamage();
                 if (condition) this.recipesToRemove.add(r);
-            } catch (NullPointerException ignored) {}
+            } catch (NullPointerException | ClassCastException ignored) {}
         }
         removeFoundRecipes();
     }
