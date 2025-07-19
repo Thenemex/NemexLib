@@ -1,15 +1,19 @@
 package nemexlib.api.thaumcraft.research;
 
+import nemexlib.NemexLib;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.research.ResearchItem;
 
-import static nemexlib.NemexLib.modID;
-
 @SuppressWarnings("unused")
 public class Research extends ResearchItem {
+
+    /**
+     * This field can be edited to change the research unlocalized prefix
+     */
+    public static String modID;
 
     /**
      * Create a new research in the Thaumonomicon, and registers it
@@ -48,6 +52,7 @@ public class Research extends ResearchItem {
     }
 
     private static String getPrefix() {
+        if (modID == null) modID = "mod";
         return modID.toLowerCase().concat("_research_");
     }
 }
