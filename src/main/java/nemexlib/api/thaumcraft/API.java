@@ -41,7 +41,7 @@ public class API {
      * @return The research
      */
     public static Research newResearch(String tag, String tab, AspectList aspects, int x, int y, int complexity, ItemStack icon) {
-        if (tag == null || tab == null || aspects == null || icon == null) throw new ParameterIsNullOrEmpty();
+        if (tag == null || tab == null || icon == null) throw new ParameterIsNullOrEmpty();
         return new Research(tag, tab, aspects, x, y, complexity, icon);
     }
 
