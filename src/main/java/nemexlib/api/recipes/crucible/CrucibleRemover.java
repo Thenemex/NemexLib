@@ -1,18 +1,18 @@
-package nemexlib.api.recipes.arcane;
+package nemexlib.api.recipes.crucible;
 
 import nemexlib.api.recipes.ARecipeRemover;
 import nemexlib.api.util.exceptions.ParameterIsNullOrEmpty;
 import net.minecraft.item.ItemStack;
 import thaumcraft.api.ThaumcraftApi;
-import thaumcraft.api.crafting.IArcaneRecipe;
+import thaumcraft.api.crafting.CrucibleRecipe;
 
-public class ArcaneRemover extends ARecipeRemover {
+public class CrucibleRemover extends ARecipeRemover {
 
-    protected static final ArcaneRemover instance = new ArcaneRemover();
+    protected static final CrucibleRemover instance = new CrucibleRemover();
 
-    protected ArcaneRemover() {}
+    protected CrucibleRemover() {}
 
-    public static ArcaneRemover i() {
+    public static CrucibleRemover i() {
         return instance;
     }
 
@@ -25,7 +25,7 @@ public class ArcaneRemover extends ARecipeRemover {
         this.refresh();
         if (recipes == null || output == null || recipes.isEmpty()) throw new ParameterIsNullOrEmpty();
         for (Object recipe : recipes) {
-            IArcaneRecipe r = (IArcaneRecipe) recipe;
+            CrucibleRecipe r = (CrucibleRecipe) recipe;
             try {
                 boolean condition = r.getRecipeOutput().getItem().equals(output.getItem());
                 if (condition) this.recipesToRemove.add(r);
@@ -42,7 +42,7 @@ public class ArcaneRemover extends ARecipeRemover {
         this.refresh();
         if (recipes == null || output == null || recipes.isEmpty()) throw new ParameterIsNullOrEmpty();
         for (Object recipe : recipes) {
-            IArcaneRecipe r = (IArcaneRecipe) recipe;
+            CrucibleRecipe r = (CrucibleRecipe) recipe;
             try {
                 boolean condition = r.getRecipeOutput().getItem().equals(output.getItem())
                         && r.getRecipeOutput().stackSize == output.stackSize;
@@ -60,7 +60,7 @@ public class ArcaneRemover extends ARecipeRemover {
         this.refresh();
         if (recipes == null || output == null || recipes.isEmpty()) throw new ParameterIsNullOrEmpty();
         for (Object recipe : recipes) {
-            IArcaneRecipe r = (IArcaneRecipe) recipe;
+            CrucibleRecipe r = (CrucibleRecipe) recipe;
             try {
                 boolean condition = r.getRecipeOutput() != null
                         && r.getRecipeOutput().getItem().equals(output.getItem())
@@ -79,7 +79,7 @@ public class ArcaneRemover extends ARecipeRemover {
         this.refresh();
         if (recipes == null || output == null || recipes.isEmpty()) throw new ParameterIsNullOrEmpty();
         for (Object recipe : recipes) {
-            IArcaneRecipe r = (IArcaneRecipe) recipe;
+            CrucibleRecipe r = (CrucibleRecipe) recipe;
             try {
                 boolean condition = r.getRecipeOutput() != null
                         && r.getRecipeOutput().getItem().equals(output.getItem())
