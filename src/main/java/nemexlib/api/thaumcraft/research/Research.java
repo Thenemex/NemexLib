@@ -1,6 +1,5 @@
 package nemexlib.api.thaumcraft.research;
 
-import nemexlib.NemexLib;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import thaumcraft.api.ThaumcraftApi;
