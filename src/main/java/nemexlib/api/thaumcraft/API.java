@@ -12,6 +12,9 @@ import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.research.ResearchItem;
 import thaumcraft.api.research.ResearchPage;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static thaumcraft.api.research.ResearchCategories.registerCategory;
 import static thaumcraft.api.research.ResearchCategories.researchCategories;
 
@@ -167,14 +170,9 @@ public class API {
         ResearchPage[] pages = research.getPages();
         if (pages.length == 0) throw new ResearchDoesNotHaveAnyPages(research.key);
         if (index < 1 || index > pages.length + 1) throw new IndexOutOfBoundsException(index, pages.length);
-        ResearchPage[] newPages = new ResearchPage[pages.length + 1];
-        // Copying while not meeting the index
-        System.arraycopy(pages, 0, newPages, 0, index - 1);
-        // Adding the page at index
-        newPages[index - 1] = pageToAdd;
-        // Copying the rest of the pages
-        System.arraycopy(pages, index - 1, newPages, index, newPages.length);
-        research.setPages(newPages);
+        List<ResearchPage> listPages = Arrays.asList(pages);
+        listPages.add(index - 1, pageToAdd);
+        research.setPages(listPages.toArray(listPages.toArray(new ResearchPage[pages.length + 1])));
     }
 
     /**
