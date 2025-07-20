@@ -111,8 +111,8 @@ public class WorkbenchRemover extends ARecipeRemover {
         if (recipes == null || output == null || input == null) throw new ParameterIsNullOrEmpty();
         IRecipe r;
         for (Object recipe : recipes) {
-            r = isShapeless ? (ShapelessRecipes) recipe : (ShapedRecipes) recipe;
             try {
+                r = (IRecipe) recipe;
                 boolean condition = r.getRecipeOutput().getItem().equals(output.getItem())
                         && r.getRecipeOutput().stackSize == output.stackSize
                         && r.getRecipeOutput().getItemDamage() == output.getItemDamage();
