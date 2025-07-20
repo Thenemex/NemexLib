@@ -5,12 +5,8 @@ import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 import nemexlib.api.recipes.ARecipeRemover;
 import nemexlib.api.util.exceptions.ParameterIsNullOrEmpty;
-import net.minecraft.item.crafting.ShapedRecipes;
-import net.minecraft.item.crafting.ShapelessRecipes;
 
-import java.util.List;
-
-@SuppressWarnings({"unused", "rawtypes", "DataFlowIssue"})
+@SuppressWarnings({"unused"})
 public class WorkbenchRemover extends ARecipeRemover {
 
     protected static final WorkbenchRemover instance = new WorkbenchRemover();
@@ -97,39 +93,6 @@ public class WorkbenchRemover extends ARecipeRemover {
         }
         removeFoundRecipes();
     }
-
-    /**
-     * Remove all recipes with set output and input
-     * <p>This method checks for output : Item, Metadata, Amount</p>
-     * <p>This method checks for input : Item, Metadata</p>
-     * @param output The output ItemStack
-     * @param isShapeless If the seek recipe is shapeless or not
-     * @param input The input item to be checked on the recipe
-     */
-    public void removeItemFromInput(ItemStack output, boolean isShapeless, ItemStack input) {
-        this.refresh();
-        if (recipes == null || output == null || input == null) throw new ParameterIsNullOrEmpty();
-        IRecipe r;
-        for (Object recipe : recipes) {
-            try {
-                r = (IRecipe) recipe;
-                boolean condition = r.getRecipeOutput().getItem().equals(output.getItem())
-                        && r.getRecipeOutput().stackSize == output.stackSize
-                        && r.getRecipeOutput().getItemDamage() == output.getItemDamage();
-                if (condition) {
-                    boolean condition2 = false;
-                    for (Object o : (List) (isShapeless ? ((ShapelessRecipes) r).recipeItems : ((ShapedRecipes) r).recipeItems)) {
-                        ItemStack item = (ItemStack) o;
-                        condition2 = item.getItem().equals(input.getItem())
-                                && item.getItemDamage() == input.getItemDamage();
-                    }
-                    if (condition2) this.recipesToRemove.add(r);
-                }
-            } catch (NullPointerException | ClassCastException ignored) {}
-        }
-        removeFoundRecipes();
-    }
-
 
     /**
      * Refresh the collection with the vanilla recipes
