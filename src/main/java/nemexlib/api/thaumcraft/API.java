@@ -170,7 +170,8 @@ public class API {
         ResearchPage[] pages = research.getPages();
         if (pages.length == 0) throw new ResearchDoesNotHaveAnyPages(research.key);
         if (index < 1 || index > pages.length + 1) throw new IndexOutOfBoundsException(index, pages.length);
-        ArrayList<ResearchPage> listPages = (ArrayList<ResearchPage>) Arrays.asList(pages);
+        ArrayList<ResearchPage> listPages = new ArrayList<>(pages.length + 1);
+        listPages.addAll(Arrays.asList(pages));
         listPages.add(index - 1, pageToAdd);
         research.setPages(listPages.toArray(listPages.toArray(new ResearchPage[pages.length + 1])));
     }
