@@ -16,8 +16,8 @@ import java.util.Arrays;
 @SuppressWarnings({"UnusedReturnValue", "unused", "EmptyMethod"})
 public abstract class AResearch {
 
+    protected static boolean expert = false;
     protected final String tab, tag;
-    protected final boolean expert = false;
     protected final ItemStack icon;
     protected WandEventHandler handler;
     protected Aspects aspects;
