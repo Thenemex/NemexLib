@@ -153,4 +153,39 @@ public abstract class AConfig {
     protected boolean newEntry(String category, String key, boolean enabled, String comment) {
         return config.get(category, key, enabled, comment).getBoolean(enabled);
     }
+
+    /**
+     * Create a new int entry to the config
+     * @param category The category
+     * @param key The entry key
+     * @param value The default value
+     * @return The value of the entry
+     */
+    protected int newEntry(String category, String key, int value) {
+        return config.get(category, key, value).getInt(value);
+    }
+    /**
+     * Create a new int entry to the config
+     * @param category The category
+     * @param key The entry key
+     * @param value The default value
+     * @param comment A comment that will be shown on the line above
+     * @return The value of the entry
+     */
+    protected int newEntry(String category, String key, int value, String comment) {
+        return config.get(category, key, value, comment).getInt(value);
+    }
+    /**
+     * Create a new int entry to the config
+     * @param category The category
+     * @param key The entry key
+     * @param value The default value
+     * @param min Minimum value
+     * @param max Maximum value
+     * @param comment A comment that will be shown on the line above
+     * @return The value of the entry
+     */
+    protected int newEntry(String category, String key, int value, int min, int max, String comment) {
+        return config.get(category, key, value, comment, min, max).getInt(value);
+    }
 }
