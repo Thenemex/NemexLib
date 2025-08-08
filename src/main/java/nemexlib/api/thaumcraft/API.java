@@ -207,7 +207,7 @@ public class API {
         if (pages.length == 0) throw new ResearchDoesNotHaveAnyPages(research.key);
         if (index < 1 || index > pages.length) throw new IndexOutOfBoundsException(index, pages.length);
         // All checks are done, proceeding to remove element
-        ResearchPage removedPage = pages[index];
+        ResearchPage removedPage = pages[index - 1];
         research.setPages(Util.removeIndex(index - 1, pages));
         return removedPage;
     }
