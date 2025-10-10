@@ -245,7 +245,7 @@ public class API {
         ResearchPage[] pages = research.getPages();
         if (pages.length == 0) throw new ResearchDoesNotHaveAnyPages(research.key);
         if (index < 1 || index > pages.length) throw new IndexOutOfBoundsException(index, pages.length);
-        ResearchPage pageRemoved = pages[index];
+        ResearchPage pageRemoved = pages[index - 1];
         pages[index] = pageToAdd;
         return pageRemoved;
     }
