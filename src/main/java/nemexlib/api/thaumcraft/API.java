@@ -246,7 +246,7 @@ public class API {
         if (pages.length == 0) throw new ResearchDoesNotHaveAnyPages(research.key);
         if (index < 1 || index > pages.length) throw new IndexOutOfBoundsException(index, pages.length);
         ResearchPage pageRemoved = pages[index - 1];
-        pages[index] = pageToAdd;
+        pages[index - 1] = pageToAdd;
         return pageRemoved;
     }
 }
