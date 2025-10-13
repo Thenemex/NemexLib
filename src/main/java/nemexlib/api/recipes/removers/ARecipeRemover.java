@@ -1,4 +1,4 @@
-package nemexlib.api.recipes;
+package nemexlib.api.recipes.removers;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("rawtypes, unused")
-public abstract class ARecipeRemover {
+public abstract class ARecipeRemover implements IRecipeRemover {
 
     protected final ArrayList<Object> recipesToRemove = new ArrayList<>();
     protected List recipes;

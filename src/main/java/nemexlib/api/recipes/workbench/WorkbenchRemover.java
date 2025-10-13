@@ -3,7 +3,7 @@ package nemexlib.api.recipes.workbench;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
-import nemexlib.api.recipes.ARecipeRemover;
+import nemexlib.api.recipes.removers.ARecipeRemover;
 import nemexlib.api.util.exceptions.ParameterIsNullOrEmpty;
 
 @SuppressWarnings({"unused"})
