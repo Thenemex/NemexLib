@@ -31,7 +31,7 @@ public abstract class SingleBlockWithDropsHandler extends WandEventHandler {
     /**
      * Constructor for the Handler.
      * <p>This specific handler type, will delete the trigger blocks and make them drop specific items.</p>
-     * <p>Each block will receive an unique incremented event number.</p>
+     * <p>Each block will receive a unique incremented event number.</p>
      * <p>Exemple : <code>blocks[0]</code> matches event = 0, <code>blocks[1]</code> matches event = 1 ... </p>
      * @param researchTag The researchTag : the trigger event won't be performed if the player didn't research that one yet (can be null)
      * @param blocks The trigger blocks
@@ -44,7 +44,7 @@ public abstract class SingleBlockWithDropsHandler extends WandEventHandler {
     /**
      * Constructor for the Handler.
      * <p>This specific handler type, will delete the trigger blocks and make them drop specific items.</p>
-     * <p>Each block will receive an unique incremented event number.</p>
+     * <p>Each block will receive a unique incremented event number.</p>
      * <p>Exemple : <code>blocks[0]</code> matches event = 0, <code>blocks[1]</code> matches event = 1 ... </p>
      * @param researchTag The researchTag : the trigger event won't be performed if the player didn't research that one yet (can be null)
      * @param upgradeResearchTag This tag will be checked for upgrade alongside vis aspects from mother class

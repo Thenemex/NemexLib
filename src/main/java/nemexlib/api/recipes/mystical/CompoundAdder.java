@@ -15,7 +15,7 @@ public class CompoundAdder {
 
     /**
      * Create and register a compound recipe to the TC4 registry
-     * <p>Please not that this recipe is only aesthetic, you will still need to code your own eventHandler</p>
+     * <p>Please note that this recipe is only aesthetic, you will still need to code your own eventHandler</p>
      * @param tag The recipe tag
      * @param aspects The vis needed to perform the recipe
      * @param width The max width for blocks

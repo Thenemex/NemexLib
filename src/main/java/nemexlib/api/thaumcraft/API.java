@@ -136,7 +136,7 @@ public class API {
     /**
      * Fits a page at the given index.
      * <p>All researches from that index value will be pushed at slot+1</p>
-     * <p>Ex : If a research got 2 pages, and you wanted to add the page at index 2 :</p>
+     * <p>Ex : If research got 2 pages, and you wanted to add the page at index 2 :</p>
      * <p>Page at slot 1 will stay 1, the new page will go at slot 2, and the actual page at slot 2 will go at slot 3</p>
      * @param tab Thaumonomicon tab
      * @param tag Research tag/key
@@ -154,7 +154,7 @@ public class API {
     /**
      * Fits a page at the given index.
      * <p>All researches from that index value will be pushed at slot+1</p>
-     * <p>Ex : If a research got 2 pages, and you wanted to add the page at index 2 :</p>
+     * <p>Ex : If research got 2 pages, and you wanted to add the page at index 2 :</p>
      * <p>Page at slot 1 will stay 1, the new page will go at slot 2, and the actual page at slot 2 will go at slot 3</p>
      * @param research The research
      * @param pageToAdd The page to fit at index
