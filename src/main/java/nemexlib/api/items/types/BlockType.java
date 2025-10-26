@@ -1,5 +1,6 @@
 package nemexlib.api.items.types;
 
+import nemexlib.api.util.exceptions.ParameterValueIsNegativeOrZero;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 
@@ -13,7 +14,7 @@ import java.util.Objects;
 public class BlockType {
 
     protected final Block block;
-    protected final int meta;
+    protected int meta;
 
     /**
      * Constructor for the class
@@ -50,6 +51,29 @@ public class BlockType {
     }
 
     /**
+     * Setter for the metadata
+     * @param meta The new metadata
+     * @return This instance
+     */
+    public BlockType setMeta(int meta) {
+        if (meta <= 0) throw new ParameterValueIsNegativeOrZero(meta);
+        this.meta = meta;
+        return this;
+    }
+
+    /**
+     * Adds a chosen number to metadata
+     * @param amount The number added
+     * @return This instance
+     * @throws ParameterValueIsNegativeOrZero If <code>amount</code> is negative
+     */
+    public BlockType addMeta(int amount) {
+        if (amount <= 0) throw new ParameterValueIsNegativeOrZero(amount);
+        this.meta += amount;
+        return this;
+    }
+
+    /**
      * Return the ItemStack related to the BlockType
      * @return The ItemStack, with block and meta
      */
@@ -64,6 +88,7 @@ public class BlockType {
     public ItemStack toItemStack(int amount) {
         return new ItemStack(block(), amount, meta());
     }
+
 
     @Override public String toString() {
         return getClass().getSimpleName().concat("{block = " + block() + ", meta = " + meta + "}");
