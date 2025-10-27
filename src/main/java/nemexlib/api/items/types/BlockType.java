@@ -1,5 +1,6 @@
 package nemexlib.api.items.types;
 
+import nemexlib.api.util.exceptions.ParameterIsNullOrEmpty;
 import nemexlib.api.util.exceptions.ParameterValueIsNegativeOrZero;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
@@ -13,7 +14,7 @@ import java.util.Objects;
 @SuppressWarnings("unused")
 public class BlockType {
 
-    protected final Block block;
+    protected Block block;
     protected int meta;
 
     /**
@@ -34,6 +35,15 @@ public class BlockType {
         this.block = block;
         this.meta = Math.max(meta, 0);
     }
+    /**
+     * Constructor for deep-copy
+     * @param V BlockType to deepcopy
+     */
+    public BlockType(BlockType V) {
+        if (V == null || V.block == null) throw new ParameterIsNullOrEmpty();
+        this.block = V.block();
+        this.meta = V.meta();
+    }
 
     /**
      * Getter for the block
@@ -50,6 +60,16 @@ public class BlockType {
         return meta;
     }
 
+    /**
+     * Setter for the block
+     * @param block The new block
+     * @return This instance
+     */
+    public BlockType setBlock(Block block) {
+        if (block == null) throw new ParameterIsNullOrEmpty();
+        this.block = block;
+        return this;
+    }
     /**
      * Setter for the metadata
      * @param meta The new metadata
@@ -88,7 +108,6 @@ public class BlockType {
     public ItemStack toItemStack(int amount) {
         return new ItemStack(block(), amount, meta());
     }
-
 
     @Override public String toString() {
         return getClass().getSimpleName().concat("{block = " + block() + ", meta = " + meta + "}");
