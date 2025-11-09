@@ -72,9 +72,9 @@ public class Logger {
      * @param messages The messages to log
      */
     protected void log(Level level, Object ... messages) {
-        String message = "";
+        StringBuilder message = new StringBuilder(prefix.concat(" : "));
         for (Object o : messages)
-            message = (o != null) ? message.concat(o.toString()) : "null";
-        logger.log(level, prefix.concat(" : ").concat(message));
+            message.append(" ").append((o != null) ? o.toString() : "null");
+        logger.log(level, message.toString());
     }
 }
