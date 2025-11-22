@@ -12,7 +12,7 @@ You will found here a library mod, containing a lot of utility code and stuff co
 - A class named Aspects, allowing for easier AspectList creation
 - A class named JarMaker, helping for easier ItemStack of Jars filled with Essentia
 - Full code for Adding & Removing recipes for Vanilla and Thaumcraft 4
-  - Supported recipes : IRecipe, Arcane, Crucible and Infusion
+  - Supported recipes : IRecipe, OreDict, Arcane, Crucible and Infusion
 - A collection of new useful exceptions mostly related to Thaumcraft stuff
 
 ### Licence :
