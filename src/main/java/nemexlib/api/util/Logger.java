@@ -72,7 +72,7 @@ public class Logger {
      * @param messages The messages to log
      */
     protected void log(Level level, Object ... messages) {
-        StringBuilder message = new StringBuilder(prefix.concat(" : "));
+        StringBuilder message = new StringBuilder(prefix.concat(" :"));
         for (Object o : messages)
             message.append(" ").append(o != null ? (o.toString() != null ? o.toString() : "string-null") : "null");
         logger.log(level, message.toString());
