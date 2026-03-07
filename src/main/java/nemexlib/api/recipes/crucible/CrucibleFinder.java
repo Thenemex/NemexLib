@@ -19,6 +19,7 @@ public class CrucibleFinder extends ACollectionRecipeFinder<CrucibleRecipe> {
 
     @Override
     public CrucibleRecipe findRecipeItem(ItemStack output) {
+        checkParameters(output);
         for (Collection registry : registries)
             for (Object recipe : registry)
                 try {
@@ -30,6 +31,7 @@ public class CrucibleFinder extends ACollectionRecipeFinder<CrucibleRecipe> {
     }
     @Override
     public CrucibleRecipe findRecipeAmount(ItemStack output) {
+        checkParameters(output);
         for (Collection registry : registries)
             for (Object recipe : registry)
                 try {
@@ -42,6 +44,7 @@ public class CrucibleFinder extends ACollectionRecipeFinder<CrucibleRecipe> {
     }
     @Override
     public CrucibleRecipe findRecipeMeta(ItemStack output) {
+        checkParameters(output);
         for (Collection registry : registries)
             for (Object recipe : registry)
                 try {
@@ -54,6 +57,7 @@ public class CrucibleFinder extends ACollectionRecipeFinder<CrucibleRecipe> {
     }
     @Override
     public CrucibleRecipe findRecipePrecise(ItemStack output) {
+        checkParameters(output);
         for (Collection registry : registries)
             for (Object recipe : registry)
                 try {
@@ -68,6 +72,8 @@ public class CrucibleFinder extends ACollectionRecipeFinder<CrucibleRecipe> {
 
     @Override
     public ArrayList<CrucibleRecipe> findRecipesItem(ItemStack output) {
+        checkParameters(output);
+        clearRecipesFound();
         for (Collection registry : registries)
             for (Object recipe : registry)
                 try {
@@ -79,6 +85,8 @@ public class CrucibleFinder extends ACollectionRecipeFinder<CrucibleRecipe> {
     }
     @Override
     public ArrayList<CrucibleRecipe> findRecipesAmount(ItemStack output) {
+        checkParameters(output);
+        clearRecipesFound();
         for (Collection registry : registries)
             for (Object recipe : registry)
                 try {
@@ -91,6 +99,8 @@ public class CrucibleFinder extends ACollectionRecipeFinder<CrucibleRecipe> {
     }
     @Override
     public ArrayList<CrucibleRecipe> findRecipesMeta(ItemStack output) {
+        checkParameters(output);
+        clearRecipesFound();
         for (Collection registry : registries)
             for (Object recipe : registry)
                 try {
@@ -103,6 +113,8 @@ public class CrucibleFinder extends ACollectionRecipeFinder<CrucibleRecipe> {
     }
     @Override
     public ArrayList<CrucibleRecipe> findRecipesPrecise(ItemStack output) {
+        checkParameters(output);
+        clearRecipesFound();
         for (Collection registry : registries)
             for (Object recipe : registry)
                 try {

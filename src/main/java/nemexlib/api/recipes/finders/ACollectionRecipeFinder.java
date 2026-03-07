@@ -36,4 +36,11 @@ public abstract class ACollectionRecipeFinder<TRecipe> implements IRecipeFinder<
         if (registries == null || registries.length == 0) throw new RecipeCollectionIsNotSetOrEmpty();
         if (item == null) throw new ParameterIsNullOrEmpty();
     }
+
+    /**
+     * Clears the list of recipes found
+     */
+    public void clearRecipesFound() {
+        recipesFound.clear();
+    }
 }

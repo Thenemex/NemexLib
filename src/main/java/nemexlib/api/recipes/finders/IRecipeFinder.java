@@ -6,8 +6,6 @@ import java.util.ArrayList;
 
 public interface IRecipeFinder<TRecipe> {
 
-    void checkParameters(ItemStack output);
-
     TRecipe findRecipeItem(ItemStack output);
     TRecipe findRecipeAmount(ItemStack output);
     TRecipe findRecipeMeta(ItemStack output);
