@@ -2,8 +2,6 @@ package nemexlib.api.recipes.finders;
 
 import net.minecraft.item.ItemStack;
 
-import java.util.ArrayList;
-
 public interface IRecipeFinder<TRecipe> {
 
     TRecipe findRecipeItem(ItemStack output);
