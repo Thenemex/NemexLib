@@ -14,18 +14,18 @@ You will found here a library mod, containing a lot of utility code and stuff co
 - Full code for Adding & Removing recipes for Vanilla and Thaumcraft 4
   - Supported recipes : IRecipe, OreDict, Arcane, Crucible and Infusion
 - A collection of new useful exceptions mostly related to Thaumcraft stuff
-- An in-game chat command for finding researches associated to Crucible recipes.
-  - The search will be done from the recipe output, compared to the item typed in the command.
-  - Compatible with auto-completion for all fields + error/typos handling with feedback messages
+- An in-game chat command for finding researches associated to Crucible recipes (/nemexlib ...)
+  - The search will be done from the recipe output, compared to the item typed in the command
+  - Compatible with tab auto-completion for all fields + error/typos handling with feedback messages
 
 ### Licence :
 - This library mod is licenced under CC BY-ND 4.0
   - You can use the mod to make addons, and gain money with these addons.
-  - You are free to give any licence you want to your newborn addon.
-  - You can monetise any modpack containing this library mod.
-  - You must give credit and a link back to this mod, a link to the licence, and indicate if any change were made to the library mod.
+  - You are free to give any license you want to your newborn addon.
+  - You can monetize any modpack containing this library mod.
+  - You must give credit and a link back to this mod, a link to the license, and indicate if any change were made to the library mod.
   - If you create a derivative / edited version of this library mod, you cannot distribute this edited version.
 
-I know this licence looks a bit severe, but you are allowed to do almost any task that a modder/modpack would do in normal usage of Minecraft mods & modpacks.
+I know this license looks a bit severe, but you are allowed to do almost any task that a modder/modpack would do in normal usage of Minecraft mods & modpacks.
 
 If you want any feature added to this library mod, please tell me in comments or on GitHub issues tracker !
