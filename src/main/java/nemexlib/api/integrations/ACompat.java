@@ -8,36 +8,22 @@ import java.util.Objects;
 /**
  * Class used for loading mod integration
  */
-public abstract class ACompat {
+public abstract class ACompat implements ICompat {
 
-    protected final String mod;
+    protected final String mod, tab;
 
     /**
      * Constructor for the mod integration class
      * @param mod The modID
      */
     public ACompat(String mod) {
+        this(mod, "");
+    }
+    public ACompat(String mod, String tab) {
         if (mod == null) throw new ParameterIsNullOrEmpty();
         this.mod = mod;
+        this.tab = tab;
         loadIntegration();
-    }
-
-    /**
-     * Method called in the constructor, needs to be implemented with all code for integration
-     */
-    public abstract void loadIntegration();
-
-    @Override public String toString() {
-        return "Compat:".concat(mod);
-    }
-    @Override public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ACompat)) return false;
-        ACompat aCompat = (ACompat) o;
-        return Objects.equals(mod, aCompat.mod);
-    }
-    @Override public int hashCode() {
-        return Objects.hashCode(mod);
     }
 
     /**
