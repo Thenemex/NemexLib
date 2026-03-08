@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 import java.util.ArrayList;
 import java.util.Collection;
 
-@SuppressWarnings({"UnusedReturnValue", "rawtypes", "unchecked"})
+@SuppressWarnings({"UnusedReturnValue", "rawtypes"})
 public abstract class ACollectionRecipeFinder<TRecipe> implements IRecipeFinder<TRecipe> {
 
     private final ArrayList<TRecipe> recipesFound;
