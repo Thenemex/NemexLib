@@ -7,10 +7,10 @@ import net.minecraft.item.ItemStack;
 import java.util.ArrayList;
 import java.util.Collection;
 
-@SuppressWarnings({"UnusedReturnValue", "rawtypes"})
+@SuppressWarnings({"UnusedReturnValue", "rawtypes", "unchecked"})
 public abstract class ACollectionRecipeFinder<TRecipe> implements IRecipeFinder<TRecipe> {
 
-    protected final ArrayList<TRecipe> recipesFound;
+    private final ArrayList<TRecipe> recipesFound;
     protected Collection[] registries;
 
     public ACollectionRecipeFinder(Collection ... registries) {
@@ -37,10 +37,43 @@ public abstract class ACollectionRecipeFinder<TRecipe> implements IRecipeFinder<
         if (item == null) throw new ParameterIsNullOrEmpty();
     }
 
+
+    /**
+     * Add a recipe to the list of found recipes
+     */
+    public void addFoundRecipe(TRecipe recipe) {
+        this.recipesFound.add(recipe);
+    }
     /**
      * Clears the list of recipes found
      */
-    public void clearRecipesFound() {
-        recipesFound.clear();
+    public void clearFoundRecipes() {
+        this.recipesFound.clear();
+    }
+
+    /**
+     * Returns true if the list of found recipes is empty
+     */
+    public boolean isFoundRecipesListEmpty() {
+        return recipesFound.isEmpty();
+    }
+    /**
+     * Returns the amount of recipes present in the list of found recipes
+     */
+    public int getAmountOfFoundRecipes() {
+        return recipesFound.size();
+    }
+
+    /**
+     * Returns a copy of the list of found recipes
+     */
+    public ArrayList<TRecipe> getFoundRecipesList() {
+        return new ArrayList<>(recipesFound);
+    }
+    /**
+     * Returns a copy of the array of found recipes
+     */
+    public TRecipe[] getFoundRecipesArray() {
+        return (TRecipe[]) recipesFound.toArray();
     }
 }
