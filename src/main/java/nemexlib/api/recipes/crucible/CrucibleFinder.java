@@ -4,7 +4,6 @@ import nemexlib.api.recipes.finders.ACollectionRecipeFinder;
 import net.minecraft.item.ItemStack;
 import thaumcraft.api.crafting.CrucibleRecipe;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 @SuppressWarnings("rawtypes")
@@ -71,50 +70,50 @@ public class CrucibleFinder extends ACollectionRecipeFinder<CrucibleRecipe> {
     }
 
     @Override
-    public ArrayList<CrucibleRecipe> findRecipesItem(ItemStack output) {
+    public CrucibleRecipe[] findRecipesItem(ItemStack output) {
         checkParameters(output);
-        clearRecipesFound();
+        clearFoundRecipes();
         for (Collection registry : registries)
             for (Object recipe : registry)
                 try {
                     CrucibleRecipe r = (CrucibleRecipe) recipe;
                     boolean condition = r.getRecipeOutput().getItem().equals(output.getItem());
-                    if (condition) this.recipesFound.add(r);
+                    if (condition) addFoundRecipe(r);
                 } catch (Exception ignored) {}
-        return recipesFound;
+        return getFoundRecipesArray();
     }
     @Override
-    public ArrayList<CrucibleRecipe> findRecipesAmount(ItemStack output) {
+    public CrucibleRecipe[] findRecipesAmount(ItemStack output) {
         checkParameters(output);
-        clearRecipesFound();
+        clearFoundRecipes();
         for (Collection registry : registries)
             for (Object recipe : registry)
                 try {
                     CrucibleRecipe r = (CrucibleRecipe) recipe;
                     boolean condition = r.getRecipeOutput().getItem().equals(output.getItem())
                             && r.getRecipeOutput().stackSize == output.stackSize;
-                    if (condition) this.recipesFound.add(r);
+                    if (condition) addFoundRecipe(r);
                 } catch (Exception ignored) {}
-        return recipesFound;
+        return getFoundRecipesArray();
     }
     @Override
-    public ArrayList<CrucibleRecipe> findRecipesMeta(ItemStack output) {
+    public CrucibleRecipe[] findRecipesMeta(ItemStack output) {
         checkParameters(output);
-        clearRecipesFound();
+        clearFoundRecipes();
         for (Collection registry : registries)
             for (Object recipe : registry)
                 try {
                     CrucibleRecipe r = (CrucibleRecipe) recipe;
                     boolean condition = r.getRecipeOutput().getItem().equals(output.getItem())
                             && r.getRecipeOutput().getItemDamage() == output.getItemDamage();
-                    if (condition) this.recipesFound.add(r);
+                    if (condition) addFoundRecipe(r);
                 } catch (Exception ignored) {}
-        return recipesFound;
+        return getFoundRecipesArray();
     }
     @Override
-    public ArrayList<CrucibleRecipe> findRecipesPrecise(ItemStack output) {
+    public CrucibleRecipe[] findRecipesPrecise(ItemStack output) {
         checkParameters(output);
-        clearRecipesFound();
+        clearFoundRecipes();
         for (Collection registry : registries)
             for (Object recipe : registry)
                 try {
@@ -122,8 +121,16 @@ public class CrucibleFinder extends ACollectionRecipeFinder<CrucibleRecipe> {
                     boolean condition = r.getRecipeOutput().getItem().equals(output.getItem())
                             && r.getRecipeOutput().stackSize == output.stackSize
                             && r.getRecipeOutput().getItemDamage() == output.getItemDamage();
-                    if (condition) this.recipesFound.add(r);
+                    if (condition) addFoundRecipe(r);
                 } catch (Exception ignored) {}
-        return recipesFound;
+        return getFoundRecipesArray();
+    }
+    
+    public String[] getResearchesFromLastFoundRecipes() {
+        if (getAmountOfFoundRecipes() == 0) return null;
+        String[] researches = new String[getAmountOfFoundRecipes()];
+        for (int i = 0 ; i < researches.length ; i++)
+            researches[i] = getFoundRecipesArray()[i].key;
+        return researches;
     }
 }
