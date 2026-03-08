@@ -67,13 +67,7 @@ public abstract class ACollectionRecipeFinder<TRecipe> implements IRecipeFinder<
     /**
      * Returns a copy of the list of found recipes
      */
-    public ArrayList<TRecipe> getFoundRecipesList() {
+    public ArrayList<TRecipe> getFoundRecipes() {
         return new ArrayList<>(recipesFound);
-    }
-    /**
-     * Returns a copy of the array of found recipes
-     */
-    public TRecipe[] getFoundRecipesArray() {
-        return (TRecipe[]) recipesFound.toArray();
     }
 }

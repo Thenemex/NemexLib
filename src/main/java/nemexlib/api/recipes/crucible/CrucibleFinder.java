@@ -4,16 +4,20 @@ import nemexlib.api.recipes.finders.ACollectionRecipeFinder;
 import net.minecraft.item.ItemStack;
 import thaumcraft.api.crafting.CrucibleRecipe;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 @SuppressWarnings("rawtypes")
 public class CrucibleFinder extends ACollectionRecipeFinder<CrucibleRecipe> {
 
+    private final ArrayList<String> researches;
+
     public CrucibleFinder(Collection ... registries) {
-        super(registries);
+        this(5, registries);
     }
     public CrucibleFinder(int amount, Collection ... registries) {
         super(amount, registries);
+        this.researches = new ArrayList<>(amount);
     }
 
     @Override
@@ -70,7 +74,7 @@ public class CrucibleFinder extends ACollectionRecipeFinder<CrucibleRecipe> {
     }
 
     @Override
-    public CrucibleRecipe[] findRecipesItem(ItemStack output) {
+    public ArrayList<CrucibleRecipe> findRecipesItem(ItemStack output) {
         checkParameters(output);
         clearFoundRecipes();
         for (Collection registry : registries)
@@ -80,10 +84,10 @@ public class CrucibleFinder extends ACollectionRecipeFinder<CrucibleRecipe> {
                     boolean condition = r.getRecipeOutput().getItem().equals(output.getItem());
                     if (condition) addFoundRecipe(r);
                 } catch (Exception ignored) {}
-        return getFoundRecipesArray();
+        return getFoundRecipes();
     }
     @Override
-    public CrucibleRecipe[] findRecipesAmount(ItemStack output) {
+    public ArrayList<CrucibleRecipe> findRecipesAmount(ItemStack output) {
         checkParameters(output);
         clearFoundRecipes();
         for (Collection registry : registries)
@@ -94,10 +98,10 @@ public class CrucibleFinder extends ACollectionRecipeFinder<CrucibleRecipe> {
                             && r.getRecipeOutput().stackSize == output.stackSize;
                     if (condition) addFoundRecipe(r);
                 } catch (Exception ignored) {}
-        return getFoundRecipesArray();
+        return getFoundRecipes();
     }
     @Override
-    public CrucibleRecipe[] findRecipesMeta(ItemStack output) {
+    public ArrayList<CrucibleRecipe> findRecipesMeta(ItemStack output) {
         checkParameters(output);
         clearFoundRecipes();
         for (Collection registry : registries)
@@ -108,10 +112,10 @@ public class CrucibleFinder extends ACollectionRecipeFinder<CrucibleRecipe> {
                             && r.getRecipeOutput().getItemDamage() == output.getItemDamage();
                     if (condition) addFoundRecipe(r);
                 } catch (Exception ignored) {}
-        return getFoundRecipesArray();
+        return getFoundRecipes();
     }
     @Override
-    public CrucibleRecipe[] findRecipesPrecise(ItemStack output) {
+    public ArrayList<CrucibleRecipe> findRecipesPrecise(ItemStack output) {
         checkParameters(output);
         clearFoundRecipes();
         for (Collection registry : registries)
@@ -123,14 +127,13 @@ public class CrucibleFinder extends ACollectionRecipeFinder<CrucibleRecipe> {
                             && r.getRecipeOutput().getItemDamage() == output.getItemDamage();
                     if (condition) addFoundRecipe(r);
                 } catch (Exception ignored) {}
-        return getFoundRecipesArray();
+        return getFoundRecipes();
     }
     
     public String[] getResearchesFromLastFoundRecipes() {
         if (getAmountOfFoundRecipes() == 0) return null;
-        String[] researches = new String[getAmountOfFoundRecipes()];
-        for (int i = 0 ; i < researches.length ; i++)
-            researches[i] = getFoundRecipesArray()[i].key;
-        return researches;
+        for (CrucibleRecipe r : getFoundRecipes())
+            researches.add(r.key);
+        return researches.toArray(new String[0]);
     }
 }
