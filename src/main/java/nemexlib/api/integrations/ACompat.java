@@ -3,8 +3,6 @@ package nemexlib.api.integrations;
 import cpw.mods.fml.common.Loader;
 import nemexlib.api.util.exceptions.ParameterIsNullOrEmpty;
 
-import java.util.Objects;
-
 /**
  * Class used for loading mod integration
  */
