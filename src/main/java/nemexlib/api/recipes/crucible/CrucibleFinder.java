@@ -132,6 +132,7 @@ public class CrucibleFinder extends ACollectionRecipeFinder<CrucibleRecipe> {
     
     public String[] getResearchesFromLastFoundRecipes() {
         if (getAmountOfFoundRecipes() == 0) return null;
+        researches.clear();
         for (CrucibleRecipe r : getFoundRecipes())
             researches.add(r.key);
         return researches.toArray(new String[0]);

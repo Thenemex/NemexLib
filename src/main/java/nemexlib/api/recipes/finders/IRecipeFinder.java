@@ -4,6 +4,7 @@ import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
 
+@SuppressWarnings("UnusedReturnValue")
 public interface IRecipeFinder<TRecipe> {
 
     TRecipe findRecipeItem(ItemStack output);
