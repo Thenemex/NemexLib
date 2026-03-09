@@ -1,14 +1,14 @@
 package nemexlib.api.thaumcraft;
 
 import nemexlib.api.util.Util;
+import nemexlib.api.util.exceptions.*;
 import nemexlib.api.util.exceptions.IndexOutOfBoundsException;
-import nemexlib.api.util.exceptions.ResearchDoesNotHaveAnyPages;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import nemexlib.api.thaumcraft.research.Research;
-import nemexlib.api.util.exceptions.ParameterIsNullOrEmpty;
-import nemexlib.api.util.exceptions.ResearchDoesNotExists;
 import thaumcraft.api.aspects.AspectList;
+import thaumcraft.api.research.ResearchCategories;
+import thaumcraft.api.research.ResearchCategoryList;
 import thaumcraft.api.research.ResearchItem;
 import thaumcraft.api.research.ResearchPage;
 
@@ -50,6 +50,7 @@ public class API {
 
     /**
      * Get the research from the Thaumcraft 4 registry
+     * <p>Don't forget to load your mod AFTER the one you are trying to get the research from, else it won't work</p>
      * @param tab Thaumonomicon Tab
      * @param tag Research tag/key
      * @return The research
@@ -60,6 +61,35 @@ public class API {
         if (tab == null || tag == null) throw new ParameterIsNullOrEmpty();
         ResearchItem research = researchCategories.get(tab).research.get(tag);
         if (research == null) throw new ResearchDoesNotExists(tab, tag);
+        return research;
+    }
+
+    /**
+     * Remove research from the chosen Thaumonomicon tab
+     * <p>It will scales down the tab if necessary</p>
+     * @param tab Thaumonomicon Tab
+     * @param tag Research tag/key
+     * @return The unregistered research
+     * @throws ParameterIsNullOrEmpty If one of the parameters is null
+     * @throws ResearchDoesNotExists If no research with such tab and tag is found
+     * @throws NullPointerException If the Thaumonomicon tab cannot be accessed - Should never happen
+     */
+    public static ResearchItem removeResearch(String tab, String tag) {
+        ResearchItem research = getResearch(tab, tag);
+        ResearchCategoryList rl = ResearchCategories.getResearchList(tab);
+        if (rl == null) throw new NullPointerException("Cannot get researchCategory from parameter tab - Should never happen, report to author");
+        if (!rl.research.remove(tag, research)) throw new ResearchRemovalException(tab, tag);
+        int minCol = 0, maxCol = 0, minRow = 0, maxRow = 0;
+        for (ResearchItem ri : rl.research.values()) {
+            minCol = Math.min(minCol, ri.displayColumn);
+            maxCol = Math.max(maxCol, ri.displayColumn);
+            minRow = Math.min(minRow, ri.displayColumn);
+            maxRow = Math.max(maxRow, ri.displayColumn);
+        }
+        rl.minDisplayColumn = minCol;
+        rl.maxDisplayColumn = maxCol;
+        rl.minDisplayRow = minRow;
+        rl.maxDisplayRow = maxRow;
         return research;
     }
 
