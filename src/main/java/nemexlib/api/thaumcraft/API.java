@@ -92,6 +92,20 @@ public class API {
         rl.maxDisplayRow = maxRow;
         return research;
     }
+    /**
+     * Remove research from the chosen Thaumonomicon tab
+     * <p>It will scales down the tab if necessary</p>
+     * @param research The research
+     * @return The unregistered research
+     * @throws ParameterIsNullOrEmpty If one of the parameters is null
+     * @throws ResearchDoesNotExists If no research with such tab and tag is found
+     * @throws NullPointerException If the Thaumonomicon tab cannot be accessed - Should never happen
+     */
+    public static ResearchItem removeResearch(ResearchItem research) {
+        if (research == null) throw new ParameterIsNullOrEmpty();
+        removeResearch(research.category, research.key);
+        return research;
+    }
 
     /**
      * Allows to add prereqs to a research
