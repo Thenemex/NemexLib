@@ -11,6 +11,13 @@ public class Util {
 
     private Util(){}
 
+    public static boolean contains(String[] tab, String s) {
+        for (String el : tab)
+            if (el.equalsIgnoreCase(s))
+                return true;
+        return false;
+    }
+
     public static String[] deepCopyAndRemove(String[] tab, String ... toRemove) {
         if (tab == null || toRemove == null || toRemove.length == 0) throw new ParameterIsNullOrEmpty();
         List<String> list = Arrays.asList(tab);

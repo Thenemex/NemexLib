@@ -1,5 +1,6 @@
 package nemexlib.api.thaumcraft;
 
+import nemexlib.NemexLib;
 import nemexlib.api.util.Util;
 import nemexlib.api.util.exceptions.*;
 import nemexlib.api.util.exceptions.IndexOutOfBoundsException;
@@ -66,7 +67,7 @@ public class API {
     /**
      * Resize all research categories registered to Thaumcraft
      */
-    public static void resizeTabs() {
+    public static void resizeTabAll() {
         for (ResearchCategoryList rl : researchCategories.values()) resizeTab(rl);
     }
 
@@ -117,6 +118,8 @@ public class API {
         ResearchCategoryList rl = ResearchCategories.getResearchList(tab);
         if (!rl.research.remove(tag, research)) throw new ResearchRemovalException(tab, tag);
         resizeTab(rl);
+        // Removing the research key from all other researches
+        removeParentsAll(research.key);
         return research;
     }
     /**
@@ -195,6 +198,23 @@ public class API {
         else if (!hidden && research.parents != null)
             research.setParents(Util.deepCopyAndRemove(research.parents, toRemove));
         return research;
+    }
+    /**
+     * Removes a certain research key from all registered Thaumcraft researches
+     * @param toRemove The research key
+     */
+    public static void removeParentsAll(String toRemove) {
+        for (ResearchCategoryList rl : researchCategories.values())
+            for (ResearchItem ri : rl.research.values()) {
+                if (Util.contains(ri.parents, toRemove)) {
+                    removeParents(ri, false, toRemove);
+                    NemexLib.logger.info("Removed parent " + toRemove + " from research " + ri.category + "." + ri.key);
+                }
+                if (Util.contains(ri.parentsHidden, toRemove)) {
+                    removeParents(ri, true, toRemove);
+                    NemexLib.logger.info("Removed hidden parent " + toRemove + " from research " + ri.category + "." + ri.key);
+                }
+            }
     }
 
     /**
@@ -310,7 +330,7 @@ public class API {
         research.setPages(Util.removeIndex(index - 1, pages));
         return removedPage;
     }
-    // ToDo Do a script for cleaning any parents/parentsHidden containing that research key in all researches
+
     /**
      * Replace a page by another in the research
      * @param tab Thaumonomicon tab
