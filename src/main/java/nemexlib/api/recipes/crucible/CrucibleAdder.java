@@ -15,6 +15,7 @@ public class CrucibleAdder {
         if (tag == null || aspects == null || output == null || input == null) throw new ParameterIsNullOrEmpty();
         return ThaumcraftApi.addCrucibleRecipe(tag, output, input, aspects);
     }
+
     /**
      * Adds a single crucible recipe
      * @param tag Research's tag
@@ -25,17 +26,6 @@ public class CrucibleAdder {
      */
     public static CrucibleRecipe addRecipe(String tag, Aspects aspects, ItemStack output, ItemStack input) {
         return addRecipe(tag, aspects, output, (Object) input);
-    }
-    /**
-     * Adds a single crucible recipe
-     * @param tag Research's tag
-     * @param aspects Crucible aspects needed
-     * @param output The output ItemStack
-     * @param oreDict The recipe catalyst
-     * @return The recipe generated
-     */
-    public static CrucibleRecipe addRecipe(String tag, Aspects aspects, ItemStack output, String oreDict) {
-        return addRecipe(tag, aspects, output, (Object) oreDict);
     }
 
     /**
