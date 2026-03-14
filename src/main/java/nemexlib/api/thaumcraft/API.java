@@ -33,6 +33,41 @@ public class API {
     }
 
     /**
+     * Resize the research category to fit all of its current researches
+     * @param tab The Thaumonomicon tab
+     */
+    public static void resizeTab(String tab) {
+        if (tab == null) throw new ParameterIsNullOrEmpty();
+        ResearchCategoryList rl = ResearchCategories.getResearchList(tab);
+        if (rl == null) throw new TabDoesNotExists(tab);
+        resizeTab(ResearchCategories.getResearchList(tab));
+    }
+    /**
+     * Resize the research category to fit all of its current researches
+     * @param rl The research category
+     */
+    public static void resizeTab(ResearchCategoryList rl) {
+        if (rl == null) throw new ParameterIsNullOrEmpty();
+        int minCol = 0, maxCol = 0, minRow = 0, maxRow = 0;
+        for (ResearchItem ri : rl.research.values()) {
+            minCol = Math.min(minCol, ri.displayColumn);
+            maxCol = Math.max(maxCol, ri.displayColumn);
+            minRow = Math.min(minRow, ri.displayColumn);
+            maxRow = Math.max(maxRow, ri.displayColumn);
+        }
+        rl.minDisplayColumn = minCol;
+        rl.maxDisplayColumn = maxCol;
+        rl.minDisplayRow = minRow;
+        rl.maxDisplayRow = maxRow;
+    }
+    /**
+     * Resize all research categories registered to Thaumcraft
+     */
+    public static void resizeTabs() {
+        for (ResearchCategoryList rl : researchCategories.values()) resizeTab(rl);
+    }
+
+    /**
      * Create a new research in the Thaumonomicon, and registers it
      * @param tag Research tag
      * @param tab Thaumonomicon tab
@@ -77,19 +112,8 @@ public class API {
     public static ResearchItem removeResearch(String tab, String tag) {
         ResearchItem research = getResearch(tab, tag);
         ResearchCategoryList rl = ResearchCategories.getResearchList(tab);
-        if (rl == null) throw new NullPointerException("Cannot get researchCategory from parameter tab - Should never happen, report to author");
         if (!rl.research.remove(tag, research)) throw new ResearchRemovalException(tab, tag);
-        int minCol = 0, maxCol = 0, minRow = 0, maxRow = 0;
-        for (ResearchItem ri : rl.research.values()) {
-            minCol = Math.min(minCol, ri.displayColumn);
-            maxCol = Math.max(maxCol, ri.displayColumn);
-            minRow = Math.min(minRow, ri.displayColumn);
-            maxRow = Math.max(maxRow, ri.displayColumn);
-        }
-        rl.minDisplayColumn = minCol;
-        rl.maxDisplayColumn = maxCol;
-        rl.minDisplayRow = minRow;
-        rl.maxDisplayRow = maxRow;
+        resizeTab(rl);
         return research;
     }
     /**
@@ -172,7 +196,7 @@ public class API {
             // Copying all pages from the research pages
             System.arraycopy(pages, 0, newPages, 0, pages.length);
             // Adding all the pages to add at the end of the array
-            System.arraycopy(pagesToAdd, 0, newPages, pages.length, newPages.length);
+            System.arraycopy(pagesToAdd, 0, newPages, pages.length, newPages.length); // ToDo Probable bug here
             research.setPages(newPages);
         }
     }
@@ -255,7 +279,7 @@ public class API {
         research.setPages(Util.removeIndex(index - 1, pages));
         return removedPage;
     }
-
+    // ToDo Do a script for cleaning any parents/parentsHidden containing that research key in all researches
     /**
      * Replace a page by another in the research
      * @param tab Thaumonomicon tab
