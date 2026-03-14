@@ -35,6 +35,8 @@ public class API {
     /**
      * Resize the research category to fit all of its current researches
      * @param tab The Thaumonomicon tab
+     * @throws ParameterIsNullOrEmpty If parameter tab is null
+     * @throws TabDoesNotExists If the Thaumonomicon tab cannot be found within the registries
      */
     public static void resizeTab(String tab) {
         if (tab == null) throw new ParameterIsNullOrEmpty();
@@ -45,6 +47,7 @@ public class API {
     /**
      * Resize the research category to fit all of its current researches
      * @param rl The research category
+     * @throws ParameterIsNullOrEmpty If parameter tab is null
      */
     public static void resizeTab(ResearchCategoryList rl) {
         if (rl == null) throw new ParameterIsNullOrEmpty();
@@ -135,35 +138,63 @@ public class API {
      * Allows to add prereqs to a research
      * @param tab The Thaumonomicon tab/category
      * @param tag The research tab/key
-     * @param hidden Is the parents hidden or not
-     * @param parents The parents to add
+     * @param hidden Are the parentsToAdd hidden or not
+     * @param parentsToAdd The parents to add
      * @throws ParameterIsNullOrEmpty If one of the parameter is null, or that the array is empty
      * @throws ResearchDoesNotExists If no research with such tab and tag is found
      */
-    public static void addParents(String tab, String tag, boolean hidden, String ... parents) {
-        if (parents == null || parents.length == 0) throw new ParameterIsNullOrEmpty();
-        addParents(getResearch(tab, tag), hidden, parents);
+    public static void addParents(String tab, String tag, boolean hidden, String ... parentsToAdd) {
+        if (parentsToAdd == null || parentsToAdd.length == 0) throw new ParameterIsNullOrEmpty();
+        addParents(getResearch(tab, tag), hidden, parentsToAdd);
     }
     /**
      * Allows to add prereqs to a research
      * @param research The research
-     * @param hidden Is the parentsToAdd hidden or not
+     * @param hidden Are the parentsToAdd hidden or not
      * @param parentsToAdd The parentsToAdd to add
      * @throws ParameterIsNullOrEmpty If one of the parameter is null, or that the array is empty
      */
     public static void addParents(ResearchItem research, boolean hidden, String ... parentsToAdd) {
-        if (research == null || parentsToAdd == null) throw new ParameterIsNullOrEmpty();
+        if (research == null || parentsToAdd == null || parentsToAdd.length == 0) throw new ParameterIsNullOrEmpty();
         if (hidden) {
             if (research.parentsHidden == null)
-                research.setParentsHidden(parentsToAdd);
-            else
-                research.setParentsHidden(Util.deepCopyTabAndAdd(research.parentsHidden, parentsToAdd));
+                 research.setParentsHidden(parentsToAdd);
+            else research.setParentsHidden(Util.deepCopyTabAndAdd(research.parentsHidden, parentsToAdd));
         } else {
             if (research.parents == null)
-                research.setParents(parentsToAdd);
-            else
-                research.setParents(Util.deepCopyTabAndAdd(research.parents, parentsToAdd));
+                 research.setParents(parentsToAdd);
+            else research.setParents(Util.deepCopyTabAndAdd(research.parents, parentsToAdd));
         }
+    }
+
+    /**
+     * Allows to remove prereqs to a research
+     * @param tab The Thaumonomicon tab/category
+     * @param tag The research tab/key
+     * @param hidden Are the parents to remove hidden or not
+     * @param toRemove The parent(s) to remove
+     * @return The research to which the parents where removed
+     * @throws ParameterIsNullOrEmpty If one of the parameter is null or empty
+     */
+    public static ResearchItem removeParents(String tab, String tag, boolean hidden, String ... toRemove) {
+        if (tab == null || tag == null || toRemove == null || toRemove.length == 0) throw new ParameterIsNullOrEmpty();
+        return removeParents(getResearch(tab, tag), hidden, toRemove);
+    }
+    /**
+     * Allows to remove prereqs to a research
+     * @param research The research
+     * @param hidden Are the parents to remove hidden or not
+     * @param toRemove The parent(s) to remove
+     * @return The research to which the parents where removed
+     * @throws ParameterIsNullOrEmpty If one of the parameter is null or empty
+     */
+    public static ResearchItem removeParents(ResearchItem research, boolean hidden, String ... toRemove) {
+        if (research == null || toRemove == null || toRemove.length == 0) throw new ParameterIsNullOrEmpty();
+        if (hidden && research.parentsHidden != null)
+            research.setParentsHidden(Util.deepCopyAndRemove(research.parentsHidden, toRemove));
+        else if (!hidden && research.parents != null)
+            research.setParents(Util.deepCopyAndRemove(research.parents, toRemove));
+        return research;
     }
 
     /**
