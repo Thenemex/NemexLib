@@ -182,6 +182,18 @@ public abstract class AConfig {
      * @param value The default value
      * @param min Minimum value
      * @param max Maximum value
+     * @return The value of the entry
+     */
+    protected int newEntry(String category, String key, int value, int min, int max) {
+        return config.get(category, key, value, null, min, max).getInt(value);
+    }
+    /**
+     * Create a new int entry to the config
+     * @param category The category
+     * @param key The entry key
+     * @param value The default value
+     * @param min Minimum value
+     * @param max Maximum value
      * @param comment A comment that will be shown on the line above
      * @return The value of the entry
      */
