@@ -30,7 +30,8 @@ public class Util {
 
     public static String[] deepCopyTabAndAdd(String[] tab, String ... newElements) {
         if (tab == null || newElements == null || newElements.length == 0) throw new ParameterIsNullOrEmpty();
-        List<String> list = Arrays.asList(tab);
+        ArrayList<String> list = new ArrayList<>(tab.length + newElements.length);
+        list.addAll(Arrays.asList(tab));
         list.addAll(Arrays.asList(newElements));
         return list.toArray(new String[0]);
     }
