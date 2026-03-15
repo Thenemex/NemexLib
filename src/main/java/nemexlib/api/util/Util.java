@@ -13,6 +13,7 @@ public class Util {
     private Util(){}
 
     public static boolean contains(String[] tab, String s) {
+        if (tab == null) return false;
         for (String el : tab)
             if (el.equalsIgnoreCase(s))
                 return true;
