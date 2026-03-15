@@ -31,16 +31,6 @@ public class FindResearchFromRecipeCommand extends NemexLibCommand {
     }
 
     @Override
-    public String getCommandUsage(ICommandSender sender) {
-        return sb.toString();
-    }
-
-    @Override
-    public int getRequiredPermissionLevel() {
-        return 0;
-    }
-
-    @Override
     public void processCommand(ICommandSender sender, String[] args) {
         if (args.length >= 4 && args[0].equalsIgnoreCase(word1) && args[1].equalsIgnoreCase(word2) && args[2].equalsIgnoreCase(word3)) {
             // Item output extraction
