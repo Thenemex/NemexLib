@@ -7,13 +7,12 @@ import nemexlib.api.util.exceptions.BlockOrItemDoesNotExist;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import thaumcraft.api.ThaumcraftApi;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 @SuppressWarnings({"rawtypes", "SameParameterValue"})
@@ -21,17 +20,13 @@ public class NemexLibCommands extends CommandBase {
 
     protected final CrucibleFinder finder;
 
-    protected static final String help = "help";
-    protected static String[] command1;
-    protected final ArrayList<String> commands;
+    private static final String help = "help", command1_1 = "crucible", command1_2 = "output";
+    protected final String[] commands;
 
     public NemexLibCommands() {
         this.finder = new CrucibleFinder(ThaumcraftApi.getCraftingRecipes());
-        this.commands = new ArrayList<>(3);
-        this.commands.add(null);
-        this.commands.add("find-research-from-recipe");
-        command1 = new String[]{"crucible", "output"};
-        this.commands.add("get-held-item-NBT");
+        this.commands = new String[]{"find-research-from-recipe", "get-held-item-NBT"};
+
     }
 
     @Override public String getCommandName() {
@@ -47,8 +42,8 @@ public class NemexLibCommands extends CommandBase {
     @Override public void processCommand(ICommandSender sender, String[] args) {
         if (args.length == 0 || args.length == 1 && args[0].equalsIgnoreCase(help)) listAllPrefixes(sender);
             // Command 1 : Find research from recipe
-        else if (args[0].equalsIgnoreCase(commands.get(1))) {
-            if (args.length >= 4 && args[1].equalsIgnoreCase(command1[0]) && args[2].equalsIgnoreCase(command1[1])) {
+        else if (args[0].equalsIgnoreCase(commands[0])) {
+            if (args.length >= 4 && args[1].equalsIgnoreCase(command1_1) && args[2].equalsIgnoreCase(command1_2)) {
                 // Item output extraction
                 ItemStack output = null;
                 try {
@@ -77,7 +72,7 @@ public class NemexLibCommands extends CommandBase {
             } else throw new WrongUsageException(getCommandUsageFull(sender, 1));
         }
         // Command 2 : Get held item NBT
-        else if (args[0].equalsIgnoreCase(commands.get(2))) {
+        else if (args[0].equalsIgnoreCase(commands[1])) {
             // Item held extraction
             ItemStack heldItem = sender.getEntityWorld().getPlayerEntityByName(sender.getCommandSenderName()).getHeldItem();
             chatNull(sender, (heldItem == null) ? "null" : heldItem.getTagCompound().toString(), 2);
@@ -87,7 +82,12 @@ public class NemexLibCommands extends CommandBase {
 
     @Override
     public List addTabCompletionOptions(ICommandSender sender, String[] args) {
-        return Collections.emptyList(); // ToDo T_T
+        switch (args.length) {
+            case 1: return getListOfStringsMatchingLastWord(args, commands);
+            case 2: return (args[0].equalsIgnoreCase(commands[0])) ? getListOfStringsMatchingLastWord(args, command1_1) : null;
+            case 3: return (args[0].equalsIgnoreCase(commands[0])) ? getListOfStringsMatchingLastWord(args, command1_2) : null;
+            case 4: return getListOfStringsFromIterableMatchingLastWord(args, Item.itemRegistry.getKeys());
+        } return null;
     }
 
     protected void chat(ICommandSender sender, String message) {
@@ -106,13 +106,13 @@ public class NemexLibCommands extends CommandBase {
 
     protected void listAllPrefixes(ICommandSender sender) {
         chat(sender, "Usage : /nemexlib <KEYWORD>");
-        chat(sender, "Keywords : " + commands.toString());
+        chat(sender, "Keywords : " + Arrays.toString(commands));
     }
     protected String getCommandUsageFull(ICommandSender sender, int n) {
         String s = "/nemexlib ";
         // Replace with switch if more commands pop up
         if (n == 1)
-            return s + commands.get(1) + " crucible output <ITEM> [AMOUNT]";
+            return s + commands[0] + " crucible output <ITEM> [AMOUNT]";
         return null;
     }
 
