@@ -1,10 +1,8 @@
 package nemexlib.api.commands;
 
-import nemexlib.NemexLib;
 import nemexlib.api.items.ItemFinder;
 import nemexlib.api.recipes.crucible.CrucibleFinder;
 import nemexlib.api.util.exceptions.BlockOrItemDoesNotExist;
-import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
 import net.minecraft.item.Item;
@@ -16,26 +14,20 @@ import java.util.Arrays;
 import java.util.List;
 
 @SuppressWarnings("rawtypes")
-public class FindResearchFromRecipeCommand extends CommandBase {
+public class FindResearchFromRecipeCommand extends NemexLibCommand {
 
     protected static final String word1 = "find-research-from-recipe", word2 = "crucible", word3 = "output";
 
     protected final CrucibleFinder finder;
-    protected final StringBuilder sb;
 
     public FindResearchFromRecipeCommand() {
+        super(85);
         this.finder = new CrucibleFinder(ThaumcraftApi.getCraftingRecipes());
-        this.sb = new StringBuilder(85)
-                .append("/").append(getCommandName())
+        this.sb.append("/").append(getCommandName())
                 .append(" ").append(word1)
                 .append(" ").append(word2)
                 .append(" ").append(word3)
                 .append(" <ITEM> [AMOUNT]");
-    }
-
-    @Override
-    public String getCommandName() {
-        return NemexLib.modID.toLowerCase();
     }
 
     @Override
@@ -91,9 +83,6 @@ public class FindResearchFromRecipeCommand extends CommandBase {
         } return null;
     }
 
-    protected void chat(ICommandSender sender, String message) {
-        sender.addChatMessage(new ChatComponentText(message));
-    }
     protected void chatNull(ICommandSender sender, String message) {
         sender.addChatMessage(new ChatComponentText("§6".concat(message.equals("null") ? "No recipes found !" : message)));
     }
