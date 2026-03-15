@@ -4,6 +4,7 @@ import nemexlib.api.util.exceptions.IndexOutOfBoundsException;
 import nemexlib.api.util.exceptions.ParameterIsNullOrEmpty;
 import thaumcraft.api.research.ResearchPage;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -36,8 +37,9 @@ public class Util {
     public static ResearchPage[] removeIndex(int index, ResearchPage[] array) {
         if (array == null || array.length == 0) throw new ParameterIsNullOrEmpty();
         if (index < 0 || index >= array.length) throw new IndexOutOfBoundsException(index, array.length);
-        List<ResearchPage> list = Arrays.asList(array);
-        list.remove(index);
+        List<ResearchPage> list = new ArrayList<>(array.length - 1);
+        for (int i = 0; i < array.length; i++)
+            if (i != index) list.add(array[i]);
         return list.toArray(new ResearchPage[0]);
     }
 }
