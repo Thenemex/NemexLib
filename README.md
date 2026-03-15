@@ -10,7 +10,7 @@ You will found here a library mod, containing a lot of utility code and stuff co
 - A new API for Thaumcraft, making easier to add/refresh Tabs, edit Research, edit Research Pages
 - A class named AResearch, containing a lot of stuff for easier Research creation
 - A class named Aspects, allowing for easier AspectList creation
-- A class named JarMaker, helping for easier ItemStack of Jars filled with Essentia
+- Classes JarMaker & EnchantedBookMaker, helping for much easier dealing with NBTs tags
 - Full code for Adding, Finding & Removing recipes for Vanilla and Thaumcraft 4
   - Supported recipes : IRecipe, OreDict, Arcane, Crucible and Infusion
 - A collection of new useful exceptions mostly related to Thaumcraft stuff
