@@ -2,7 +2,7 @@ package nemexlib;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import nemexlib.api.commands.FindResearchFromRecipeCommand;
+import nemexlib.api.commands.NemexLibCommands;
 import nemexlib.api.util.Logger;
 
 import static nemexlib.NemexLib.modID;
@@ -18,6 +18,6 @@ public class NemexLib {
 
     @Mod.EventHandler
     public void onServerStarting(FMLServerStartingEvent event) {
-        event.registerServerCommand(new FindResearchFromRecipeCommand());
+        event.registerServerCommand(new NemexLibCommands());
     }
 }
