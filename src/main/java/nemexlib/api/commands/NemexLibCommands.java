@@ -80,8 +80,7 @@ public class NemexLibCommands extends CommandBase {
         else throw new WrongUsageException(getCommandUsage(sender));
     }
 
-    @Override
-    public List addTabCompletionOptions(ICommandSender sender, String[] args) {
+    @Override public List addTabCompletionOptions(ICommandSender sender, String[] args) {
         switch (args.length) {
             case 1: return getListOfStringsMatchingLastWord(args, commands);
             case 2: return (args[0].equalsIgnoreCase(commands[0])) ? getListOfStringsMatchingLastWord(args, command1_1) : null;

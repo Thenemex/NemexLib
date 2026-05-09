@@ -200,4 +200,26 @@ public abstract class AConfig {
     protected int newEntry(String category, String key, int value, int min, int max, String comment) {
         return config.get(category, key, value, comment, min, max).getInt(value);
     }
+
+    /**
+     * Create a new array of Strings entry to the config
+     * @param category The category
+     * @param key The entry key
+     * @param values The default values
+     * @return The values of the entry
+     */
+    protected String[] newEntry(String category, String key, String ... values) {
+        return config.get(category, key, values).getStringList();
+    }
+    /**
+     * Create a new array of Strings entry to the config
+     * @param category The category
+     * @param key The entry key
+     * @param values The default values
+     * @param comment A comment that will be shown on the line above
+     * @return The values of the entry
+     */
+    protected String[] newEntry(String category, String key, String comment, String ... values) {
+        return config.get(category, key, values, comment).getStringList();
+    }
 }
