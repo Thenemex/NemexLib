@@ -20,14 +20,12 @@ public class CommandFindResearchFromRecipe extends NemexLibCommand {
     protected final CrucibleFinder finder;
 
     public CommandFindResearchFromRecipe() {
-        super("find-research-from-recipe");
+        super("find-research-from-recipe", "crucible output <ITEM> [AMOUNT]");
         this.finder = new CrucibleFinder(ThaumcraftApi.getCraftingRecipes());
     }
 
     @Override
     public void processCommand(ICommandSender sender, String[] args) {
-        if (args.length == 0 || args.length == 1 && args[0].equalsIgnoreCase(help))
-            throw new WrongUsageException(getCommandUsageFull());
         if (args.length >= 3 && args[0].equalsIgnoreCase(crucible) && args[1].equalsIgnoreCase(output)) {
             // Item output extraction
             ItemStack output = null;
@@ -53,7 +51,7 @@ public class CommandFindResearchFromRecipe extends NemexLibCommand {
             } catch (NumberFormatException e) {
                 chat(sender, "§c The metadata/amount must be a number !");
             }
-        } else throw new WrongUsageException(getCommandUsageFull());
+        } else throw new WrongUsageException(getCommandUsage(sender));
     }
 
     @Override
@@ -63,11 +61,6 @@ public class CommandFindResearchFromRecipe extends NemexLibCommand {
             case 2: return getListOfStringsMatchingLastWord(args, output);
             case 3: return getListOfStringsFromIterableMatchingLastWord(args, Item.itemRegistry.getKeys());
         } return null;
-    }
-
-    @Override
-    protected String getCommandUsageFull() {
-        return super.getCommandUsageFull().concat(" crucible output <ITEM> [AMOUNT]");
     }
 
     @Override

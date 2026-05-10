@@ -10,19 +10,21 @@ import java.util.List;
 public abstract class NemexLibCommand extends CommandBase {
 
     private static final String prefix = "nemexlib-";
-    protected static final String help = "help";
-    private final String commandName;
+    private final String commandName, prefixes;
 
     public NemexLibCommand(String commandName) {
-        this.commandName = prefix.concat(commandName);
+        this(commandName, "");
+    }
+    public NemexLibCommand(String commandName, String prefixes) {
+        this.commandName = commandName;
+        this.prefixes = prefixes;
     }
 
     @Override public String getCommandName() {
         return commandName;
     }
     @Override public String getCommandUsage(ICommandSender sender) {
-        // ToDo How to add an helping message telling "this command does this blabla"
-        return "/".concat(getCommandName()).concat(" ").concat(help);
+        return "/".concat(getCommandName()).concat(" ").concat(prefixes);
     }
     @Override public int getRequiredPermissionLevel() {
         return 0;
@@ -32,10 +34,6 @@ public abstract class NemexLibCommand extends CommandBase {
 
     @Override public List addTabCompletionOptions(ICommandSender sender, String[] args) {
         return super.addTabCompletionOptions(sender, args);
-    }
-
-    protected String getCommandUsageFull() {
-        return "/".concat(getCommandName());
     }
 
     protected void chat(ICommandSender sender, String message) {
