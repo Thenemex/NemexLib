@@ -65,6 +65,6 @@ public class CommandFindResearchFromRecipe extends NemexLibCommand {
 
     @Override
     protected void chatNull(ICommandSender sender, String message) {
-        sender.addChatMessage(new ChatComponentText("§6".concat(message.equals("null") ? " No recipes found !" : message)));
+        chat(sender, "§6".concat(message.equals("null") ? " No recipes found !" : message));
     }
 }
