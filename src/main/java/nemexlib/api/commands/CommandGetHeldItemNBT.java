@@ -16,7 +16,7 @@ public class CommandGetHeldItemNBT extends NemexLibCommand {
         chatNull(sender, (heldItem == null) ? "null" : (heldItem.getTagCompound() == null) ? "{}" : (heldItem.getTagCompound().toString() == null) ? "{}" : heldItem.getTagCompound().toString());
     }
 
-    private void chatNull(ICommandSender sender, String message) {
+    @Override protected void chatNull(ICommandSender sender, String message) {
         sender.addChatMessage(new ChatComponentText(message.equals("null") ? " §cYou're not holding any item !" : (message.equals("{}")) ? " §cNo NBT to show !" : " §6".concat(message)));
     }
 }

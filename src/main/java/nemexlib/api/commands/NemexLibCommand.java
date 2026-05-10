@@ -4,6 +4,9 @@ import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.ChatComponentText;
 
+import java.util.List;
+
+@SuppressWarnings("rawtypes")
 public abstract class NemexLibCommand extends CommandBase {
 
     private static final String prefix = "nemexlib-";
@@ -27,11 +30,18 @@ public abstract class NemexLibCommand extends CommandBase {
 
     @Override public abstract void processCommand(ICommandSender sender, String[] args);
 
-    protected String getCommandUsageFull(ICommandSender sender) {
-        return getCommandName();
+    @Override public List addTabCompletionOptions(ICommandSender sender, String[] args) {
+        return super.addTabCompletionOptions(sender, args);
+    }
+
+    protected String getCommandUsageFull() {
+        return "/".concat(getCommandName());
     }
 
     protected void chat(ICommandSender sender, String message) {
         sender.addChatMessage(new ChatComponentText(message));
+    }
+    protected void chatNull(ICommandSender sender, String message) {
+        chat(sender, message == null ? "null" : message);
     }
 }
