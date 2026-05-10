@@ -7,7 +7,6 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ChatComponentText;
 import thaumcraft.api.ThaumcraftApi;
 
 import java.util.Arrays;
