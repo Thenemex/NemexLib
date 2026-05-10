@@ -8,22 +8,21 @@ import thaumcraft.api.research.ResearchCategoryList;
 import thaumcraft.api.research.ResearchItem;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-@SuppressWarnings({"rawtypes", "NullableProblems"})
-public abstract class NemexLibCommand extends CommandBase implements Iterable<String> {
+@SuppressWarnings({"rawtypes"})
+public abstract class NemexLibCommand extends CommandBase {
 
-    private static ArrayList<String> researchKeys;
+    protected static ArrayList<String> researchKeys;
     private static final String prefix = "nemexlib-";
-    private final String commandName, prefixes;
+    private final String commandName, suffixes;
 
     public NemexLibCommand(String commandName) {
         this(commandName, "");
     }
-    public NemexLibCommand(String commandName, String prefixes) {
-        this.commandName = commandName;
-        this.prefixes = prefixes;
+    public NemexLibCommand(String commandName, String suffixes) {
+        this.commandName = prefix.concat(commandName);
+        this.suffixes = suffixes;
         initResearchKeys();
     }
 
@@ -31,7 +30,7 @@ public abstract class NemexLibCommand extends CommandBase implements Iterable<St
         return commandName;
     }
     @Override public String getCommandUsage(ICommandSender sender) {
-        return "/".concat(getCommandName()).concat(" ").concat(prefixes);
+        return "/".concat(getCommandName()).concat(" ").concat(suffixes);
     }
     @Override public int getRequiredPermissionLevel() {
         return 0;
@@ -48,11 +47,6 @@ public abstract class NemexLibCommand extends CommandBase implements Iterable<St
     }
     protected void chatNull(ICommandSender sender, String message) {
         chat(sender, message == null ? "null" : message);
-    }
-
-    @Override
-    public Iterator<String> iterator() {
-        return researchKeys.iterator();
     }
 
     private void initResearchKeys() {
