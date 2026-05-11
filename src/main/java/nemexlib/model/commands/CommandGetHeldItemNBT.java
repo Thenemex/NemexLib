@@ -1,5 +1,6 @@
-package nemexlib.api.commands;
+package nemexlib.model.commands;
 
+import nemexlib.api.commands.NemexLibCommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.item.ItemStack;
 
@@ -17,7 +18,7 @@ public class CommandGetHeldItemNBT extends NemexLibCommand {
     }
 
     @Override
-    protected void chatNull(ICommandSender sender, String message) {
+    public void chatNull(ICommandSender sender, String message) {
         chat(sender, message.equals("null") ? " §cYou're not holding any item !" : (message.equals("{}")) ? " §cNo NBT to show !" : " §6".concat(message));
     }
 }

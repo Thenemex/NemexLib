@@ -1,5 +1,6 @@
-package nemexlib.api.commands;
+package nemexlib.model.commands;
 
+import nemexlib.api.commands.NemexLibCommand;
 import nemexlib.api.items.ItemFinder;
 import nemexlib.api.recipes.crucible.CrucibleFinder;
 import nemexlib.api.util.exceptions.BlockOrItemDoesNotExist;
@@ -64,7 +65,7 @@ public class CommandFindResearchFromRecipe extends NemexLibCommand {
     }
 
     @Override
-    protected void chatNull(ICommandSender sender, String message) {
+    public void chatNull(ICommandSender sender, String message) {
         chat(sender, "§6".concat(message.equals("null") ? " No recipes found !" : message));
     }
 }

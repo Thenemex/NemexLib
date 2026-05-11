@@ -2,9 +2,9 @@ package nemexlib;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import nemexlib.api.commands.CommandFindResearchFromRecipe;
-import nemexlib.api.commands.CommandGetHeldItemNBT;
-import nemexlib.api.commands.CommandGetResearchTriggers;
+import nemexlib.model.commands.CommandFindResearchFromRecipe;
+import nemexlib.model.commands.CommandGetHeldItemNBT;
+import nemexlib.model.commands.CommandGetResearchTriggers;
 import nemexlib.api.util.Logger;
 
 import static nemexlib.NemexLib.modID;

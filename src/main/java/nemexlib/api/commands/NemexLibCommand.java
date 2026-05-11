@@ -12,7 +12,7 @@ import java.util.List;
 import static thaumcraft.api.research.ResearchCategories.researchCategories;
 
 @SuppressWarnings({"rawtypes"})
-public abstract class NemexLibCommand extends CommandBase {
+public abstract class NemexLibCommand extends CommandBase implements INemexLibCommand {
 
     protected static ArrayList<String> researchKeys;
     private static final String prefix = "nemexlib-";
@@ -43,10 +43,10 @@ public abstract class NemexLibCommand extends CommandBase {
         return super.addTabCompletionOptions(sender, args);
     }
 
-    protected void chat(ICommandSender sender, String message) {
+    @Override public void chat(ICommandSender sender, String message) {
         sender.addChatMessage(new ChatComponentText(message));
     }
-    protected void chatNull(ICommandSender sender, String message) {
+    @Override public void chatNull(ICommandSender sender, String message) {
         chat(sender, message == null ? "null" : message);
     }
 

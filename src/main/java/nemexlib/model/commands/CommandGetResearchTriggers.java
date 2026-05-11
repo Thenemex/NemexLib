@@ -1,5 +1,6 @@
-package nemexlib.api.commands;
+package nemexlib.model.commands;
 
+import nemexlib.api.commands.NemexLibCommand;
 import nemexlib.api.thaumcraft.API;
 import nemexlib.api.util.exceptions.ResearchDoesNotExists;
 import net.minecraft.command.ICommandSender;
@@ -42,7 +43,7 @@ public class CommandGetResearchTriggers extends NemexLibCommand {
     }
 
     @Override
-    protected void chatNull(ICommandSender sender, String message) {
+    public void chatNull(ICommandSender sender, String message) {
         if (message.equals("null") || message.equals("[]")) message = "";
         message = "§2 - ".concat(getTrigger()).concat(" : §r").concat(message);
         chat(sender, message);
