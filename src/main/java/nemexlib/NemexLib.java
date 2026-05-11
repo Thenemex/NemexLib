@@ -4,6 +4,7 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import nemexlib.model.commands.CommandFindResearchFromRecipe;
 import nemexlib.model.commands.CommandGetHeldItemNBT;
+import nemexlib.model.commands.CommandGetResearchParents;
 import nemexlib.model.commands.CommandGetResearchTriggers;
 import nemexlib.api.util.Logger;
 
@@ -22,7 +23,8 @@ public class NemexLib {
     public void onServerStarting(FMLServerStartingEvent event) {
         event.registerServerCommand(new CommandFindResearchFromRecipe());
         event.registerServerCommand(new CommandGetHeldItemNBT());
+        event.registerServerCommand(new CommandGetResearchParents());
         event.registerServerCommand(new CommandGetResearchTriggers());
-        logger.info("Registered 3 new commands");
+        logger.info("Registered 4 new commands");
     }
 }
