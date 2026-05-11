@@ -3,12 +3,13 @@ package nemexlib.api.commands;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.ChatComponentText;
-import thaumcraft.api.research.ResearchCategories;
 import thaumcraft.api.research.ResearchCategoryList;
 import thaumcraft.api.research.ResearchItem;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static thaumcraft.api.research.ResearchCategories.researchCategories;
 
 @SuppressWarnings({"rawtypes"})
 public abstract class NemexLibCommand extends CommandBase {
@@ -53,12 +54,12 @@ public abstract class NemexLibCommand extends CommandBase {
         if (researchKeys != null) return;
         // Finding perfect size for the list
         int cpt = 0;
-        for (ResearchCategoryList rl : ResearchCategories.researchCategories.values())
+        for (ResearchCategoryList rl : researchCategories.values())
             for (ResearchItem ri : rl.research.values())
                 cpt++;
         // Instanciating and filling the list
         researchKeys = new ArrayList<>(cpt);
-        for (ResearchCategoryList rl : ResearchCategories.researchCategories.values())
+        for (ResearchCategoryList rl : researchCategories.values())
             for (ResearchItem ri : rl.research.values())
                 researchKeys.add(ri.key);
     }

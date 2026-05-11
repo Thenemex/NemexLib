@@ -29,6 +29,7 @@ public class CommandFindResearchFromRecipe extends NemexLibCommand {
             // Item output extraction
             ItemStack output = null;
             try {
+                // ToDo Make it work with IDs
                 String[] split = args[2].split(":");
                 // Item from vanilla
                 if (split.length == 1) output = ItemFinder.findItem("minecraft", args[2]);
