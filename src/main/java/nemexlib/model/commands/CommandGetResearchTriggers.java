@@ -27,7 +27,7 @@ public class CommandGetResearchTriggers extends NemexLibCommand {
         if (args.length >= 1)
             try {
                 this.research = API.getResearch(args[0]);
-                chat(sender, "§6 Triggers for ".concat(research.key));
+                chat(sender, "§6 Triggers for ".concat(research.key).concat(" :"));
                 for (this.call = 1; call <= 3; call++)
                     chatNull(sender, getMessage());
             } catch (ResearchDoesNotExists e) {

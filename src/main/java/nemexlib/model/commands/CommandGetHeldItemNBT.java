@@ -19,6 +19,6 @@ public class CommandGetHeldItemNBT extends NemexLibCommand {
 
     @Override
     public void chatNull(ICommandSender sender, String message) {
-        chat(sender, message.equals("null") ? " §cYou're not holding any item !" : (message.equals("{}")) ? " §cNo NBT to show !" : " §6".concat(message));
+        chat(sender, message.equals("null") ? " §cYou're not holding any item !" : (message.equals("{}")) ? " §cNo NBT to show !" : "§6 NBT : §r".concat(message));
     }
 }
