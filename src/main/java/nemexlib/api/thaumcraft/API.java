@@ -90,6 +90,22 @@ public class API {
     /**
      * Get the research from the Thaumcraft 4 registry
      * <p>Don't forget to load your mod AFTER the one you are trying to get the research from, else it won't work</p>
+     * @param tag Research tag/key
+     * @return The research
+     * @throws ParameterIsNullOrEmpty If one of the parameters is null
+     * @throws ResearchDoesNotExists If no research with such tab and tag is found
+     */
+    public static ResearchItem getResearch(String tag) {
+        if (tag == null) throw new ParameterIsNullOrEmpty();
+        for (ResearchCategoryList rl : researchCategories.values())
+            for (ResearchItem ri : rl.research.values())
+                if (ri.key.equalsIgnoreCase(tag))
+                    return ri;
+        throw new ResearchDoesNotExists(tag);
+    }
+    /**
+     * Get the research from the Thaumcraft 4 registry
+     * <p>Don't forget to load your mod AFTER the one you are trying to get the research from, else it won't work</p>
      * @param tab Thaumonomicon Tab
      * @param tag Research tag/key
      * @return The research
