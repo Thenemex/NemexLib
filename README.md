@@ -14,10 +14,7 @@ You will found here a library mod, containing a lot of utility code and stuff co
 - Full code for Adding, Finding & Removing recipes for Vanilla and Thaumcraft 4
   - Supported recipes : IRecipe, OreDict, Arcane, Crucible and Infusion
 - A collection of new useful exceptions mostly related to Thaumcraft stuff
-- Multiple useful in-game chat commands (/nemexlib help)
-  - Find research associated with recipes : The search will be done from the recipe output, compared to the item typed in the command
-  - Get held item NBT : Will return the NBT tags associated with the held in the hand of the player
-  - Compatible with tab auto-completion for all fields + error/typos handling with feedback messages
+- Multiple useful in-game chat commands (/nemexlib then press tab for auto-completion)
 
 ### Licence :
 - This library mod is licenced under CC BY-ND 4.0
