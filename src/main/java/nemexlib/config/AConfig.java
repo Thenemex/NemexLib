@@ -15,7 +15,7 @@ import java.io.File;
 @SuppressWarnings({"SameParameterValue", "ResultOfMethodCallIgnored"})
 public abstract class AConfig {
 
-    public static final String tnmxDir = "thenemex";
+    public static final String tnmxDir = "Thenemex";
 
     protected Configuration config;
 

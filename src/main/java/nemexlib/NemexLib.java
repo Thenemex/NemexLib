@@ -15,7 +15,7 @@ import static nemexlib.NemexLib.modID;
 import static nemexlib.NemexLib.dependencies;
 
 @SuppressWarnings("unused")
-@Mod(modid = modID, useMetadata = true, version = "1.9", dependencies = dependencies)
+@Mod(modid = modID, useMetadata = true, version = "1.10", dependencies = dependencies)
 public class NemexLib {
 
     public static final String modID = "NemexLib", dependencies = "required-after:Thaumcraft@[4.2.3.5,)";
@@ -25,7 +25,7 @@ public class NemexLib {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        config = new Config(event, "1.0").init(); // Init config
+        config = new Config(event).init();
     }
 
     @Mod.EventHandler
