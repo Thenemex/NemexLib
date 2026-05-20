@@ -63,6 +63,7 @@ public class CommandGetResearchParents extends NemexLibCommand {
             // The player already research all parents
             else chat(sender, "§6 You already researched all the parents !");
         }
+        // ToDo Add a recursive search !
         else throw new WrongUsageException(getCommandUsage(sender));
     }
 

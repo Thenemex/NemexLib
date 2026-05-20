@@ -1,7 +1,10 @@
 package nemexlib;
 
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import nemexlib.config.AConfig;
+import nemexlib.config.Config;
 import nemexlib.model.commands.CommandFindResearchFromRecipe;
 import nemexlib.model.commands.CommandGetHeldItemNBT;
 import nemexlib.model.commands.CommandGetResearchParents;
@@ -18,9 +21,16 @@ public class NemexLib {
     public static final String modID = "NemexLib", dependencies = "required-after:Thaumcraft@[4.2.3.5,)";
 
     public static final Logger logger = new Logger(modID);
+    public static AConfig config;
+
+    @Mod.EventHandler
+    public void preInit(FMLPreInitializationEvent event) {
+        config = new Config(event, "1.0").init(); // Init config
+    }
 
     @Mod.EventHandler
     public void onServerStarting(FMLServerStartingEvent event) {
+        // ToDo Add a config entry for registering commands
         event.registerServerCommand(new CommandFindResearchFromRecipe());
         event.registerServerCommand(new CommandGetHeldItemNBT());
         event.registerServerCommand(new CommandGetResearchParents());

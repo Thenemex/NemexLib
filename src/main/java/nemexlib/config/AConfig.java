@@ -15,6 +15,8 @@ import java.io.File;
 @SuppressWarnings({"SameParameterValue", "ResultOfMethodCallIgnored"})
 public abstract class AConfig {
 
+    public static final String tnmxDir = "thenemex";
+
     protected Configuration config;
 
     /**
@@ -60,6 +62,23 @@ public abstract class AConfig {
         File folder = new File(event.getModConfigurationDirectory(), folderName);
         folder.mkdirs();
         this.createFiles(new File(folder, fileName.concat(".cfg")), version);
+    }
+    /**
+     * Constructor with file name. Will create a folder named "thenemex" and put the config file in there
+     * @param fileName The name of the config file (don't add ".cfg" extension, it will be added by the code)
+     * @param event The event from <code>preInit()</code>
+     */
+    public AConfig(String fileName, FMLPreInitializationEvent event) {
+        this(event, tnmxDir, fileName);
+    }
+    /**
+     * Constructor with file name and config version. Will create a folder named "thenemex" and put the config file in there
+     * @param fileName The name of the config file (don't add ".cfg" extension, it will be added by the code)
+     * @param event The event from <code>preInit()</code>
+     * @param version The config version
+     */
+    public AConfig(String fileName, FMLPreInitializationEvent event, String version) {
+        this(event, tnmxDir, fileName, version);
     }
 
     /**
