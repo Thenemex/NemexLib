@@ -241,4 +241,13 @@ public abstract class AConfig {
     protected String[] newEntry(String category, String key, String comment, String ... values) {
         return config.get(category, key, values, comment).getStringList();
     }
+
+    /**
+     * Add a line with a custom comment for a chosen category
+     * @param category The category
+     * @param comment The comment
+     */
+    protected void comment(String category, String comment) {
+        config.addCustomCategoryComment(category, comment);
+    }
 }
