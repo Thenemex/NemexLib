@@ -5,6 +5,8 @@ import nemexlib.NemexLib;
 
 public class Config extends AConfig {
 
+    public static boolean commandsEnabled;
+    public static boolean findResearchFromRecipe, getHeldItemNBT, getResearchParents, getResearchTriggers;
     protected static final String version = "1.0";
 
     public Config(FMLPreInitializationEvent event) {
@@ -13,6 +15,17 @@ public class Config extends AConfig {
 
     @Override
     protected void loadConfig() {
-
+        String cat = "Categories";
+        {
+            commandsEnabled = newEntry(cat, "Commands");
+        }
+        String commandsCat = "Commands";
+        config.addCustomCategoryComment(commandsCat, "You can tweak off/on custom commands from NemexLib here");
+        {
+            findResearchFromRecipe = newEntry(commandsCat, "FindResearchFromRecipe");
+            getHeldItemNBT = newEntry(commandsCat, "GetHeldItemNBT");
+            getResearchParents = newEntry(commandsCat, "GetResearchParents");
+            getResearchTriggers = newEntry(commandsCat, "GetResearchTriggers");
+        }
     }
 }

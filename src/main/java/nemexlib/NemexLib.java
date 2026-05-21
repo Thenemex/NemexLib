@@ -5,11 +5,8 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import nemexlib.config.AConfig;
 import nemexlib.config.Config;
-import nemexlib.model.commands.CommandFindResearchFromRecipe;
-import nemexlib.model.commands.CommandGetHeldItemNBT;
-import nemexlib.model.commands.CommandGetResearchParents;
-import nemexlib.model.commands.CommandGetResearchTriggers;
 import nemexlib.api.util.Logger;
+import nemexlib.model.config.ConfigCommands;
 
 import static nemexlib.NemexLib.modID;
 import static nemexlib.NemexLib.dependencies;
@@ -30,11 +27,6 @@ public class NemexLib {
 
     @Mod.EventHandler
     public void onServerStarting(FMLServerStartingEvent event) {
-        // ToDo Add a config entry for registering commands
-        event.registerServerCommand(new CommandFindResearchFromRecipe());
-        event.registerServerCommand(new CommandGetHeldItemNBT());
-        event.registerServerCommand(new CommandGetResearchParents());
-        event.registerServerCommand(new CommandGetResearchTriggers());
-        logger.info("Registered 4 new commands");
+        if (Config.commandsEnabled) ConfigCommands.init(event);
     }
 }
