@@ -19,7 +19,6 @@ You will found here a library mod, containing a lot of utility code and stuff co
 ### Licence :
 - This library mod is licenced under CC BY-ND 4.0
   - You can use the mod to make addons, and gain money with these addons.
-  - You are free to give any license you want to your newborn addon.
   - You can monetize any modpack containing this library mod.
   - You must give credit and a link back to this mod, a link to the license, and indicate if any change were made to the library mod.
   - If you create a derivative / edited version of this library mod, you cannot distribute this edited version.
