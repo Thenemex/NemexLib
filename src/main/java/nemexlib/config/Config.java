@@ -20,7 +20,6 @@ public class Config extends AConfig {
             commandsEnabled = newEntry(cat, "Commands");
         }
         String commandsCat = "Commands";
-        config.addCustomCategoryComment(commandsCat, "You can tweak off/on custom commands from NemexLib here");
         {
             findResearchFromRecipe = newEntry(commandsCat, "FindResearchFromRecipe");
             getHeldItemNBT = newEntry(commandsCat, "GetHeldItemNBT");
