@@ -5,9 +5,9 @@ import nemexlib.NemexLib;
 
 public class Config extends AConfig {
 
-    public static boolean commandsEnabled;
+    public static boolean commandsEnabled, debugItemsEnabled;
     public static boolean findResearchFromRecipe, getHeldItemNBT, getResearchParents, getResearchTriggers;
-    protected static final String version = "1.0";
+    protected static final String version = "1.1";
 
     public Config(FMLPreInitializationEvent event) {
         super(NemexLib.modID, event, version);
@@ -18,6 +18,7 @@ public class Config extends AConfig {
         String cat = "Categories";
         {
             commandsEnabled = newEntry(cat, "Commands");
+            debugItemsEnabled = newEntry(cat, "Debug Items enabled", false);
         }
         String commandsCat = "Commands";
         {

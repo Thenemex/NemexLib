@@ -7,6 +7,7 @@ import nemexlib.config.AConfig;
 import nemexlib.config.Config;
 import nemexlib.api.util.Logger;
 import nemexlib.model.config.ConfigCommands;
+import nemexlib.model.config.ConfigItems;
 
 import static nemexlib.NemexLib.modID;
 import static nemexlib.NemexLib.dependencies;
@@ -23,6 +24,7 @@ public class NemexLib {
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         config = new Config(event).init();
+        if (Config.debugItemsEnabled) ConfigItems.init();
     }
 
     @Mod.EventHandler
