@@ -1,4 +1,4 @@
-package nemexlib.api.items;
+package nemexlib.api.items.data;
 
 import nemexlib.NemexLib;
 import nemexlib.api.util.exceptions.IllegalStackSizeValue;
@@ -6,11 +6,11 @@ import nemexlib.api.util.exceptions.ParameterIsNullOrEmpty;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
-public abstract class AItem extends Item {
+public abstract class AItem extends Item implements IITem {
 
     /**
      * Constructor with the unlocalized name only
-     * <p>The texture name will be <code>NemexLib.modID</code> <code>:</code> <code>unlocalizedName</code></p>
+     * <p>The texture name will be <code>nemexlib.modID</code> <code>:</code> <code>unlocalizedName</code></p>
      * <p>No creative tab has been set</p>
      * <p>Default max stack size set at 64</p>
      * @param unlocalizedName The unlocalized name
@@ -30,7 +30,7 @@ public abstract class AItem extends Item {
     }
     /**
      * Constructor with the unlocalized name & creative tab
-     * <p>The texture name will be <code>NemexLib.modID</code> <code>:</code> <code>unlocalizedName</code></p>
+     * <p>The texture name will be <code>nemexlib.modID</code> <code>:</code> <code>unlocalizedName</code></p>
      * <p>Default max stack size set at 64</p>
      * @param unlocalizedName The unlocalized name
      * @param tab The creative tab
@@ -40,7 +40,7 @@ public abstract class AItem extends Item {
     }
     /**
      * Constructor with the unlocalized name & max stack size
-     * <p>The texture name will be <code>NemexLib.modID</code> <code>:</code> <code>unlocalizedName</code></p>
+     * <p>The texture name will be <code>nemexlib.modID</code> <code>:</code> <code>unlocalizedName</code></p>
      * <p>No creative tab has been set</p>
      * @param unlocalizedName The unlocalized name
      * @param maxStackSize The max stack size
@@ -50,13 +50,13 @@ public abstract class AItem extends Item {
     }
     /**
      * Constructor with the unlocalized name, creative tab & max stack size
-     * <p>The texture name will be <code>NemexLib.modID</code> <code>:</code> <code>unlocalizedName</code></p>
+     * <p>The texture name will be <code>nemexlib.modID</code> <code>:</code> <code>unlocalizedName</code></p>
      * @param unlocalizedName The unlocalized name
      * @param tab The creative tab
      * @param maxStackSize The max stack size
      */
     public AItem(String unlocalizedName, CreativeTabs tab, int maxStackSize) {
-        this(unlocalizedName, NemexLib.modID.concat(":").concat(unlocalizedName), 64);
+        this(unlocalizedName, NemexLib.modID.toLowerCase().concat(":").concat(unlocalizedName), 64);
     }
     /**
      * Constructor with the unlocalized name, texture name & max stack size
