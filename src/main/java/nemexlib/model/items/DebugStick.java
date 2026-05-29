@@ -5,7 +5,7 @@ import net.minecraft.creativetab.CreativeTabs;
 
 public class DebugStick extends AItem {
 
-    public DebugStick(String unlocalizedName) {
+    public DebugStick() {
         super("debug_stick", CreativeTabs.tabTools, 1);
     }
 }
