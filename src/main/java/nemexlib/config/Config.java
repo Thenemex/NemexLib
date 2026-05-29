@@ -18,7 +18,7 @@ public class Config extends AConfig {
         String cat = "Categories";
         {
             commandsEnabled = newEntry(cat, "Commands");
-            debugItemsEnabled = newEntry(cat, "Debug Items enabled", false);
+            debugItemsEnabled = newEntry(cat, "Debug", false);
         }
         String commandsCat = "Commands";
         {
