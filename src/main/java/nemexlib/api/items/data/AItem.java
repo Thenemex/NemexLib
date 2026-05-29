@@ -59,7 +59,7 @@ public abstract class AItem extends Item implements IITem {
      * @param maxStackSize The max stack size
      */
     public AItem(String unlocalizedName, CreativeTabs tab, int maxStackSize) {
-        this(unlocalizedName, NemexLib.modID.toLowerCase().concat(":").concat(unlocalizedName), 64);
+        this(unlocalizedName, NemexLib.modID.toLowerCase().concat(":").concat(unlocalizedName), tab, 64);
     }
     /**
      * Constructor with the unlocalized name, texture name & max stack size, then registers it
