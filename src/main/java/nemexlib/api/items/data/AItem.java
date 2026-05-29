@@ -1,5 +1,6 @@
 package nemexlib.api.items.data;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import nemexlib.NemexLib;
 import nemexlib.api.util.exceptions.IllegalStackSizeValue;
 import nemexlib.api.util.exceptions.ParameterIsNullOrEmpty;
@@ -9,7 +10,7 @@ import net.minecraft.item.Item;
 public abstract class AItem extends Item implements IITem {
 
     /**
-     * Constructor with the unlocalized name only
+     * Constructor with the unlocalized name only, then registers it
      * <p>The texture name will be <code>nemexlib.modID</code> <code>:</code> <code>unlocalizedName</code></p>
      * <p>No creative tab has been set</p>
      * <p>Default max stack size set at 64</p>
@@ -19,7 +20,7 @@ public abstract class AItem extends Item implements IITem {
         this(unlocalizedName, 64);
     }
     /**
-     * Constructor with the unlocalized name & texture name
+     * Constructor with the unlocalized name & texture name, then registers it
      * <p>No creative tab has been set</p>
      * <p>Default max stack size set at 64</p>
      * @param unlocalizedName The unlocalized name
@@ -29,7 +30,7 @@ public abstract class AItem extends Item implements IITem {
         this(unlocalizedName, textureName, null);
     }
     /**
-     * Constructor with the unlocalized name & creative tab
+     * Constructor with the unlocalized name & creative tab, then registers it
      * <p>The texture name will be <code>nemexlib.modID</code> <code>:</code> <code>unlocalizedName</code></p>
      * <p>Default max stack size set at 64</p>
      * @param unlocalizedName The unlocalized name
@@ -39,7 +40,7 @@ public abstract class AItem extends Item implements IITem {
         this(unlocalizedName, tab, 64);
     }
     /**
-     * Constructor with the unlocalized name & max stack size
+     * Constructor with the unlocalized name & max stack size, then registers it
      * <p>The texture name will be <code>nemexlib.modID</code> <code>:</code> <code>unlocalizedName</code></p>
      * <p>No creative tab has been set</p>
      * @param unlocalizedName The unlocalized name
@@ -49,7 +50,7 @@ public abstract class AItem extends Item implements IITem {
         this(unlocalizedName, (CreativeTabs) null, maxStackSize);
     }
     /**
-     * Constructor with the unlocalized name, creative tab & max stack size
+     * Constructor with the unlocalized name, creative tab & max stack size, then registers it
      * <p>The texture name will be <code>nemexlib.modID</code> <code>:</code> <code>unlocalizedName</code></p>
      * @param unlocalizedName The unlocalized name
      * @param tab The creative tab
@@ -59,7 +60,7 @@ public abstract class AItem extends Item implements IITem {
         this(unlocalizedName, NemexLib.modID.toLowerCase().concat(":").concat(unlocalizedName), 64);
     }
     /**
-     * Constructor with the unlocalized name, texture name & max stack size
+     * Constructor with the unlocalized name, texture name & max stack size, then registers it
      * <p>No creative tab has been set</p>
      * @param unlocalizedName The unlocalized name
      * @param textureName The texture name
@@ -69,7 +70,7 @@ public abstract class AItem extends Item implements IITem {
         this(unlocalizedName, textureName, null, maxStackSize);
     }
     /**
-     * Constructor with the unlocalized name, texture name & creative tab
+     * Constructor with the unlocalized name, texture name & creative tab, then registers it
      * <p>Default max stack size set at 64</p>
      * @param unlocalizedName The unlocalized name
      * @param textureName The texture name
@@ -79,7 +80,7 @@ public abstract class AItem extends Item implements IITem {
         this(unlocalizedName, textureName, tab, 64);
     }
     /**
-     * Constructor with full parameters
+     * Constructor with full parameters, then registers it
      * @param unlocalizedName The unlocalized name
      * @param textureName The texture name
      * @param tab The creative tab
@@ -94,5 +95,11 @@ public abstract class AItem extends Item implements IITem {
         else this.setMaxStackSize(maxStackSize);
         this.setUnlocalizedName(unlocalizedName);
         this.setTextureName(textureName);
+        // Registering the item
+        this.register(this, unlocalizedName);
+    }
+
+    @Override public void register(IITem item, String name) {
+        GameRegistry.registerItem(this, name);
     }
 }
