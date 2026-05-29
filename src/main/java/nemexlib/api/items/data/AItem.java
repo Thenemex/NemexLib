@@ -109,4 +109,9 @@ public abstract class AItem extends Item implements IITem {
     @Override public void register(IITem item, String name) {
         GameRegistry.registerItem(this, name);
     }
+
+    @Override public IITem setFull3D(boolean value) {
+        this.bFull3D = value;
+        return this;
+    }
 }
