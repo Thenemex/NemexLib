@@ -9,6 +9,8 @@ import net.minecraft.item.Item;
 
 public abstract class AItem extends Item implements IITem {
 
+    protected final String unlocalizedName;
+
     /**
      * Constructor with the unlocalized name only, then registers it
      * <p>The texture name will be <code>nemexlib.modID</code> <code>:</code> <code>unlocalizedName</code></p>
@@ -93,10 +95,15 @@ public abstract class AItem extends Item implements IITem {
         if (tab != null) this.setCreativeTab(tab);
         if (maxStackSize < 1 || maxStackSize > 64) throw new IllegalStackSizeValue(maxStackSize);
         else this.setMaxStackSize(maxStackSize);
+        this.unlocalizedName = unlocalizedName;
         this.setUnlocalizedName(unlocalizedName);
         this.setTextureName(textureName);
         // Registering the item
         this.register(this, unlocalizedName);
+    }
+
+    @Override public String getName() {
+        return this.unlocalizedName;
     }
 
     @Override public void register(IITem item, String name) {
