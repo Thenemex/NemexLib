@@ -8,6 +8,6 @@ public class ConfigItems {
     public static IITem debugStick;
 
     public static void init() {
-        debugStick = new DebugStick().setFull3D(true);
+        debugStick = new DebugStick();
     }
 }
