@@ -15,6 +15,7 @@ public abstract class AWriter implements IWriter {
     protected File file;
 
     protected FileWriter writer;
+    private boolean started = false;
 
     public AWriter() {}
     public AWriter(Logger logger) {
@@ -30,29 +31,59 @@ public abstract class AWriter implements IWriter {
     public AWriter(FMLPreInitializationEvent event, String fileName) {
         File folders = new File(new File(event.getModConfigurationDirectory(), AConfig.tnmxDir), "output");
         folders.mkdirs();
-        this.setFile(new File(folders, fileName.concat(".output")));
+        setFile(new File(folders, fileName.concat(".output")));
     }
 
     @Override public boolean write(String text) {
-        if (this.file == null || writer == null) return false;
+        if (file == null || writer == null) return false;
         try {
+            if (started)
+                for (int i = 0; i < 3; i++)
+                    writer.write(System.lineSeparator());
             writer.write(text);
+            started = true;
         } catch (IOException e) {
-            logError(e);
+            logError("Cannot write to file", e);
             return false;
         }
-        // ToDo Separator
         return true;
     }
-
     @Override public boolean close() {
         try {
             writer.close();
             return true;
         } catch (IOException e) {
-            logError(e);
+            logError("Cannot close writer", e);
             return false;
         }
+    }
+
+    @Override public File getFile() {
+        return file;
+    }
+    @Override public boolean setFile(File file) {
+        // Initial check
+        try {
+            file.createNewFile();
+            if (!file.isFile()) return false;
+        } catch (Exception e) {
+            logError("Cannot create output file", e);
+            return false;
+        }
+        // Set Data
+        this.file = file;
+        try {
+            file.createNewFile();
+            this.writer = new FileWriter(file);
+        } catch (Exception e) {
+            logError("Exception in Writer instantiation", e);
+            return false;
+        }
+        return true;
+    }
+    @Override public boolean setFile(File folder, String fileName) {
+        if (folder == null || !folder.isDirectory() || fileName == null || fileName.isEmpty()) return false;
+        return this.setFile(new File(folder, fileName));
     }
 
     @Override public Logger getLogger() {
@@ -64,30 +95,9 @@ public abstract class AWriter implements IWriter {
         return true;
     }
 
-    @Override public File getFile() {
-        return file;
-    }
-
-    @Override public boolean setFile(File file) {
-        if (file == null || !file.isFile()) return false;
-        this.file = file;
-        try {
-            file.createNewFile(); // ToDo Bug : File doesn't create
-            this.writer = new FileWriter(file);
-        } catch (Exception e) {
-            logError(e);
-            return false;
-        }
-        return true;
-    }
-    @Override public boolean setFile(File folder, String fileName) {
-        if (folder == null || !folder.isDirectory() || fileName == null || fileName.isEmpty()) return false;
-        return this.setFile(new File(folder, fileName));
-    }
-
-    @Override public boolean logError(Exception e) {
+    @Override public boolean logError(String message, Exception e) {
         if (logger == null) return false;
-        logger.info("Exception in Writer : ".concat(e.getClass().getSimpleName()).concat(", ").concat(e.getMessage()));
+        logger.info(message.concat(" : ").concat(e.getClass().getSimpleName()).concat(", ").concat(e.getMessage()));
         return true;
     }
 }

@@ -10,12 +10,12 @@ public interface IWriter {
     boolean write(String text);
     boolean close();
 
-    Logger getLogger();
-    boolean setLogger(Logger logger);
-
     File getFile();
     boolean setFile(File file);
     boolean setFile(File folder, String fileName);
 
-    boolean logError(Exception e);
+    Logger getLogger();
+    boolean setLogger(Logger logger);
+
+    boolean logError(String message, Exception e);
 }
