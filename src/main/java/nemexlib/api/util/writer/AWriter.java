@@ -1,6 +1,9 @@
 package nemexlib.api.util.writer;
 
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import nemexlib.NemexLib;
 import nemexlib.api.util.Logger;
+import nemexlib.config.AConfig;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -12,7 +15,7 @@ public abstract class AWriter implements IWriter {
     protected Logger logger;
     protected File file;
 
-    private FileWriter writer;
+    protected FileWriter writer;
 
     public AWriter() {}
     public AWriter(Logger logger) {
@@ -25,7 +28,11 @@ public abstract class AWriter implements IWriter {
         this.setFile(file);
         this.setLogger(logger);
     }
-    // ToDo Event
+    public AWriter(FMLPreInitializationEvent event, String fileName) {
+        File folders = new File(new File(event.getModConfigurationDirectory(), AConfig.tnmxDir), "output");
+        folders.mkdirs();
+        this.setFile(new File(folders, fileName.concat(".output")));
+    }
 
     @Override public boolean write(String text) {
         if (this.file == null || writer == null) return false;
@@ -35,7 +42,7 @@ public abstract class AWriter implements IWriter {
             logError(e);
             return false;
         }
-        // ToDo Finish
+        // ToDo Separator
         return true;
     }
 
