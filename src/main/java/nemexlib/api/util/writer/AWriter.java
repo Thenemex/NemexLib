@@ -1,7 +1,6 @@
 package nemexlib.api.util.writer;
 
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import nemexlib.NemexLib;
 import nemexlib.api.util.Logger;
 import nemexlib.config.AConfig;
 
@@ -73,7 +72,7 @@ public abstract class AWriter implements IWriter {
         if (file == null || !file.isFile()) return false;
         this.file = file;
         try {
-            file.createNewFile();
+            file.createNewFile(); // ToDo Bug : File doesn't create
             this.writer = new FileWriter(file);
         } catch (Exception e) {
             logError(e);

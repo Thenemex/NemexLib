@@ -27,7 +27,7 @@ public class NemexLib {
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         config = new Config(event).init();
-        writer = new OutputWriter(event, modID);
+        writer = new OutputWriter(event, modID, logger);
         if (Config.debugItemsEnabled) ConfigItems.init();
     }
 
