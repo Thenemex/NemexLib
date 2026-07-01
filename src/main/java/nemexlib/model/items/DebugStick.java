@@ -6,7 +6,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ChatComponentText;
+
+import static nemexlib.NemexLib.*;
 
 public class DebugStick extends AItem {
 
@@ -23,9 +24,7 @@ public class DebugStick extends AItem {
         if (!called) {
             NBTTagCompound nbt = new NBTTagCompound();
             entity.writeToNBT(nbt);
-            player.addChatMessage(new ChatComponentText("§6Entity : §r".concat(entity.getCommandSenderName())));
-            // ToDo Print to output file
-            player.addChatMessage(new ChatComponentText("§2 - NBT = §r".concat(nbt.toString())));
+            writer.write(nbt.toString());
             called = true;
         } else called = false;
         // Won't damage the entity
