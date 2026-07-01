@@ -1,10 +1,13 @@
 package nemexlib.api.thaumcraft.aspects;
 
+import nemexlib.api.util.exceptions.ParameterArraySizeException;
 import nemexlib.api.util.exceptions.ParameterArraysSizeException;
 import nemexlib.api.util.exceptions.ParameterIsNullOrEmpty;
 import nemexlib.api.util.exceptions.ParameterValueIsNegativeOrZero;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
+
+import static thaumcraft.api.aspects.Aspect.*;
 
 /**
  * Class extending <code>AspectList</code> from Thaumcraft 4 API
@@ -68,5 +71,20 @@ public class Aspects extends AspectList {
      */
     public Aspects(int[] amounts, Aspect ... aspects) {
         this(aspects, amounts);
+    }
+
+    /**
+     * Constructor for the 6 primal aspects
+     * <p>In order : Aer - Ignis - Aqua - Terra - Ordo - Perditio</p>
+     * <p>Every aspect set to 0 or negative won't be used</p>
+     * @param amounts The respective amounts for the 6 primal aspects
+     * @throws ParameterArraySizeException If the parameter array size is different from 6
+     */
+    public Aspects(int ... amounts) {
+        if (amounts.length != 6) throw new ParameterArraySizeException(amounts.length, 6);
+        Aspect[] primals = new Aspect[]{AIR, FIRE, WATER, EARTH, ORDER, ENTROPY};
+        for (int i = 0; i < amounts.length; i++)
+            if (amounts[i] != 0)
+                super.add(primals[i], amounts[i]);
     }
 }
