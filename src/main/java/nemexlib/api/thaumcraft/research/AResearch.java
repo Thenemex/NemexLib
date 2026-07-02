@@ -48,6 +48,13 @@ public abstract class AResearch {
     public abstract void setResearchProperties();
     public void removeRecipes() {}
 
+    public String getTab() {
+        return tab;
+    }
+    public String getKey() {
+        return tag;
+    }
+
     public Aspects getAspects() throws FieldIsNull {
         if (aspects == null) throw new FieldIsNull();
         return aspects;
