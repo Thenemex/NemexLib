@@ -51,7 +51,7 @@ public abstract class AResearch {
     public String getTab() {
         return tab;
     }
-    public String getKey() {
+    public String getTag() {
         return tag;
     }
 
