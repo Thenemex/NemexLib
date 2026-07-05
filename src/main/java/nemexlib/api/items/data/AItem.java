@@ -101,7 +101,6 @@ public abstract class AItem extends Item implements IITem {
         GameRegistry.registerItem(this, getUnlocalizedName());
         return this;
     }
-
     @Override public IITem setFull3D(boolean value) {
         this.bFull3D = value;
         return this;
