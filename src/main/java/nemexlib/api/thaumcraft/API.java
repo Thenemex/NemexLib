@@ -153,6 +153,8 @@ public class API {
         return research;
     }
 
+
+
     /**
      * Allows to add prereqs to a research
      * @param tab The Thaumonomicon tab/category
@@ -232,6 +234,22 @@ public class API {
                 }
             }
     }
+
+
+    /**
+     * Add new item trigger(s) to the chosen research
+     * @param research The research
+     * @param stacks The item(s) to add
+     * @throws ParameterIsNullOrEmpty One of the arguments is null
+     */
+    public static void addItemTriggers(ResearchItem research, ItemStack ... stacks) {
+        if (research == null || stacks == null || stacks.length == 0) throw new ParameterIsNullOrEmpty();
+        if (research.getItemTriggers() == null || research.getItemTriggers().length == 0)
+            research.setItemTriggers(stacks);
+        else research.setItemTriggers(Util.addEntries(research.getItemTriggers(), stacks));
+    }
+
+
 
     /**
      * Add pages at the end of the research pages

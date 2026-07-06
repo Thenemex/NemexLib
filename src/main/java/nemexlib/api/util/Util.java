@@ -44,4 +44,13 @@ public class Util {
             if (i != index) list.add(array[i]);
         return list.toArray(new ResearchPage[0]);
     }
+
+    @SafeVarargs
+    public static <T> T[] addEntries(T[] array, T ... toAdd) {
+        if (array == null || toAdd == null || toAdd.length == 0) throw new ParameterIsNullOrEmpty();
+        ArrayList<T> list = new ArrayList<>(array.length + toAdd.length);
+        list.addAll(Arrays.asList(array));
+        list.addAll(Arrays.asList(toAdd));
+        return list.toArray(array);
+    }
 }
