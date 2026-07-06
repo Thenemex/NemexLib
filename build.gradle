@@ -45,10 +45,20 @@ minecraft {
     runDir = "eclipse"
 }
 
+repositories {
+    mavenCentral()
+}
+
 dependencies {
     compile files('libs/Thaumcraft-1.7.10-4.2.3.5.jar')
     // compile files('libs/Baubles-1.7.10-1.0.1.10.jar')
     compile files('libs/Thaumcraft4Tweaks-1.5.35.jar.jar')
+
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+}
+
+test {
+    useJUnitPlatform()
 }
 
 apply plugin: 'idea'
