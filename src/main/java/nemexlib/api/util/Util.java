@@ -1,6 +1,7 @@
 package nemexlib.api.util;
 
 import nemexlib.api.util.exceptions.IndexOutOfBoundsException;
+import nemexlib.api.util.exceptions.ParameterArraySizeException;
 import nemexlib.api.util.exceptions.ParameterIsNullOrEmpty;
 import thaumcraft.api.research.ResearchPage;
 
@@ -20,12 +21,15 @@ public class Util {
         return false;
     }
 
-    public static String[] deepCopyAndRemove(String[] tab, String ... toRemove) {
-        if (tab == null || toRemove == null || toRemove.length == 0) throw new ParameterIsNullOrEmpty();
-        List<String> list = Arrays.asList(tab);
-        for (String s : toRemove)
+    @SafeVarargs
+    public static <T> T[] deepCopyAndRemove(T[] array, T[] emptyArray, T ... toRemove) {
+        if (array == null || emptyArray == null || toRemove == null || toRemove.length == 0) throw new ParameterIsNullOrEmpty();
+        if (emptyArray.length != 0) throw new ParameterArraySizeException(emptyArray.length, 0);
+        ArrayList<T> list = new ArrayList<>(array.length - toRemove.length);
+        list.addAll(Arrays.asList(array));
+        for (T s : toRemove)
             list.remove(s);
-        return list.toArray(new String[0]);
+        return list.toArray(emptyArray);
     }
 
     public static String[] deepCopyTabAndAdd(String[] tab, String ... newElements) {

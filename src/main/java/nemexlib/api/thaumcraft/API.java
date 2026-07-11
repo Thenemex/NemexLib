@@ -212,9 +212,9 @@ public class API {
     public static ResearchItem removeParents(ResearchItem research, boolean hidden, String ... toRemove) {
         if (research == null || toRemove == null || toRemove.length == 0) throw new ParameterIsNullOrEmpty();
         if (hidden && research.parentsHidden != null)
-            research.setParentsHidden(Util.deepCopyAndRemove(research.parentsHidden, toRemove));
+            research.setParentsHidden(Util.deepCopyAndRemove(research.parentsHidden, new String[0], toRemove));
         else if (!hidden && research.parents != null)
-            research.setParents(Util.deepCopyAndRemove(research.parents, toRemove));
+            research.setParents(Util.deepCopyAndRemove(research.parents, new String[0], toRemove));
         return research;
     }
     /**
@@ -234,6 +234,7 @@ public class API {
                 }
             }
     }
+
 
 
     /**
