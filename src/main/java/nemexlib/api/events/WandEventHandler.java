@@ -28,7 +28,7 @@ public abstract class WandEventHandler implements IWandTriggerManager {
      * <p>Usage of the methods like <code>setVis()</code> are hugely advised, as it will keep the good values here</p>
      * <p>Any standalone modification can break the code, and lead to exceptions thrown when performing the wand trigger</p>
      */
-    protected boolean isVisNeeded = false;
+    private boolean isVisNeeded = false;
     private Aspects vis = null;
 
     /**
@@ -56,7 +56,7 @@ public abstract class WandEventHandler implements IWandTriggerManager {
      */
     public WandEventHandler(BlockType[] blocks, Aspects vis) {
         this(blocks);
-        if (vis != null) setVis(vis);
+        setVis(vis);
     }
 
     /**
@@ -73,9 +73,26 @@ public abstract class WandEventHandler implements IWandTriggerManager {
      * @return Itself
      */
     public WandEventHandler setVis(Aspects vis) {
-        if (vis != null) this.vis = vis;
+        this.vis = vis;
         this.isVisNeeded = true;
         return this;
+    }
+    /**
+     * Setter for the vis usage
+     * <p>Will set it back to null</p>
+     * @return Itself
+     */
+    public WandEventHandler setVisNull() {
+        this.vis = null;
+        this.isVisNeeded = false;
+        return this;
+    }
+    /**
+     * Getter for knowing if the vis is needed to process the compound recipe
+     * @return The value of the field isVisNeeded
+     */
+    public boolean isVisNeeded() {
+        return isVisNeeded;
     }
 
     /**

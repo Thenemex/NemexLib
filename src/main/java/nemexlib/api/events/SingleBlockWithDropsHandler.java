@@ -115,7 +115,7 @@ public abstract class SingleBlockWithDropsHandler extends WandEventHandler {
             // Checks if upgrade research is done
             if (isResearchNotComplete(player, upgradeResearchTag)) item = getDrops(event, false);
             // Checks if vis is needed
-            else if (isVisNeeded) item = getDrops(event, wand.consumeAllVisCrafting(heldItem, player, getVis(), true));
+            else if (isVisNeeded()) item = getDrops(event, wand.consumeAllVisCrafting(heldItem, player, getVis(), true));
             // Else get standard output
             else item = getDrops(event, true);
         } else item = getDrops(event, false);
