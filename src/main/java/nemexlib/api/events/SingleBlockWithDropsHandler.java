@@ -22,7 +22,6 @@ import thaumcraft.common.items.wands.ItemWandCasting;
 public abstract class SingleBlockWithDropsHandler extends WandEventHandler {
 
     /**
-     * The field isVisNeeded is to be kept read-only, and should not be edited alone.
      * <p>Any standalone modification can break the code, and lead to exceptions thrown when performing the wand trigger</p>
      */
     protected boolean isUpgradable = false;

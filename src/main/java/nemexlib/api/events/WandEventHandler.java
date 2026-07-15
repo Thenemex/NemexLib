@@ -1,6 +1,7 @@
 package nemexlib.api.events;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -38,6 +39,27 @@ public abstract class WandEventHandler implements IWandTriggerManager {
      * <p>You must use <code>registerTriggerEvent()</code> in your class constructor, to make the handler work</p>
      */
     public WandEventHandler() {}
+
+    /**
+     * Constructor for handler.
+     * <p>Will automatic register the block from argument as triggerEvent</p>
+     * @param block The trigger to be registered
+     * @throws ParameterIsNullOrEmpty If blocks is null or empty
+     */
+    public WandEventHandler(BlockType block) {
+        registerTriggerEvent(block);
+    }
+    /**
+     * Constructor for handler.
+     * <p>Will automatic register the block from argument as triggerEvent</p>
+     * @param block The trigger to be registered
+     * @param vis The primal aspects that will be consumed on the held wand by the recipe
+     * @throws ParameterIsNullOrEmpty If blocks is null or empty
+     */
+    public WandEventHandler(BlockType block, Aspects vis) {
+        this(block);
+        setVis(vis);
+    }
     /**
      * Constructor for handler.
      * <p>Will automatic register all blocks from argument array as triggerEvents</p>
@@ -174,6 +196,21 @@ public abstract class WandEventHandler implements IWandTriggerManager {
      */
     protected boolean isResearchNotComplete(EntityPlayer player, String tag) {
         return !ResearchManager.isResearchComplete(player.getCommandSenderName(), tag);
+    }
+
+    /**
+     * Spawns an <code>EntityItem</code> at the coordinates
+     * <p>No checks are processed on the arguments !</p>
+     * @param world The world (should be not remote
+     * @param x X
+     * @param y Y
+     * @param z Z
+     * @param item The ItemStack
+     * @return If the spawning did process rightfully
+     */
+    protected boolean spawnItem(World world, int x, int y, int z, ItemStack item) {
+        EntityItem drops = new EntityItem(world, (float) x + 0.5F, (float) y + 0.5F, (float) z + 0.5F, item);
+        return world.spawnEntityInWorld(drops);
     }
 
     /**
