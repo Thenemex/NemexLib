@@ -27,9 +27,11 @@ public abstract class WandEventHandler implements IWandTriggerManager {
      * These fields are to be kept read-only, and should not be edited alone.
      * <p>Usage of the methods like <code>setVis()</code> are hugely advised, as it will keep the good values here</p>
      * <p>Any standalone modification can break the code, and lead to exceptions thrown when performing the wand trigger</p>
+     * <p>Setting an auto-unlocked research tag as default</p>
      */
     private boolean isVisNeeded = false;
     private Aspects vis = null;
+    private String researchTag = "BASICARTIFACE";
 
     /**
      * Constructor for handler.
@@ -57,6 +59,23 @@ public abstract class WandEventHandler implements IWandTriggerManager {
     public WandEventHandler(BlockType[] blocks, Aspects vis) {
         this(blocks);
         setVis(vis);
+    }
+
+    /**
+     * Getter for the research tag
+     * @return The research tag
+     */
+    public String getTag() {
+        return researchTag;
+    }
+    /**
+     * Setter for the research tag
+     * @param tag The research tag
+     * @return Itself
+     */
+    public WandEventHandler setTag(String tag) {
+        this.researchTag = tag;
+        return this;
     }
 
     /**

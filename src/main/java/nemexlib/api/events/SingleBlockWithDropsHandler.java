@@ -26,7 +26,7 @@ public abstract class SingleBlockWithDropsHandler extends WandEventHandler {
      * <p>Any standalone modification can break the code, and lead to exceptions thrown when performing the wand trigger</p>
      */
     protected boolean isUpgradable = false;
-    protected String researchTag, upgradeResearchTag;
+    protected String upgradeResearchTag;
 
     /**
      * Constructor for the Handler.
@@ -39,7 +39,7 @@ public abstract class SingleBlockWithDropsHandler extends WandEventHandler {
      */
     public SingleBlockWithDropsHandler(String researchTag, BlockType ... blocks) {
         super(blocks);
-        if (researchTag != null) this.researchTag = researchTag;
+        if (researchTag != null) setTag(researchTag);
     }
     /**
      * Constructor for the Handler.
@@ -102,8 +102,8 @@ public abstract class SingleBlockWithDropsHandler extends WandEventHandler {
      */
     protected boolean dropWoodPlanks(World world, ItemStack heldItem, EntityPlayer player, int x, int y, int z, int event) {
         if (world.isRemote) return false;
-        if (researchTag != null)
-            if (isResearchNotComplete(player, researchTag)) return false; // Needs research to perform recipe
+        if (getTag() != null)
+            if (isResearchNotComplete(player, getTag())) return false; // Needs research to perform recipe
         ItemWandCasting wand = (ItemWandCasting) heldItem.getItem();
         if (wand.getFocus(heldItem) != null) return false; // Needs no focus equipped on the wand
         if (!player.isSneaking()) return false; // Player needs to be sneaking
