@@ -3,22 +3,22 @@ package nemexlib.api.util;
 public class ColorUtils {
 
     private static final float[][] intenseDyeColors = new float[][] {
-            {1.00F, 1.00F, 1.00F}, // 0 white
-            {0.98F, 0.50F, 0.11F}, // 1 orange   (~#F9801D)
-            {0.78F, 0.31F, 0.74F}, // 2 magenta  (~#C74EBD)
-            {0.23F, 0.70F, 0.85F}, // 3 lightBlue (~#3AB3DA)
-            {0.99F, 0.85F, 0.24F}, // 4 yellow   (~#FED83D)
-            {0.50F, 0.78F, 0.12F}, // 5 lime     (~#80C71F)
-            {0.95F, 0.55F, 0.67F}, // 6 pink     (~#F38BAA)
-            {0.28F, 0.31F, 0.32F}, // 7 gray
-            {0.62F, 0.62F, 0.59F}, // 8 lightGray / silver
-            {0.09F, 0.61F, 0.61F}, // 9 cyan     (~#169C9C)
-            {0.54F, 0.20F, 0.72F}, // 10 purple  (~#8932B8)
-            {0.24F, 0.27F, 0.67F}, // 11 blue    (~#3C44AA)
-            {0.51F, 0.33F, 0.20F}, // 12 brown
-            {0.37F, 0.49F, 0.09F}, // 13 green
-            {0.69F, 0.18F, 0.15F}, // 14 red     (~#B02E26)
-            {0.11F, 0.11F, 0.13F}  // 15 black
+            {1.0F, 1.0F, 1.0F},          // White       #ffffff
+            {0.9412F, 0.3922F, 0.1961F}, // Orange      #f06532
+            {0.698F, 0.298F, 0.851F},    // Magenta     #b24cd9
+            {0.4F, 0.6F, 0.851F},        // Light Blue  #6699d9
+            {0.902F, 0.902F, 0.2F},      // Yellow      #e6e633
+            {0.502F, 0.8F, 0.102F},      // Lime        #80cc1a
+            {0.949F, 0.502F, 0.651F},    // Pink        #f280a6
+            {0.298F, 0.298F, 0.298F},    // Gray        #4c4c4c
+            {0.6667F, 0.6667F, 0.6667F}, // Light Gray  #aaaaaa
+            {0.0F, 0.502F, 0.6F},        // Cyan        #008099
+            {0.3569F, 0.1804F, 0.5216F}, // Purple      #5b2e85
+            {0.1176F, 0.1176F, 0.6863F}, // Blue        #1e1eaf
+            {0.4F, 0.298F, 0.0F},        // Brown       #664c00
+            {0.1176F, 0.3922F, 0.1176F}, // Green       #1e641e
+            {0.7843F, 0.1176F, 0.1176F}, // Red         #c81e1e
+            {0.0392F, 0.0392F, 0.0392F}  // Black       #0a0a0a
     };
 
     public static float[] getIntenseDyeColors(int dyeMeta) {
