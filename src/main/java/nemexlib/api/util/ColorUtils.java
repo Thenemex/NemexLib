@@ -1,5 +1,7 @@
 package nemexlib.api.util;
 
+import java.util.Arrays;
+
 public class ColorUtils {
 
     private static final float[][] intenseDyeColors = new float[][] {
@@ -22,6 +24,6 @@ public class ColorUtils {
     };
 
     public static float[] getIntenseDyeColors(int dyeMeta) {
-        return intenseDyeColors[dyeMeta >= 0 && dyeMeta < 16 ? dyeMeta : 0];
+        return Arrays.copyOf(intenseDyeColors[dyeMeta >= 0 && dyeMeta < 16 ? dyeMeta : 0], 3);
     }
 }
