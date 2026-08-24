@@ -226,7 +226,7 @@ public abstract class WandEventHandler implements IWandTriggerManager {
             ((WorldServer) world).func_147487_a( particleName,
                     (double) x + 0.5, (double) y + 0.5, (double) z + 0.5, //Block coords
                     64, // Particle quantity
-                    0.5D, 0.5D, 0.5D, //Particle spread
+                    0.2D, 0.2D, 0.2D, //Particle spread
                     0.1D //Velocity
             );
         }
