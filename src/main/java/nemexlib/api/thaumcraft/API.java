@@ -1,12 +1,14 @@
 package nemexlib.api.thaumcraft;
 
 import nemexlib.NemexLib;
+import nemexlib.api.thaumcraft.aspects.Aspects;
 import nemexlib.api.util.Util;
 import nemexlib.api.util.exceptions.*;
 import nemexlib.api.util.exceptions.IndexOutOfBoundsException;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import nemexlib.api.thaumcraft.research.Research;
+import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.research.ResearchCategories;
 import thaumcraft.api.research.ResearchCategoryList;
@@ -402,5 +404,18 @@ public class API {
         ResearchPage pageRemoved = pages[index - 1];
         pages[index - 1] = pageToAdd;
         return pageRemoved;
+    }
+
+
+    /**
+     * Set new aspects to the chosen itemStack
+     * @param item The itemStack to add aspects to
+     * @param aspects The aspects
+     * @return The itemStack (if chained methods needed)
+     */
+    public static ItemStack setAspects(ItemStack item, final Aspects aspects) {
+        if (item == null || aspects == null) throw new ParameterIsNullOrEmpty();
+        ThaumcraftApi.registerObjectTag(item, aspects);
+        return item;
     }
 }
