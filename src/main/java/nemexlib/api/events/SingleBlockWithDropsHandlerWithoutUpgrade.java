@@ -8,17 +8,17 @@ import thaumcraft.common.items.wands.ItemWandCasting;
 
 public abstract class SingleBlockWithDropsHandlerWithoutUpgrade extends WandEventHandler {
 
-    public SingleBlockWithDropsHandlerWithoutUpgrade(BlockType block) {
+    public SingleBlockWithDropsHandlerWithoutUpgrade(final BlockType block) {
         super(block);
     }
-    public SingleBlockWithDropsHandlerWithoutUpgrade(String tag, BlockType block) {
+    public SingleBlockWithDropsHandlerWithoutUpgrade(final String tag, final BlockType block) {
         this(block);
         this.setTag(tag);
     }
-    public SingleBlockWithDropsHandlerWithoutUpgrade(BlockType ... blocks) {
+    public SingleBlockWithDropsHandlerWithoutUpgrade(final BlockType ... blocks) {
         super(blocks);
     }
-    public SingleBlockWithDropsHandlerWithoutUpgrade(String tag, BlockType ... blocks) {
+    public SingleBlockWithDropsHandlerWithoutUpgrade(final String tag, final BlockType ... blocks) {
         this(blocks);
         this.setTag(tag);
     }
@@ -36,7 +36,7 @@ public abstract class SingleBlockWithDropsHandlerWithoutUpgrade extends WandEven
      * @return True is the trigger have been executed properly, false if not
      */
     @Override
-    public boolean performTrigger(World world, ItemStack wand, EntityPlayer player, int x, int y, int z, int side, int event) {
+    public boolean performTrigger(final World world, final ItemStack wand, final EntityPlayer player, final int x, final int y, final int z, final int side, final int event) {
         return dropItem(world, wand, player, x, y, z);
     }
 
@@ -44,7 +44,7 @@ public abstract class SingleBlockWithDropsHandlerWithoutUpgrade extends WandEven
      * Private method called by <code>performTrigger()</code>
      * <p>Mainly used for code splitting</p>
      */
-    protected boolean dropItem(World world, ItemStack heldItem, EntityPlayer player, int x, int y, int z) {
+    protected boolean dropItem(final World world, final ItemStack heldItem, final EntityPlayer player, final int x, final int y, final int z) {
         if (world.isRemote) return false;
         if (isResearchNotComplete(player, getTag())) return false; // Needs research to perform recipe
         ItemWandCasting wand = (ItemWandCasting) heldItem.getItem();

@@ -20,7 +20,7 @@ public class OreDictAdder {
      * @param recipe The whole recipe object structure
      * @return The recipe generated
      */
-    public static IRecipe addRecipe(ItemStack output, boolean isShapeless, Object ... recipe) {
+    public static IRecipe addRecipe(final ItemStack output, final boolean isShapeless, final Object ... recipe) {
         if (output == null || recipe == null || recipe.length == 0) throw new ParameterIsNullOrEmpty();
         IRecipe oreRecipe;
         if (isShapeless) oreRecipe = new ShapelessOreRecipe(output, recipe);
@@ -36,7 +36,7 @@ public class OreDictAdder {
      * @param recipe The whole recipe object structure
      * @return The recipe generated
      */
-    public static IRecipe addRecipe(Item output, boolean isShapeless, Object ... recipe) {
+    public static IRecipe addRecipe(final Item output, final boolean isShapeless, final Object ... recipe) {
         return addRecipe(new ItemStack(output), isShapeless, recipe);
     }
     /**
@@ -47,7 +47,7 @@ public class OreDictAdder {
      * @param recipe The whole recipe object structure
      * @return The recipe generated
      */
-    public static IRecipe addRecipe(Block output, boolean isShapeless, Object ... recipe) {
+    public static IRecipe addRecipe(final Block output, final boolean isShapeless, final Object ... recipe) {
         return addRecipe(new ItemStack(output), isShapeless, recipe);
     }
 
@@ -57,7 +57,7 @@ public class OreDictAdder {
      * @param recipe The whole recipe object structure
      * @return The recipe generated
      */
-    public static IRecipe addShapedRecipe(ItemStack output, Object ... recipe) {
+    public static IRecipe addShapedRecipe(final ItemStack output, final Object ... recipe) {
         return addRecipe(output, false, recipe);
     }
     /**
@@ -67,7 +67,7 @@ public class OreDictAdder {
      * @param recipe The whole recipe object structure
      * @return The recipe generated
      */
-    public static IRecipe addShapedRecipe(Item output, Object ... recipe) {
+    public static IRecipe addShapedRecipe(final Item output, final Object ... recipe) {
         return addRecipe(output, false, recipe);
     }
     /**
@@ -77,7 +77,7 @@ public class OreDictAdder {
      * @param recipe The whole recipe object structure
      * @return The recipe generated
      */
-    public static IRecipe addShapedRecipe(Block output, Object ... recipe) {
+    public static IRecipe addShapedRecipe(final Block output, final Object ... recipe) {
         return addRecipe(output, false, recipe);
     }
 
@@ -87,7 +87,7 @@ public class OreDictAdder {
      * @param recipe The whole recipe object structure
      * @return The recipe generated
      */
-    public static IRecipe addShapelessRecipe(ItemStack output, Object ... recipe) {
+    public static IRecipe addShapelessRecipe(final ItemStack output, final Object ... recipe) {
         return addRecipe(output, true, recipe);
     }
     /**
@@ -97,7 +97,7 @@ public class OreDictAdder {
      * @param recipe The whole recipe object structure
      * @return The recipe generated
      */
-    public static IRecipe addShapelessRecipe(Item output, Object ... recipe) {
+    public static IRecipe addShapelessRecipe(final Item output, final Object ... recipe) {
         return addRecipe(output, true, recipe);
     }
     /**
@@ -107,7 +107,7 @@ public class OreDictAdder {
      * @param recipe The whole recipe object structure
      * @return The recipe generated
      */
-    public static IRecipe addShapelessRecipe(Block output, Object ... recipe) {
+    public static IRecipe addShapelessRecipe(final Block output, final Object ... recipe) {
         return addRecipe(output, true, recipe);
     }
 }

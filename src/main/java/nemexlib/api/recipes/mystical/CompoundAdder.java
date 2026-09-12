@@ -24,7 +24,7 @@ public class CompoundAdder {
      * @param structure All the blocks for the recipe structure (all must be on the same array dimension)
      * @return The recipe generated
      */
-    public static List addCompoundRecipe(String tag, Aspects aspects, int width, int height, int length, Object ... structure) {
+    public static List addCompoundRecipe(final String tag, final Aspects aspects, final int width, final int height, final int length, final Object ... structure) {
         if (tag == null || structure == null || structure.length == 0) throw new ParameterIsNullOrEmpty();
         if (width * height * length != structure.length) throw new CompoundRecipeSizeIsDifferentFromStructure(width * height * length, structure.length);
         return registerRecipe(tag, Arrays.asList(aspects, width, height, length, Arrays.asList(structure)));
@@ -36,7 +36,7 @@ public class CompoundAdder {
      * @param recipe The full compound recipe
      * @return The parameter recipe
      */
-    protected static List registerRecipe(String key, List recipe) {
+    protected static List registerRecipe(final String key, final List recipe) {
         ConfigResearch.recipes.put(key, recipe);
         return recipe;
     }

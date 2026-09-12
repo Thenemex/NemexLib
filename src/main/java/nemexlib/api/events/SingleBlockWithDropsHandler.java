@@ -36,7 +36,7 @@ public abstract class SingleBlockWithDropsHandler extends WandEventHandler {
      * @param blocks The trigger blocks
      * @throws ParameterIsNullOrEmpty If blocks is null or empty
      */
-    public SingleBlockWithDropsHandler(String researchTag, BlockType ... blocks) {
+    public SingleBlockWithDropsHandler(final String researchTag, final BlockType ... blocks) {
         super(blocks);
         if (researchTag != null) setTag(researchTag);
     }
@@ -50,7 +50,7 @@ public abstract class SingleBlockWithDropsHandler extends WandEventHandler {
      * @param blocks The trigger blocks
      * @throws ParameterIsNullOrEmpty If blocks is null or empty
      */
-    public SingleBlockWithDropsHandler(String researchTag, String upgradeResearchTag, Aspects vis, BlockType ... blocks) {
+    public SingleBlockWithDropsHandler(final String researchTag, final String upgradeResearchTag, final Aspects vis, final BlockType ... blocks) {
         this(researchTag, blocks);
         if (upgradeResearchTag == null) throw new ParameterIsNullOrEmpty();
         else setUpgradeResearchTag(upgradeResearchTag);
@@ -61,7 +61,7 @@ public abstract class SingleBlockWithDropsHandler extends WandEventHandler {
      * @param blocks The trigger blocks
      * @throws ParameterIsNullOrEmpty If blocks is null or empty
      */
-    public SingleBlockWithDropsHandler(BlockType ... blocks) {
+    public SingleBlockWithDropsHandler(final BlockType ... blocks) {
         this(null, blocks);
     }
 
@@ -91,7 +91,7 @@ public abstract class SingleBlockWithDropsHandler extends WandEventHandler {
      * @return True is the trigger have been executed properly, false if not
      */
     @Override
-    public boolean performTrigger(World world, ItemStack wand, EntityPlayer player, int x, int y, int z, int side, int event) {
+    public boolean performTrigger(final World world, final ItemStack wand, final EntityPlayer player, final int x, final int y, final int z, final int side, final int event) {
         return dropWoodPlanks(world, wand, player, x, y, z, event);
     }
 
@@ -99,7 +99,7 @@ public abstract class SingleBlockWithDropsHandler extends WandEventHandler {
      * Private method called by <code>performTrigger()</code>
      * <p>Mainly used for code splitting</p>
      */
-    protected boolean dropWoodPlanks(World world, ItemStack heldItem, EntityPlayer player, int x, int y, int z, int event) {
+    protected boolean dropWoodPlanks(final World world, final ItemStack heldItem, final EntityPlayer player, final int x, final int y, final int z, final int event) {
         if (world.isRemote) return false;
         if (getTag() != null)
             if (isResearchNotComplete(player, getTag())) return false; // Needs research to perform recipe
@@ -136,5 +136,5 @@ public abstract class SingleBlockWithDropsHandler extends WandEventHandler {
      * @param event The event number (can be ignored depending on your needs)
      * @return The items that will be dropped on trigger
      */
-    protected abstract ItemStack getDrops(int event, boolean upgrade);
+    protected abstract ItemStack getDrops(final int event, final boolean upgrade);
 }

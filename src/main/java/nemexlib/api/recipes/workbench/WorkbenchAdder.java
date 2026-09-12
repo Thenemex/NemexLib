@@ -21,7 +21,7 @@ public class WorkbenchAdder {
      * @param recipe The whole recipe object structure
      * @return The recipe generated
      */
-    public static IRecipe addRecipe(ItemStack output, boolean isShapeless, Object ... recipe) {
+    public static IRecipe addRecipe(final ItemStack output, final boolean isShapeless, final Object ... recipe) {
         if (output == null || recipe == null || recipe.length == 0) throw new ParameterIsNullOrEmpty();
         if (isShapeless) GameRegistry.addShapelessRecipe(output, recipe);
         else GameRegistry.addShapedRecipe(output, recipe);
@@ -36,7 +36,7 @@ public class WorkbenchAdder {
      * @param input The inputs items & recipe
      * @return The recipes generated
      */
-    public static IRecipe[] addMultipleSingleRecipes(ItemStack output, boolean isShapeless, ArrayList<Object[]> input) {
+    public static IRecipe[] addMultipleSingleRecipes(final ItemStack output, final boolean isShapeless, final ArrayList<Object[]> input) {
         IRecipe[] recipes = new IRecipe[input.size()];
         for (int i = 0; i < recipes.length; i++)
             recipes[i] = addRecipe(output, isShapeless, input.get(i));
@@ -50,7 +50,7 @@ public class WorkbenchAdder {
      * @param input The input items
      * @return The recipes generated
      */
-    public static IRecipe[] addMultipleSingleShapelessRecipes(ItemStack[] output, ItemStack[] input) {
+    public static IRecipe[] addMultipleSingleShapelessRecipes(final ItemStack[] output, final ItemStack[] input) {
         if (output == null || input == null) throw new ParameterIsNullOrEmpty();
         if (output.length != input.length) throw new ParameterArraysSizeException(output.length, input.length);
         IRecipe[] recipes = new IRecipe[output.length];
@@ -67,7 +67,7 @@ public class WorkbenchAdder {
      * @param input The input items
      * @return The recipes generated
      */
-    public static IRecipe[] addMultipleSingleShapelessRecipes(ItemStack[] output, int nb, ItemStack[] input) {
+    public static IRecipe[] addMultipleSingleShapelessRecipes(final ItemStack[] output, final int nb, final ItemStack[] input) {
         return addMultipleSingleShapelessRecipes(DeepCopy.i(output, nb), input);
     }
 }

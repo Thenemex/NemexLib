@@ -23,7 +23,7 @@ public class CommandGetResearchTriggers extends NemexLibCommand {
     }
 
     @Override
-    public void processCommand(ICommandSender sender, String[] args) {
+    public void processCommand(final ICommandSender sender, final String[] args) {
         if (args.length >= 1)
             try {
                 this.research = API.getResearch(args[0]);
@@ -37,13 +37,13 @@ public class CommandGetResearchTriggers extends NemexLibCommand {
     }
 
     @Override
-    public List addTabCompletionOptions(ICommandSender sender, String[] args) {
+    public List addTabCompletionOptions(final ICommandSender sender, final String[] args) {
         if (args.length == 1) return getListOfStringsFromIterableMatchingLastWord(args, researchKeys);
         return null;
     }
 
     @Override
-    public void chatNull(ICommandSender sender, String message) {
+    public void chatNull(final ICommandSender sender, String message) {
         if (message.equals("null") || message.equals("[]")) message = "";
         message = "§2 - ".concat(getTrigger()).concat(" : §r").concat(message);
         chat(sender, message);

@@ -18,23 +18,23 @@ public abstract class AWriter implements IWriter {
     private boolean started = false;
 
     public AWriter() {}
-    public AWriter(Logger logger) {
+    public AWriter(final Logger logger) {
         this.setLogger(logger);
     }
-    public AWriter(File file) {
+    public AWriter(final File file) {
         this.setFile(file);
     }
-    public AWriter(File file, Logger logger) {
+    public AWriter(final File file, final Logger logger) {
         this.setFile(file);
         this.setLogger(logger);
     }
-    public AWriter(FMLPreInitializationEvent event, String fileName) {
+    public AWriter(final FMLPreInitializationEvent event, final String fileName) {
         File folders = new File(new File(event.getModConfigurationDirectory(), AConfig.tnmxDir), "output");
         folders.mkdirs();
         setFile(new File(folders, fileName.concat(".output")));
     }
 
-    @Override public boolean write(String text) {
+    @Override public boolean write(final String text) {
         if (file == null || writer == null) return false;
         try {
             if (started)
@@ -61,7 +61,7 @@ public abstract class AWriter implements IWriter {
     @Override public File getFile() {
         return file;
     }
-    @Override public boolean setFile(File file) {
+    @Override public boolean setFile(final File file) {
         // Initial check
         try {
             file.createNewFile();
@@ -81,7 +81,7 @@ public abstract class AWriter implements IWriter {
         }
         return true;
     }
-    @Override public boolean setFile(File folder, String fileName) {
+    @Override public boolean setFile(final File folder, final String fileName) {
         if (folder == null || !folder.isDirectory() || fileName == null || fileName.isEmpty()) return false;
         return this.setFile(new File(folder, fileName));
     }
@@ -89,13 +89,13 @@ public abstract class AWriter implements IWriter {
     @Override public Logger getLogger() {
         return logger;
     }
-    @Override public boolean setLogger(Logger logger) {
+    @Override public boolean setLogger(final Logger logger) {
         if (logger == null) return false;
         this.logger = logger;
         return true;
     }
 
-    @Override public boolean logError(String message, Exception e) {
+    @Override public boolean logError(final String message, final Exception e) {
         if (logger == null) return false;
         logger.info(message.concat(" : ").concat(e.getClass().getSimpleName()).concat(", ").concat(e.getMessage()));
         return true;

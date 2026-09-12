@@ -284,7 +284,7 @@ public class API {
      * @param stacks The item(s) to add
      * @throws ParameterIsNullOrEmpty One of the arguments is null
      */
-    public static void addItemTriggers(ResearchItem research, ItemStack ... stacks) {
+    public static void addItemTriggers(final ResearchItem research, final ItemStack ... stacks) {
         if (research == null || stacks == null || stacks.length == 0) throw new ParameterIsNullOrEmpty();
         if (research.getItemTriggers() == null || research.getItemTriggers().length == 0)
             research.setItemTriggers(stacks);
@@ -301,7 +301,7 @@ public class API {
      * @param pagesToAdd The pages to add
      * @throws ParameterIsNullOrEmpty If one of the parameters is null
      */
-    public static void addPage(String tab, String tag, ResearchPage ... pagesToAdd) {
+    public static void addPage(final String tab, final String tag, final ResearchPage ... pagesToAdd) {
         if (tab == null || tag == null) throw new ParameterIsNullOrEmpty();
         addPage(getResearch(tab, tag), pagesToAdd);
     }
@@ -312,7 +312,7 @@ public class API {
      * @param pagesToAdd The pages to add
      * @throws ParameterIsNullOrEmpty If one of the parameters is null
      */
-    public static void addPage(ResearchItem research, ResearchPage ... pagesToAdd) {
+    public static void addPage(final ResearchItem research, final ResearchPage ... pagesToAdd) {
         if (research == null || pagesToAdd == null) throw new ParameterIsNullOrEmpty();
         if (pagesToAdd.length == 0) throw new ParameterIsNullOrEmpty();
         if (research.getPages() == null) research.setPages(pagesToAdd);
@@ -342,7 +342,7 @@ public class API {
      * @throws ResearchDoesNotHaveAnyPages If the research pages is null or empty
      * @throws IndexOutOfBoundsException If the index exceeds the size of the pages array of more than +1
      */
-    public static void addPage(String tab, String tag, ResearchPage pageToAdd, int index) {
+    public static void addPage(final String tab, final String tag, final ResearchPage pageToAdd, final int index) {
         if (tab == null || tag == null) throw new ParameterIsNullOrEmpty();
         addPage(getResearch(tab, tag), pageToAdd, index);
     }
@@ -359,7 +359,7 @@ public class API {
      * @throws ResearchDoesNotHaveAnyPages If the research pages is null or empty
      * @throws IndexOutOfBoundsException If the index exceeds the size of the pages array of more than +1
      */
-    public static void addPage(ResearchItem research, ResearchPage pageToAdd, int index) {
+    public static void addPage(final ResearchItem research, final ResearchPage pageToAdd, final int index) {
         if (research == null || pageToAdd == null) throw new ParameterIsNullOrEmpty();
         if (research.getPages() == null) throw new ResearchDoesNotHaveAnyPages(research.key);
         ResearchPage[] pages = research.getPages();
@@ -381,7 +381,7 @@ public class API {
      * @throws ParameterIsNullOrEmpty If research is null
      * @throws IndexOutOfBoundsException If the index is not matching any slot in the research pages array
      */
-    public static ResearchPage removePage(String tab, String tag, int index) {
+    public static ResearchPage removePage(final String tab, final String tag, final int index) {
         if (tab == null || tag == null) throw new ParameterIsNullOrEmpty();
         return removePage(getResearch(tab, tag), index);
     }
@@ -395,7 +395,7 @@ public class API {
      * @throws ResearchDoesNotHaveAnyPages If the research pages is null or empty
      * @throws IndexOutOfBoundsException If the index is not matching any slot in the research pages array
      */
-    public static ResearchPage removePage(ResearchItem research, int index) {
+    public static ResearchPage removePage(final ResearchItem research, final int index) {
         if (research == null) throw new ParameterIsNullOrEmpty();
         if (research.getPages() == null) throw new ResearchDoesNotHaveAnyPages(research.key);
         ResearchPage[] pages = research.getPages();
@@ -419,7 +419,7 @@ public class API {
      * @throws ResearchDoesNotHaveAnyPages If the research pages is null or empty
      * @throws IndexOutOfBoundsException If the index is not matching any slot in the research pages array
      */
-    public static ResearchPage replacePage(String tab, String tag, ResearchPage pageToAdd, int index) {
+    public static ResearchPage replacePage(final String tab, final String tag, final ResearchPage pageToAdd, final int index) {
         if (tab == null || tag == null) throw new ParameterIsNullOrEmpty();
         return replacePage(getResearch(tab, tag), pageToAdd, index);
     }
@@ -434,7 +434,7 @@ public class API {
      * @throws ResearchDoesNotHaveAnyPages If the research pages is null or empty
      * @throws IndexOutOfBoundsException If the index is not matching any slot in the research pages array
      */
-    public static ResearchPage replacePage(ResearchItem research, ResearchPage pageToAdd, int index) {
+    public static ResearchPage replacePage(final ResearchItem research, final ResearchPage pageToAdd, final int index) {
         if (research == null || pageToAdd == null) throw new ParameterIsNullOrEmpty();
         if (research.getPages() == null) throw new ResearchDoesNotHaveAnyPages(research.key);
         ResearchPage[] pages = research.getPages();
@@ -452,7 +452,7 @@ public class API {
      * @param aspects The aspects
      * @return The itemStack (if chained methods needed)
      */
-    public static ItemStack setAspects(ItemStack item, final Aspects aspects) {
+    public static ItemStack setAspects(final ItemStack item, final Aspects aspects) {
         if (item == null || aspects == null) throw new ParameterIsNullOrEmpty();
         ThaumcraftApi.registerObjectTag(item, aspects);
         return item;

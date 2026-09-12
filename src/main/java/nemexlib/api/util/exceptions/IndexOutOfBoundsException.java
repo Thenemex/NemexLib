@@ -2,7 +2,7 @@ package nemexlib.api.util.exceptions;
 
 public class IndexOutOfBoundsException extends TCRException {
 
-    public IndexOutOfBoundsException(int index, int arraySize) {
+    public IndexOutOfBoundsException(final int index, final int arraySize) {
         super("Index = " + index + ", array.length = " + arraySize);
     }
 }

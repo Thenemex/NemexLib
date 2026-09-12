@@ -14,10 +14,10 @@ public abstract class ACompat implements ICompat {
      * Constructor for the mod integration class
      * @param mod The modID
      */
-    public ACompat(String mod) {
+    public ACompat(final String mod) {
         this(mod, "");
     }
-    public ACompat(String mod, String tab) {
+    public ACompat(final String mod, final String tab) {
         if (mod == null) throw new ParameterIsNullOrEmpty();
         this.mod = mod;
         this.tab = tab;
@@ -37,7 +37,7 @@ public abstract class ACompat implements ICompat {
      * @param config The config entry
      * @return True if mod is loaded + config entry is set to true
      */
-    public static boolean isModLoaded(String mod, boolean config) {
+    public static boolean isModLoaded(final String mod, final boolean config) {
         return Loader.isModLoaded(mod) && config;
     }
 }

@@ -7,15 +7,15 @@ import java.io.File;
 @SuppressWarnings("UnusedReturnValue")
 public interface IWriter {
 
-    boolean write(String text);
+    boolean write(final String text);
     boolean close();
 
     File getFile();
-    boolean setFile(File file);
-    boolean setFile(File folder, String fileName);
+    boolean setFile(final File file);
+    boolean setFile(final File folder, final String fileName);
 
     Logger getLogger();
-    boolean setLogger(Logger logger);
+    boolean setLogger(final Logger logger);
 
-    boolean logError(String message, Exception e);
+    boolean logError(final String message, final Exception e);
 }

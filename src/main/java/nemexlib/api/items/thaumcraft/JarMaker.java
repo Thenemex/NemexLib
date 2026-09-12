@@ -13,7 +13,7 @@ import static nemexlib.api.items.ItemFinder.findItemTC;
 
 public class JarMaker {
 
-    public static ItemStack make(Aspect aspect, int amount) {
+    public static ItemStack make(final Aspect aspect, final int amount) {
         if (aspect == null) throw new ParameterIsNullOrEmpty();
         // ItemJarFilled jar = ((ItemJarFilled) ConfigItems.itemJarFilled).setAspects(jar, new Aspects(CRYSTAL, 64));
         NBTTagCompound nbt = new NBTTagCompound(), tags = new NBTTagCompound();
@@ -27,7 +27,7 @@ public class JarMaker {
         return jar;
     }
 
-    public static ItemStack make(AspectList aspect) {
+    public static ItemStack make(final AspectList aspect) {
         if (aspect == null) throw new ParameterIsNullOrEmpty();
         if (aspect.aspects.size() != 1) throw new ParameterArraysSizeException(aspect.aspects.size(), 1);
         if (aspect.visSize() < 1 || aspect.visSize() > 64) throw new EssentiaAmountIsWrong(1, 64, aspect.visSize());

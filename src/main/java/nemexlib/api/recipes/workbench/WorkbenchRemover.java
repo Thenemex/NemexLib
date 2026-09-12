@@ -22,7 +22,7 @@ public class WorkbenchRemover extends ARecipeRemover {
      * <p>This method checks : Item</p>
      */
     @Override
-    public void removeItem(ItemStack output) {
+    public void removeItem(final ItemStack output) {
         this.refresh();
         if (recipes == null || output == null || recipes.isEmpty()) throw new ParameterIsNullOrEmpty();
         IRecipe r;
@@ -40,7 +40,7 @@ public class WorkbenchRemover extends ARecipeRemover {
      * <p>This method checks : Item and Amount</p>
      */
     @Override
-    public void removeAmount(ItemStack output) {
+    public void removeAmount(final ItemStack output) {
         this.refresh();
         if (recipes == null || output == null || recipes.isEmpty()) throw new ParameterIsNullOrEmpty();
         IRecipe r;
@@ -59,7 +59,7 @@ public class WorkbenchRemover extends ARecipeRemover {
      * <p>This method checks : Item and metadata.</p>
      */
     @Override
-    public void removeMeta(ItemStack output) {
+    public void removeMeta(final ItemStack output) {
         this.refresh();
         if (recipes == null || output == null || recipes.isEmpty()) throw new ParameterIsNullOrEmpty();
         IRecipe r;
@@ -78,7 +78,7 @@ public class WorkbenchRemover extends ARecipeRemover {
      * <p>This method checks : Item, metadata, amount.</p>
      */
     @Override
-    public void removePrecise(ItemStack output) {
+    public void removePrecise(final ItemStack output) {
         this.refresh();
         if (recipes == null || output == null || recipes.isEmpty()) throw new ParameterIsNullOrEmpty();
         IRecipe r;

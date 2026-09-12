@@ -224,7 +224,7 @@ public abstract class WandEventHandler implements IWandTriggerManager {
      * @param item The ItemStack
      * @return If the spawning did process rightfully
      */
-    protected boolean spawnItem(World world, final int x, final  int y, final int z, final ItemStack item) {
+    protected boolean spawnItem(final World world, final int x, final  int y, final int z, final ItemStack item) {
         EntityItem drops = new EntityItem(world, (float) x + 0.5F, (float) y + 0.5F, (float) z + 0.5F, item);
         return world.spawnEntityInWorld(drops);
     }
@@ -237,7 +237,7 @@ public abstract class WandEventHandler implements IWandTriggerManager {
      * @param z Z
      * @return True if the particles are fired, false otherwise
      */
-    protected boolean fireBlockParticles(World world, final int x, final int y, final int z) {
+    protected boolean fireBlockParticles(final World world, final int x, final int y, final int z) {
         return fireBlockParticles(world, x, y, z, world.getBlock(x, y, z), world.getBlockMetadata(x, y, z));
     }
     /**
@@ -249,7 +249,7 @@ public abstract class WandEventHandler implements IWandTriggerManager {
      * @param type The BlockType from which the particles are gonna be extracted, alongside the metadata
      * @return True if the particles are fired, false otherwise
      */
-    protected boolean fireBlockParticles(World world, final int x, final int y, final int z, final BlockType type) {
+    protected boolean fireBlockParticles(final World world, final int x, final int y, final int z, final BlockType type) {
         return fireBlockParticles(world, x, y, z, type.block(), type.meta());
     }
     /**
@@ -262,7 +262,7 @@ public abstract class WandEventHandler implements IWandTriggerManager {
      * @param metadata The metadata of the block
      * @return True if the particles are fired, false otherwise
      */
-    protected boolean fireBlockParticles(World world, final int x, final int y, final int z, final Block block, final int metadata) {
+    protected boolean fireBlockParticles(final World world, final int x, final int y, final int z, final Block block, final int metadata) {
         if (world instanceof WorldServer)
             return fireBlockParticles((WorldServer) world, x, y, z, block, metadata);
         else return false;
@@ -277,7 +277,7 @@ public abstract class WandEventHandler implements IWandTriggerManager {
      * @param metadata The metadata of the block
      * @return True if the particles are fired, false otherwise
      */
-    protected boolean fireBlockParticles(WorldServer worldServer, final int x, final int y, final int z, final Block block, final int metadata) {
+    protected boolean fireBlockParticles(final WorldServer worldServer, final int x, final int y, final int z, final Block block, final int metadata) {
         worldServer.func_147487_a("blockcrack_" + Block.getIdFromBlock(block) + "_" + metadata,
                 (double) x + 0.5, (double) y + 0.5, (double) z + 0.5, // Block coords
                 32, // Particle quantity

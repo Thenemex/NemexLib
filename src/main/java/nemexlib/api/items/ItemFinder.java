@@ -28,7 +28,7 @@ public class ItemFinder {
      * @throws BlockOrItemDoesNotExist The item doesn't exist
      * @throws NumberFormatException The metadata must be a number
      */
-    public static ItemStack getItem(String tagName) {
+    public static ItemStack getItem(final String tagName) {
         if (tagName == null || tagName.isEmpty()) throw new ParameterIsNullOrEmpty();
         String[] split = tagName.split(":");
         switch (split.length) {
@@ -52,7 +52,7 @@ public class ItemFinder {
      * @throws ParameterIsNullOrEmpty One of the parameters is null or empty
      * @throws BlockOrItemDoesNotExist If the item doesn't exist or can't be found
      */
-    public static ItemStack findItem(String mod, String itemName, int meta) {
+    public static ItemStack findItem(final String mod, final String itemName, final int meta) {
         if (mod == null || mod.isEmpty() || itemName == null || itemName.isEmpty()) throw new ParameterIsNullOrEmpty();
         Item item = GameRegistry.findItem(mod, itemName);
         if (item == null) throw new BlockOrItemDoesNotExist(mod, itemName, meta);
@@ -65,7 +65,7 @@ public class ItemFinder {
      * @return The ItemStack with the item, meta set to 0, and amount set to 1
      * @throws BlockOrItemDoesNotExist If the item doesn't exist or can't be found
      */
-    public static ItemStack findItem(String mod, String itemName) {
+    public static ItemStack findItem(final String mod, final String itemName) {
         return findItem(mod, itemName, 0);
     }
 
@@ -76,7 +76,7 @@ public class ItemFinder {
      * @return The ItemStack with the item, meta, and amount set to 1
      * @throws BlockOrItemDoesNotExist If the item doesn't exist or can't be found
      */
-    public static ItemStack findItemTC(String itemName, int meta) {
+    public static ItemStack findItemTC(final String itemName, final int meta) {
         return findItem(Thaumcraft.MODID, itemName, meta);
     }
     /**
@@ -85,7 +85,7 @@ public class ItemFinder {
      * @return The ItemStack with the item, meta set to 0, and amount set to 1
      * @throws BlockOrItemDoesNotExist If the item doesn't exist or can't be found
      */
-    public static ItemStack findItemTC(String itemName) {
+    public static ItemStack findItemTC(final String itemName) {
         return findItemTC(itemName, 0);
     }
 
@@ -98,7 +98,7 @@ public class ItemFinder {
      * @throws ParameterIsNullOrEmpty One of the parameters is null or empty
      * @throws BlockOrItemDoesNotExist If the item doesn't exist or can't be found
      */
-    public static BlockType findBlock(String mod, String blockName, int meta) {
+    public static BlockType findBlock(final String mod, final String blockName, final int meta) {
         if (mod == null || mod.isEmpty() || blockName == null || blockName.isEmpty()) throw new ParameterIsNullOrEmpty();
         Block block = GameRegistry.findBlock(mod, blockName);
         if (block == null) throw new BlockOrItemDoesNotExist(mod, blockName, meta);
@@ -111,7 +111,7 @@ public class ItemFinder {
      * @return The BlockType containing the item and its metadata set 0
      * @throws BlockOrItemDoesNotExist If the item doesn't exist or can't be found
      */
-    public static BlockType findBlock(String mod, String blockName) {
+    public static BlockType findBlock(final String mod, final String blockName) {
         return findBlock(mod, blockName, 0);
     }
 
@@ -122,7 +122,7 @@ public class ItemFinder {
      * @return The BlockType containing the item and its metadata
      * @throws BlockOrItemDoesNotExist If the item doesn't exist or can't be found
      */
-    public static BlockType findBlockTC(String blockName, int meta) {
+    public static BlockType findBlockTC(final String blockName, final int meta) {
         return findBlock(Thaumcraft.MODID, blockName, meta);
     }
     /**
@@ -131,7 +131,7 @@ public class ItemFinder {
      * @return The BlockType containing the item and its metadata set to 0
      * @throws BlockOrItemDoesNotExist If the item doesn't exist or can't be found
      */
-    public static BlockType findBlockTC(String blockName) {
+    public static BlockType findBlockTC(final String blockName) {
         return findBlockTC(blockName, 0);
     }
 }

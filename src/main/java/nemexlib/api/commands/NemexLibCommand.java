@@ -18,10 +18,10 @@ public abstract class NemexLibCommand extends CommandBase implements INemexLibCo
     private static final String prefix = "nemexlib-";
     private final String commandName, suffixes;
 
-    public NemexLibCommand(String commandName) {
+    public NemexLibCommand(final String commandName) {
         this(commandName, "");
     }
-    public NemexLibCommand(String commandName, String suffixes) {
+    public NemexLibCommand(final String commandName, String suffixes) {
         this.commandName = prefix.concat(commandName);
         this.suffixes = suffixes;
         initResearchKeys();
@@ -30,23 +30,23 @@ public abstract class NemexLibCommand extends CommandBase implements INemexLibCo
     @Override public String getCommandName() {
         return commandName;
     }
-    @Override public String getCommandUsage(ICommandSender sender) {
+    @Override public String getCommandUsage(final ICommandSender sender) {
         return "/".concat(getCommandName()).concat(" ").concat(suffixes);
     }
     @Override public int getRequiredPermissionLevel() {
         return 0;
     }
 
-    @Override public abstract void processCommand(ICommandSender sender, String[] args);
+    @Override public abstract void processCommand(final ICommandSender sender, final String[] args);
 
-    @Override public List addTabCompletionOptions(ICommandSender sender, String[] args) {
+    @Override public List addTabCompletionOptions(final ICommandSender sender, final String[] args) {
         return super.addTabCompletionOptions(sender, args);
     }
 
-    @Override public void chat(ICommandSender sender, String message) {
+    @Override public void chat(final ICommandSender sender, final String message) {
         sender.addChatMessage(new ChatComponentText(message));
     }
-    @Override public void chatNull(ICommandSender sender, String message) {
+    @Override public void chatNull(final ICommandSender sender, final String message) {
         chat(sender, message == null ? "null" : message);
     }
 

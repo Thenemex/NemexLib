@@ -11,7 +11,7 @@ public class CrucibleAdder {
 
     private CrucibleAdder(){}
 
-    protected static CrucibleRecipe addRecipe(String tag, Aspects aspects, ItemStack output, Object input) {
+    protected static CrucibleRecipe addRecipe(final String tag, final Aspects aspects, final ItemStack output, final Object input) {
         if (tag == null || aspects == null || output == null || input == null) throw new ParameterIsNullOrEmpty();
         return ThaumcraftApi.addCrucibleRecipe(tag, output, input, aspects);
     }
@@ -24,7 +24,7 @@ public class CrucibleAdder {
      * @param input The recipe catalyst
      * @return The recipe generated
      */
-    public static CrucibleRecipe addRecipe(String tag, Aspects aspects, ItemStack output, ItemStack input) {
+    public static CrucibleRecipe addRecipe(final String tag, final Aspects aspects, final ItemStack output, final ItemStack input) {
         return addRecipe(tag, aspects, output, (Object) input);
     }
 
@@ -37,7 +37,7 @@ public class CrucibleAdder {
      * @param input The recipe catalysts
      * @return The recipe generated
      */
-    public static CrucibleRecipe[] addMultipleRecipe(String tag, Aspects aspects, ItemStack[] output, ItemStack ... input) {
+    public static CrucibleRecipe[] addMultipleRecipe(final String tag, final Aspects aspects, final ItemStack[] output, final ItemStack ... input) {
         if (output.length != input.length || output.length == 0) throw new ParameterIsNullOrEmpty();
         CrucibleRecipe[] recipes = new CrucibleRecipe[output.length];
         for (int i = 0; i < output.length; i++)
@@ -55,7 +55,7 @@ public class CrucibleAdder {
      * @param input The recipe catalysts
      * @return The recipe generated
      */
-    public static CrucibleRecipe[] addMultipleRecipe(String tag, Aspects aspects, ItemStack[] output, int nb, ItemStack ... input) {
+    public static CrucibleRecipe[] addMultipleRecipe(final String tag, final Aspects aspects, final ItemStack[] output, final int nb, final ItemStack ... input) {
         return addMultipleRecipe(tag, aspects, DeepCopy.i(output, nb), input);
     }
 
@@ -68,7 +68,7 @@ public class CrucibleAdder {
      * @param input The recipe catalyst
      * @return The recipe generated
      */
-    public static CrucibleRecipe[] addMultipleSingleRecipe(String tag, Aspects aspects, ItemStack output, ItemStack ... input) {
+    public static CrucibleRecipe[] addMultipleSingleRecipe(final String tag, final Aspects aspects, final ItemStack output, final ItemStack ... input) {
         if (input.length == 0) throw new ParameterIsNullOrEmpty();
         CrucibleRecipe[] recipes = new CrucibleRecipe[input.length];
         for (int i = 0; i < input.length; i++)

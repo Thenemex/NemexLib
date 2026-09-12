@@ -23,7 +23,7 @@ public abstract class AResearch {
     protected Aspects aspects;
     protected Research research;
 
-    public AResearch(String tab, String tag, ItemStack icon) {
+    public AResearch(final String tab, final String tag, final ItemStack icon) {
         this.tab = tab;
         this.tag = tag;
         this.icon = icon;
@@ -31,16 +31,16 @@ public abstract class AResearch {
         init();
     }
 
-    public AResearch(String tab, String tag, Block block) {
+    public AResearch(final String tab, final String tag, final Block block) {
         this(tab, tag, new ItemStack(block));
     }
-    public AResearch(String tab, String tag, Block block, int meta) {
+    public AResearch(final String tab, final String tag, final Block block, final int meta) {
         this(tab, tag, new ItemStack(block, 1, meta));
     }
-    public AResearch(String tab, String tag, Item item) {
+    public AResearch(final String tab, final String tag, final Item item) {
         this(tab, tag, new ItemStack(item));
     }
-    public AResearch(String tab, String tag, Item item, int meta) {
+    public AResearch(final String tab, final String tag, final Item item, final int meta) {
         this(tab, tag, new ItemStack(item, 1, meta));
     }
 
@@ -59,36 +59,36 @@ public abstract class AResearch {
         if (aspects == null) throw new FieldIsNull();
         return aspects;
     }
-    public AResearch setResearchAspects(Aspect aspect, int amount) {
+    public AResearch setResearchAspects(final Aspect aspect, final int amount) {
         this.aspects = new Aspects(aspect, amount);
         return this;
     }
-    public AResearch setResearchAspects(Aspect[] aspects, int ... amounts) {
+    public AResearch setResearchAspects(final Aspect[] aspects, final int ... amounts) {
         this.aspects = new Aspects(aspects, amounts);
         return this;
     }
-    public AResearch setResearchAspects(Aspects aspects) {
+    public AResearch setResearchAspects(final Aspects aspects) {
         this.aspects = aspects;
         return this;
     }
 
-    public AResearch setNewResearch(int x, int y, int complexity) {
+    public AResearch setNewResearch(final int x, final int y, final int complexity) {
         this.research = API.newResearch(tag, tab, aspects, x, y, complexity, icon);
         this.setResearchProperties();
         return this.register();
     }
-    public AResearch setNewResearch(int x, int y) {
+    public AResearch setNewResearch(final int x, final int y) {
         return setNewResearch(x, y, 1);
     }
 
     public ResearchPage[] getPages() {
         return research.getPages();
     }
-    public AResearch setPages(ResearchPage ... pages) {
+    public AResearch setPages(final ResearchPage ... pages) {
         this.research.setPages(pages);
         return this;
     }
-    public AResearch addPage(ResearchPage ... pages) {
+    public AResearch addPage(final ResearchPage ... pages) {
         if (pages == null || pages.length == 0) throw new ParameterIsNullOrEmpty();
         int oldLength = getNbPages();
         int newLength = oldLength + pages.length;
@@ -100,7 +100,7 @@ public abstract class AResearch {
     public int getNbPages() {
         return research.getPages().length;
     }
-    public ResearchPage newTextPage(int number) {
+    public ResearchPage newTextPage(final int number) {
         return new ResearchPage(research.getPageTag(number));
     }
 
@@ -108,7 +108,7 @@ public abstract class AResearch {
         if (handler == null) throw new FieldIsNull();
         return handler;
     }
-    public AResearch setHandler(WandEventHandler handler) {
+    public AResearch setHandler(final WandEventHandler handler) {
         this.handler = handler;
         return this;
     }

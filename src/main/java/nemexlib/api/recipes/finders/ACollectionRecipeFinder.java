@@ -13,15 +13,15 @@ public abstract class ACollectionRecipeFinder<TRecipe> implements IRecipeFinder<
     private final ArrayList<TRecipe> recipesFound;
     protected Collection[] registries;
 
-    public ACollectionRecipeFinder(Collection ... registries) {
+    public ACollectionRecipeFinder(final Collection ... registries) {
         this(5, registries);
     }
-    public ACollectionRecipeFinder(int amount, Collection ... registries) {
+    public ACollectionRecipeFinder(final int amount, final Collection ... registries) {
         this.recipesFound = new ArrayList<>(amount);
         this.setRegistries(registries);
     }
 
-    public ACollectionRecipeFinder<TRecipe> setRegistries(Collection ... registries) {
+    public ACollectionRecipeFinder<TRecipe> setRegistries(final Collection ... registries) {
         if (registries == null || registries.length == 0) throw new ParameterIsNullOrEmpty();
         this.registries = registries;
         return this;
@@ -32,7 +32,7 @@ public abstract class ACollectionRecipeFinder<TRecipe> implements IRecipeFinder<
      * @throws RecipeCollectionIsNotSetOrEmpty Will throw exception if the instance is missing registries to iterate on to find recipes
      * @throws ParameterIsNullOrEmpty Will throw exception if the parameter is null
      */
-    public void checkParameters(ItemStack item) {
+    public void checkParameters(final ItemStack item) {
         if (registries == null || registries.length == 0) throw new RecipeCollectionIsNotSetOrEmpty();
         if (item == null) throw new ParameterIsNullOrEmpty();
     }
@@ -41,7 +41,7 @@ public abstract class ACollectionRecipeFinder<TRecipe> implements IRecipeFinder<
     /**
      * Add a recipe to the list of found recipes
      */
-    public void addFoundRecipe(TRecipe recipe) {
+    public void addFoundRecipe(final TRecipe recipe) {
         this.recipesFound.add(recipe);
     }
     /**

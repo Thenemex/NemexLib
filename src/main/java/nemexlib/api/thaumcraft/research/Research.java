@@ -24,7 +24,7 @@ public class Research extends ResearchItem {
      * @param complexity Research complexity
      * @param icon The item's icon
      */
-    public Research(String tag, String tab, AspectList aspects, int x, int y, int complexity, ItemStack icon) {
+    public Research(final String tag, final String tab, final AspectList aspects, final int x, final int y, final int complexity, final ItemStack icon) {
         super(tag, tab, aspects, x, y, complexity, icon);
     }
 
@@ -32,7 +32,7 @@ public class Research extends ResearchItem {
      * Adds warp to a research
      * @param warp The amount of warp
      */
-    public Research addWarp(int warp) {
+    public Research addWarp(final int warp) {
         ThaumcraftApi.addWarpToResearch(key, warp);
         return this;
     }
@@ -46,7 +46,7 @@ public class Research extends ResearchItem {
         return StatCollector.translateToLocal(getPrefix().concat("text.").concat(key));
     }
 
-    public String getPageTag(int number) {
+    public String getPageTag(final int number) {
         return getPrefix().concat("page.").concat(key).concat(".").concat(String.valueOf(number));
     }
 

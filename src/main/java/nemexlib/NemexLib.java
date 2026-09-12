@@ -27,20 +27,20 @@ public class NemexLib {
     public static AConfig config;
 
     @Mod.EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
+    public void preInit(final FMLPreInitializationEvent event) {
         config = new Config(event).init();
         writer = new OutputWriter(event, modID, logger);
         if (Config.debugItemsEnabled) ConfigItems.init();
     }
 
     @Mod.EventHandler
-    public void postInit(FMLPostInitializationEvent ignored) {
+    public void postInit(final FMLPostInitializationEvent ignored) {
         // Instanciating recipe helpers
         RecipeHelpers.init();
     }
 
     @Mod.EventHandler
-    public void onServerStarting(FMLServerStartingEvent event) {
+    public void onServerStarting(final FMLServerStartingEvent event) {
         if (Config.commandsEnabled) ConfigCommands.init(event);
     }
 }

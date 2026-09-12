@@ -19,20 +19,20 @@ public class ArcaneAdder {
 
     private ArcaneAdder(){}
 
-    protected static ShapedArcaneRecipe registerShapedArcanePRIORITY(String research, ItemStack result, AspectList aspects, Object... recipe) {
+    protected static ShapedArcaneRecipe registerShapedArcanePRIORITY(final String research, final ItemStack result, final AspectList aspects, final Object... recipe) {
         ShapedArcaneRecipe r = new ShapedArcaneRecipe(research, result, aspects, recipe);
         ThaumcraftApi.getCraftingRecipes().add(0, r);
         return r;
     }
-    protected static ShapelessArcaneRecipe registerShapelessArcanePRIORITY(String research, ItemStack result, AspectList aspects, Object... recipe) {
+    protected static ShapelessArcaneRecipe registerShapelessArcanePRIORITY(final String research, final ItemStack result, final AspectList aspects, final Object... recipe) {
         ShapelessArcaneRecipe r = new ShapelessArcaneRecipe(research, result, aspects, recipe);
         ThaumcraftApi.getCraftingRecipes().add(r);
         return r;
     }
-    protected static ShapedArcaneRecipe registerShapedArcane(String research, ItemStack result, AspectList aspects, Object... recipe) {
+    protected static ShapedArcaneRecipe registerShapedArcane(final String research, final ItemStack result, final AspectList aspects, final Object... recipe) {
         return ThaumcraftApi.addArcaneCraftingRecipe(research, result, aspects, recipe);
     }
-    protected static ShapelessArcaneRecipe registerShapelessArcane(String research, ItemStack result, AspectList aspects, Object... recipe) {
+    protected static ShapelessArcaneRecipe registerShapelessArcane(final String research, final ItemStack result, final AspectList aspects, final Object... recipe) {
         return ThaumcraftApi.addShapelessArcaneCraftingRecipe(research, result, aspects, recipe);
     }
 
@@ -45,7 +45,7 @@ public class ArcaneAdder {
      * @param recipe The whole recipe object structure
      * @return The recipe generated
      */
-    public static IArcaneRecipe addArcane(String tag, Aspects aspects, boolean isShapeless, boolean priority, ItemStack output, Object ... recipe) {
+    public static IArcaneRecipe addArcane(final String tag, final Aspects aspects, final boolean isShapeless, final boolean priority, final ItemStack output, final Object ... recipe) {
         if (tag == null || aspects == null || output == null || recipe == null || recipe.length == 0) throw new ParameterIsNullOrEmpty();
         if (isShapeless) return registerShapelessArcane(tag, output, aspects, recipe);
         else return registerShapedArcane(tag, output, aspects, recipe);
@@ -60,7 +60,7 @@ public class ArcaneAdder {
      * @param input The recipe structures
      * @return The recipes generated
      */
-    public static IArcaneRecipe[] addMultipleArcane(String tag, Aspects aspects, boolean isShapeless, boolean priority, ItemStack[] output, ArrayList<Object[]> input) {
+    public static IArcaneRecipe[] addMultipleArcane(final String tag, final Aspects aspects, final boolean isShapeless, final boolean priority, final ItemStack[] output, final ArrayList<Object[]> input) {
         if (output.length != input.size()) throw new ParameterArraysSizeException(output.length, input.size());
         IArcaneRecipe[] recipes = new IArcaneRecipe[output.length];
         for (int i = 0; i < output.length; i++)
@@ -78,7 +78,7 @@ public class ArcaneAdder {
      * @param input The recipe structures
      * @return The recipes generated
      */
-    public static IArcaneRecipe[] addMultipleArcane(String tag, Aspects aspects, ItemStack[] output, int nb, ArrayList<Object[]> input) {
+    public static IArcaneRecipe[] addMultipleArcane(final String tag, final Aspects aspects, final ItemStack[] output, final int nb, final ArrayList<Object[]> input) {
         if (nb < 1) throw new ParameterValueIsNegativeOrZero(nb);
         return addMultipleArcane(tag, aspects, false, false, DeepCopy.i(output, nb), input);
     }
@@ -94,7 +94,7 @@ public class ArcaneAdder {
      * @param input The recipe structures
      * @return The recipes generated
      */
-    public static IArcaneRecipe[] addMultipleArcane(String tag, Aspects aspects, boolean isShapeless, ItemStack[] output, int nb, ArrayList<Object[]> input) {
+    public static IArcaneRecipe[] addMultipleArcane(final String tag, final Aspects aspects, final boolean isShapeless, final ItemStack[] output, final int nb, final ArrayList<Object[]> input) {
         return addMultipleArcane(tag, aspects, isShapeless, false, DeepCopy.i(output, nb), input);
     }
 
@@ -111,7 +111,7 @@ public class ArcaneAdder {
      * @param input The recipe structures
      * @return The recipes generated
      */
-    public static IArcaneRecipe[] addMultipleArcane(String tag, Aspects aspects, boolean isShapeless, boolean priority, ItemStack[] output, int nb, ArrayList<Object[]> input) {
+    public static IArcaneRecipe[] addMultipleArcane(final String tag, final Aspects aspects, final boolean isShapeless, final boolean priority, final ItemStack[] output, final int nb, final ArrayList<Object[]> input) {
         return addMultipleArcane(tag, aspects, isShapeless, priority, DeepCopy.i(output, nb), input);
     }
 
@@ -127,7 +127,7 @@ public class ArcaneAdder {
      * @param input The recipe structures
      * @return The recipes generated
      */
-    public static IArcaneRecipe[] addMultipleSingleArcane(String tag, Aspects aspects, boolean isShapeless, boolean priority, ItemStack output, ArrayList<Object[]> input) {
+    public static IArcaneRecipe[] addMultipleSingleArcane(final String tag, final Aspects aspects, final boolean isShapeless, final boolean priority, final ItemStack output, final ArrayList<Object[]> input) {
         if (input == null) throw new ParameterIsNullOrEmpty();
         if (input.isEmpty()) throw new ParameterIsNullOrEmpty();
         IArcaneRecipe[] recipes = new IArcaneRecipe[input.size()];
@@ -147,7 +147,7 @@ public class ArcaneAdder {
      * @param input The recipe structures
      * @return The recipes generated
      */
-    public static IArcaneRecipe[] addMultipleSingleArcane(String tag, Aspects aspects, boolean priority, ItemStack output, ArrayList<Object[]> input) {
+    public static IArcaneRecipe[] addMultipleSingleArcane(final String tag, final Aspects aspects, final boolean priority, final ItemStack output, final ArrayList<Object[]> input) {
         return addMultipleSingleArcane(tag, aspects, false, priority, output, input);
     }
 
@@ -160,7 +160,7 @@ public class ArcaneAdder {
      * @param input The recipe structures
      * @return The recipes generated
      */
-    public static IArcaneRecipe[] addMultipleSingleArcane(String tag, Aspects aspects, ItemStack output, ArrayList<Object[]> input) {
+    public static IArcaneRecipe[] addMultipleSingleArcane(final String tag, final Aspects aspects, final ItemStack output, final ArrayList<Object[]> input) {
         return addMultipleSingleArcane(tag, aspects, false, false, output, input);
     }
 

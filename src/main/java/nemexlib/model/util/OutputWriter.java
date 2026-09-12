@@ -6,7 +6,7 @@ import nemexlib.api.util.writer.AWriter;
 
 public class OutputWriter extends AWriter {
 
-    public OutputWriter(FMLPreInitializationEvent event, String fileName, Logger logger) {
+    public OutputWriter(final FMLPreInitializationEvent event, final String fileName, final Logger logger) {
         super(event, fileName);
         this.setLogger(logger);
     }

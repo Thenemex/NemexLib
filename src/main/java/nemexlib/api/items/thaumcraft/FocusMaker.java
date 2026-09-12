@@ -9,7 +9,7 @@ import thaumcraft.api.wands.ItemFocusBasic;
 
 public class FocusMaker {
 
-    public static ItemStack make(ItemFocusBasic focus, int ... upgrades) {
+    public static ItemStack make(final ItemFocusBasic focus, final int ... upgrades) {
         if (upgrades == null || upgrades.length == 0) throw new ParameterIsNullOrEmpty();
         if (upgrades.length > 5) throw new ParameterArraySizeException(5);
         NBTTagCompound tags, nbt = new NBTTagCompound();

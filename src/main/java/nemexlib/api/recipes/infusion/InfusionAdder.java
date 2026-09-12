@@ -20,7 +20,7 @@ public class InfusionAdder {
      * @param ingredients The items on the pedestals
      * @return The recipe generated
      */
-    public static InfusionRecipe addInfusion(String tag, int instability, Aspects aspects, ItemStack output, ItemStack input, ItemStack ... ingredients) {
+    public static InfusionRecipe addInfusion(final String tag, final int instability, final Aspects aspects, final ItemStack output, final ItemStack input, final ItemStack ... ingredients) {
         if (tag == null || aspects == null || output == null || input == null || ingredients == null || ingredients.length == 0) throw new ParameterIsNullOrEmpty();
         return ThaumcraftApi.addInfusionCraftingRecipe(tag, output, Math.max(instability, 1), aspects, input, ingredients);
     }

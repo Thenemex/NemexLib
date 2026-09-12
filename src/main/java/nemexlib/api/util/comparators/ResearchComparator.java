@@ -8,7 +8,7 @@ import static thaumcraft.api.research.ResearchCategories.getCategoryName;
 
 public class ResearchComparator implements Comparator<ResearchItem> {
 
-    @Override public int compare(ResearchItem x, ResearchItem y) {
+    @Override public int compare(final ResearchItem x, final ResearchItem y) {
         if (getCategoryName(x.category).equalsIgnoreCase(getCategoryName(y.category)))
             return x.getName().compareToIgnoreCase(y.getName());
         else return getCategoryName(x.category).compareToIgnoreCase(getCategoryName(y.category));

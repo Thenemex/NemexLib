@@ -11,14 +11,14 @@ public class CommandGetHeldItemNBT extends NemexLibCommand {
     }
 
     @Override
-    public void processCommand(ICommandSender sender, String[] args) {
+    public void processCommand(final ICommandSender sender, final String[] args) {
         // Item held extraction
         ItemStack heldItem = sender.getEntityWorld().getPlayerEntityByName(sender.getCommandSenderName()).getHeldItem();
         chatNull(sender, (heldItem == null) ? "null" : (heldItem.getTagCompound() == null) ? "{}" : (heldItem.getTagCompound().toString() == null) ? "{}" : heldItem.getTagCompound().toString());
     }
 
     @Override
-    public void chatNull(ICommandSender sender, String message) {
+    public void chatNull(final ICommandSender sender, final String message) {
         chat(sender, message.equals("null") ? " §cYou're not holding any item !" : (message.equals("{}")) ? " §cNo NBT to show !" : "§6 NBT : §r".concat(message));
     }
 }

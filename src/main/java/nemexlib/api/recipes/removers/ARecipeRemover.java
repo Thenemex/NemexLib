@@ -18,22 +18,22 @@ public abstract class ARecipeRemover implements IRecipeRemover {
      * Remove all recipes that have the ItemStack as output.
      * <p>This method checks : Item</p>
      */
-    public abstract void removeItem(ItemStack output);
+    public abstract void removeItem(final ItemStack output);
     /**
      * Remove all recipes that have the ItemStack as output.
      * <p>This method checks : Item and Amount</p>
      */
-    public abstract void removeAmount(ItemStack output);
+    public abstract void removeAmount(final ItemStack output);
     /**
      * Remove all recipes that have the ItemStack as output.
      * <p>This method checks : Item and metadata.</p>
      */
-    public abstract void removeMeta(ItemStack output);
+    public abstract void removeMeta(final ItemStack output);
     /**
      * Remove all recipes that have the ItemStack as output.
      * <p>This method checks : Item, metadata, amount.</p>
      */
-    public abstract void removePrecise(ItemStack output);
+    public abstract void removePrecise(final ItemStack output);
 
     /**
      * Refresh the collection with the recipe registry chosen

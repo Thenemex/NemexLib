@@ -11,7 +11,7 @@ import static nemexlib.config.Config.*;
 
 public class ConfigCommands {
 
-    public static void init(FMLServerStartingEvent event) {
+    public static void init(final FMLServerStartingEvent event) {
         if (findResearchFromRecipe) event.registerServerCommand(new CommandFindResearchFromRecipe());
         if (getHeldItemNBT) event.registerServerCommand(new CommandGetHeldItemNBT());
         if (getResearchParents) event.registerServerCommand(new CommandGetResearchParents());

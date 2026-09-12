@@ -13,7 +13,7 @@ public class AOreDict {
      * @param name The Ore Dictionary Entry
      * @param ores The items to add to the entry
      */
-    public AOreDict(String name, ItemStack ... ores) {
+    public AOreDict(final String name, final ItemStack ... ores) {
         OreDictionary.getOres(name, true);
         for (ItemStack ore : ores)
             OreDictionary.registerOre(name, ore);

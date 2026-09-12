@@ -9,7 +9,7 @@ public class Config extends AConfig {
     public static boolean findResearchFromRecipe, getHeldItemNBT, getResearchParents, getResearchTriggers;
     protected static final String version = "1.1";
 
-    public Config(FMLPreInitializationEvent event) {
+    public Config(final FMLPreInitializationEvent event) {
         super(NemexLib.modID, event, version);
     }
 

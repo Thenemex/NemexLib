@@ -4,7 +4,7 @@ import static nemexlib.NemexLib.modID;
 
 public abstract class TCRException extends RuntimeException {
 
-    public TCRException(String text) {
+    public TCRException(final String text) {
         super(modID.concat(" : ").concat(text));
     }
 }

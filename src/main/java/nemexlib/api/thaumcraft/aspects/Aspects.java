@@ -22,7 +22,7 @@ public class Aspects extends AspectList {
      * @throws ParameterValueIsNegativeOrZero If amount is zero or negative
      * @throws ParameterIsNullOrEmpty If aspect is null
      */
-    public Aspects(Aspect aspect, int amount) {
+    public Aspects(final Aspect aspect, final int amount) {
         if (amount <= 0) throw new ParameterValueIsNegativeOrZero(amount);
         if (aspect == null) throw new ParameterIsNullOrEmpty();
         super.add(aspect, amount);
@@ -36,7 +36,7 @@ public class Aspects extends AspectList {
      * @throws ParameterValueIsNegativeOrZero If one of the amounts is zero or negative
      * @throws ParameterIsNullOrEmpty If aspects is null or empty
      */
-    public Aspects(int amount, Aspect ... aspects) {
+    public Aspects(final int amount, final Aspect ... aspects) {
         if (amount <= 0) throw new ParameterValueIsNegativeOrZero(amount);
         if (aspects == null || aspects.length == 0) throw new ParameterIsNullOrEmpty();
         for (Aspect aspect : aspects)
@@ -52,7 +52,7 @@ public class Aspects extends AspectList {
      * @throws ParameterArraysSizeException If the two array sizes are different
      * @throws ParameterValueIsNegativeOrZero If one of the amounts is zero or negative
      */
-    public Aspects(Aspect[] aspects, int ... amounts) {
+    public Aspects(final Aspect[] aspects, final int ... amounts) {
         if (aspects.length != amounts.length) throw new ParameterArraysSizeException(aspects.length, amounts.length);
         for (int i = 0; i < aspects.length; i++) {
             if (amounts[i] <= 0) throw new ParameterValueIsNegativeOrZero(amounts[i]);
@@ -69,7 +69,7 @@ public class Aspects extends AspectList {
      * @throws ParameterArraysSizeException If the two array sizes are different
      * @throws ParameterValueIsNegativeOrZero If one of the amounts is zero or negative
      */
-    public Aspects(int[] amounts, Aspect ... aspects) {
+    public Aspects(final int[] amounts, final Aspect ... aspects) {
         this(aspects, amounts);
     }
 
@@ -80,7 +80,7 @@ public class Aspects extends AspectList {
      * @param amounts The respective amounts for the 6 primal aspects
      * @throws ParameterArraySizeException If the parameter array size is different from 6
      */
-    public Aspects(int ... amounts) {
+    public Aspects(final int ... amounts) {
         if (amounts.length != 6) throw new ParameterArraySizeException(amounts.length, 6);
         Aspect[] primals = new Aspect[]{AIR, FIRE, WATER, EARTH, ORDER, ENTROPY};
         for (int i = 0; i < amounts.length; i++)

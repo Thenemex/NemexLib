@@ -13,7 +13,7 @@ public class Util {
 
     private Util(){}
 
-    public static boolean contains(String[] tab, String s) {
+    public static boolean contains(final String[] tab, final String s) {
         if (tab == null) return false;
         for (String el : tab)
             if (el.equalsIgnoreCase(s))
@@ -22,7 +22,7 @@ public class Util {
     }
 
     @SafeVarargs
-    public static <T> T[] deepCopyAndRemove(T[] array, T[] emptyArray, T ... toRemove) {
+    public static <T> T[] deepCopyAndRemove(final T[] array, final T[] emptyArray, final T ... toRemove) {
         if (array == null || emptyArray == null || toRemove == null || toRemove.length == 0) throw new ParameterIsNullOrEmpty();
         if (emptyArray.length != 0) throw new ParameterArraySizeException(emptyArray.length, 0);
         ArrayList<T> list = new ArrayList<>(array.length - toRemove.length);
@@ -32,7 +32,7 @@ public class Util {
         return list.toArray(emptyArray);
     }
 
-    public static String[] deepCopyTabAndAdd(String[] tab, String ... newElements) {
+    public static String[] deepCopyTabAndAdd(final String[] tab, final String ... newElements) {
         if (tab == null || newElements == null || newElements.length == 0) throw new ParameterIsNullOrEmpty();
         ArrayList<String> list = new ArrayList<>(tab.length + newElements.length);
         list.addAll(Arrays.asList(tab));
@@ -40,7 +40,7 @@ public class Util {
         return list.toArray(new String[0]);
     }
 
-    public static ResearchPage[] removeIndex(int index, ResearchPage[] array) {
+    public static ResearchPage[] removeIndex(final int index, final ResearchPage[] array) {
         if (array == null || array.length == 0) throw new ParameterIsNullOrEmpty();
         if (index < 0 || index >= array.length) throw new IndexOutOfBoundsException(index, array.length);
         List<ResearchPage> list = new ArrayList<>(array.length - 1);
@@ -50,7 +50,7 @@ public class Util {
     }
 
     @SafeVarargs
-    public static <T> T[] addEntries(T[] array, T ... toAdd) {
+    public static <T> T[] addEntries(final T[] array, final T ... toAdd) {
         if (array == null || toAdd == null || toAdd.length == 0) throw new ParameterIsNullOrEmpty();
         ArrayList<T> list = new ArrayList<>(array.length + toAdd.length);
         list.addAll(Arrays.asList(array));

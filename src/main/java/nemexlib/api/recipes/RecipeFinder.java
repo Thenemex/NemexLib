@@ -12,7 +12,7 @@ public class RecipeFinder {
      * <p>This method checks for : Item</p>
      * @return If a matching recipe is found, returns the recipe. If not it will return null.
      */
-    public static IRecipe findRecipeItem(ItemStack output) {
+    public static IRecipe findRecipeItem(final ItemStack output) {
         if (output == null) throw new ParameterIsNullOrEmpty();
         for (Object recipe : CraftingManager.getInstance().getRecipeList()) {
             IRecipe r = (IRecipe) recipe;
@@ -28,7 +28,7 @@ public class RecipeFinder {
      * <p>This method checks for : Item and Amount</p>
      * @return If a matching recipe is found, returns the recipe. If not it will return null.
      */
-    public static IRecipe findRecipeAmount(ItemStack output) {
+    public static IRecipe findRecipeAmount(final ItemStack output) {
         if (output == null) throw new ParameterIsNullOrEmpty();
         for (Object recipe : CraftingManager.getInstance().getRecipeList()) {
             IRecipe r = (IRecipe) recipe;
@@ -45,7 +45,7 @@ public class RecipeFinder {
      * <p>This method checks for : Item and metadata</p>
      * @return If a matching recipe is found, returns the recipe. If not it will return null.
      */
-    public static IRecipe findRecipeMeta(ItemStack output) {
+    public static IRecipe findRecipeMeta(final ItemStack output) {
         if (output == null) throw new ParameterIsNullOrEmpty();
         for (Object recipe : CraftingManager.getInstance().getRecipeList()) {
             IRecipe r = (IRecipe) recipe;
@@ -62,7 +62,7 @@ public class RecipeFinder {
      * <p>This method checks for : Item, metadata, amount</p>
      * @return If a matching recipe is found, returns the recipe. If not it will return null.
      */
-    public static IRecipe findRecipePrecise(ItemStack output) {
+    public static IRecipe findRecipePrecise(final ItemStack output) {
         if (output == null) throw new ParameterIsNullOrEmpty();
         for (Object recipe : CraftingManager.getInstance().getRecipeList()) {
             IRecipe r = (IRecipe) recipe;

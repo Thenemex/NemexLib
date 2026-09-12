@@ -18,7 +18,7 @@ public class Logger {
      * Constructor for the Logger
      * @param modID modID from your mod
      */
-    public Logger(String modID) {
+    public Logger(final String modID) {
         logger = LogManager.getLogger(modID);
         prefix = "[" + modID + "]";
     }
@@ -27,42 +27,42 @@ public class Logger {
      * Logs a trace
      * @param messages The messages to log
      */
-    public void trace(Object ... messages) {
+    public void trace(final Object ... messages) {
         log(Level.TRACE, messages);
     }
     /**
      * Logs a debug
      * @param messages The messages to log
      */
-    public void debug(Object ... messages) {
+    public void debug(final Object ... messages) {
         log(Level.DEBUG, messages);
     }
     /**
      * Logs an information
      * @param messages The messages to log
      */
-    public void info(Object ... messages) {
+    public void info(final Object ... messages) {
         log(Level.INFO, messages);
     }
     /**
      * Logs a warning
      * @param messages The messages to log
      */
-    public void warn(Object ... messages) {
+    public void warn(final Object ... messages) {
         log(Level.WARN, messages);
     }
     /**
      * Logs an error
      * @param messages The messages to log
      */
-    public void error(Object ... messages) {
+    public void error(final Object ... messages) {
         log(Level.ERROR, messages);
     }
     /**
      * Logs a fatal (will likely crash the game)
      * @param messages The messages to log
      */
-    public void fatal(Object ... messages) {
+    public void fatal(final Object ... messages) {
         log(Level.FATAL, messages);
     }
 
@@ -71,7 +71,7 @@ public class Logger {
      * @param level The level of logging
      * @param messages The messages to log
      */
-    protected void log(Level level, Object ... messages) {
+    protected void log(final Level level, final Object ... messages) {
         StringBuilder message = new StringBuilder(prefix.concat(" :"));
         for (Object o : messages)
             message.append(" ").append(o != null ? (o.toString() != null ? o.toString() : "string-null") : "null");

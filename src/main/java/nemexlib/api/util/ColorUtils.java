@@ -23,7 +23,7 @@ public class ColorUtils {
             {0.0392F, 0.0392F, 0.0392F}  // Black       #0a0a0a
     };
 
-    public static float[] getIntenseDyeColors(int dyeMeta) {
+    public static float[] getIntenseDyeColors(final int dyeMeta) {
         return Arrays.copyOf(intenseDyeColors[dyeMeta >= 0 && dyeMeta < 16 ? dyeMeta : 0], 3);
     }
 }

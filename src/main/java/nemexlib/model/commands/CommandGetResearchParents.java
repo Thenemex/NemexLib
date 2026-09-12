@@ -23,7 +23,7 @@ public class CommandGetResearchParents extends NemexLibCommand {
     }
 
     @Override
-    public void processCommand(ICommandSender sender, String[] args) {
+    public void processCommand(final ICommandSender sender, final String[] args) {
         ResearchItem research = null;
         // Getting the research, if it exists
         if (args.length >= 1) {
@@ -68,14 +68,14 @@ public class CommandGetResearchParents extends NemexLibCommand {
     }
 
     @Override
-    public List addTabCompletionOptions(ICommandSender sender, String[] args) {
+    public List addTabCompletionOptions(final ICommandSender sender, final String[] args) {
         switch (args.length) {
             case 1 : return getListOfStringsFromIterableMatchingLastWord(args, researchKeys);
             case 2 : return getListOfStringsMatchingLastWord(args, missing);
         } return null;
     }
 
-    private ArrayList<ResearchItem> getMissingParents(String playerName, ResearchItem research) {
+    private ArrayList<ResearchItem> getMissingParents(final String playerName, final ResearchItem research) {
         ArrayList<ResearchItem> list = new ArrayList<>();
         for (String parent : research.parents)
             if (!getResearchForPlayerSafe(playerName).contains(parent) && !list.contains(API.getResearch(parent)))
@@ -87,7 +87,7 @@ public class CommandGetResearchParents extends NemexLibCommand {
         return list;
     }
 
-    private String getMessage(ResearchItem research) {
+    private String getMessage(final ResearchItem research) {
         return "§2 [".concat(getCategoryName(research.category)).concat("] : §r").concat(research.getName());
     }
 }

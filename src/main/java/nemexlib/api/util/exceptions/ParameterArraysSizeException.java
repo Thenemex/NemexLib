@@ -2,11 +2,11 @@ package nemexlib.api.util.exceptions;
 
 public class ParameterArraysSizeException extends TCRException {
 
-    public ParameterArraysSizeException(int size1, int size2) {
+    public ParameterArraysSizeException(final int size1, final int size2) {
         this(size1, size2, "Parameters Arrays should be the same size : ");
     }
 
-    protected ParameterArraysSizeException(int size1, int size2, String text) {
+    protected ParameterArraysSizeException(final int size1, final int size2, final String text) {
         super(text + size1 + " != " + size2);
     }
 }

@@ -9,10 +9,10 @@ import java.util.Collection;
 @SuppressWarnings("rawtypes")
 public class InfusionRemover extends ACollectionRecipeRemover {
 
-    public InfusionRemover(Collection ... registries) {
+    public InfusionRemover(final Collection ... registries) {
         super(registries);
     }
-    public InfusionRemover(int amount, Collection ... registries) {
+    public InfusionRemover(final int amount, final Collection ... registries) {
         super(amount, registries);
     }
 
@@ -21,7 +21,7 @@ public class InfusionRemover extends ACollectionRecipeRemover {
      * <p>This method checks : Item</p>
      */
     @Override
-    public void removeItem(ItemStack output) {
+    public void removeItem(final ItemStack output) {
         for (Collection registry : registries) {
             for (Object recipe : registry)
                 try {
@@ -39,7 +39,7 @@ public class InfusionRemover extends ACollectionRecipeRemover {
      * <p>This method checks : Item and Amount</p>
      */
     @Override
-    public void removeAmount(ItemStack output) {
+    public void removeAmount(final ItemStack output) {
         for (Collection registry : registries) {
             for (Object recipe : registry)
                 try {
@@ -58,7 +58,7 @@ public class InfusionRemover extends ACollectionRecipeRemover {
      * <p>This method checks : Item and metadata.</p>
      */
     @Override
-    public void removeMeta(ItemStack output) {
+    public void removeMeta(final ItemStack output) {
         for (Collection registry : registries) {
             for (Object recipe : registry)
                 try {
@@ -77,7 +77,7 @@ public class InfusionRemover extends ACollectionRecipeRemover {
      * <p>This method checks : Item, metadata, amount.</p>
      */
     @Override
-    public void removePrecise(ItemStack output) {
+    public void removePrecise(final ItemStack output) {
         for (Collection registry : registries) {
             for (Object recipe : registry)
                 try {

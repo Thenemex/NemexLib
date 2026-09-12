@@ -22,7 +22,7 @@ public class BlockType {
      * <p>Set meta to 0</p>
      * @param block The block
      */
-    public BlockType(Block block) {
+    public BlockType(final Block block) {
         this.block = block;
         this.meta = 0;
     }
@@ -31,7 +31,7 @@ public class BlockType {
      * @param block The block
      * @param meta The metadata
      */
-    public BlockType(Block block, int meta) {
+    public BlockType(final Block block, final int meta) {
         this.block = block;
         this.meta = Math.max(meta, 0);
     }
@@ -39,7 +39,7 @@ public class BlockType {
      * Constructor for deep-copy
      * @param V BlockType to deepcopy
      */
-    public BlockType(BlockType V) {
+    public BlockType(final BlockType V) {
         if (V == null || V.block == null) throw new ParameterIsNullOrEmpty();
         this.block = V.block();
         this.meta = V.meta();
@@ -65,7 +65,7 @@ public class BlockType {
      * @param block The new block
      * @return This instance
      */
-    public BlockType setBlock(Block block) {
+    public BlockType setBlock(final Block block) {
         if (block == null) throw new ParameterIsNullOrEmpty();
         this.block = block;
         return this;
@@ -75,7 +75,7 @@ public class BlockType {
      * @param meta The new metadata
      * @return This instance
      */
-    public BlockType setMeta(int meta) {
+    public BlockType setMeta(final int meta) {
         if (meta <= 0) throw new ParameterValueIsNegativeOrZero(meta);
         this.meta = meta;
         return this;
@@ -87,7 +87,7 @@ public class BlockType {
      * @return This instance
      * @throws ParameterValueIsNegativeOrZero If <code>amount</code> is negative
      */
-    public BlockType addMeta(int amount) {
+    public BlockType addMeta(final int amount) {
         if (amount <= 0) throw new ParameterValueIsNegativeOrZero(amount);
         this.meta += amount;
         return this;
@@ -105,14 +105,14 @@ public class BlockType {
      * @param amount The amount inside the ItemStack
      * @return The ItemStack, with block, set amount and meta
      */
-    public ItemStack toItemStack(int amount) {
+    public ItemStack toItemStack(final int amount) {
         return new ItemStack(block(), amount, meta());
     }
 
     @Override public String toString() {
         return getClass().getSimpleName().concat("{block = " + block() + ", meta = " + meta + "}");
     }
-    @Override public boolean equals(Object o) {
+    @Override public boolean equals(final Object o) {
         if (this == o) return true;
         if (!(o instanceof BlockType)) return false;
         BlockType blockType = (BlockType) o;

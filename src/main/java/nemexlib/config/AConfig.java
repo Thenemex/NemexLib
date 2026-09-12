@@ -23,7 +23,7 @@ public abstract class AConfig {
      * Default constructor, setting the config file in the default config folder, with the modID as filename
      * @param event The event from <code>preInit()</code>
      */
-    public AConfig(FMLPreInitializationEvent event) {
+    public AConfig(final FMLPreInitializationEvent event) {
         if (event == null) throw new ParameterIsNullOrEmpty();
         this.createFiles(event.getSuggestedConfigurationFile());
     }
@@ -33,7 +33,7 @@ public abstract class AConfig {
      * @param event The event from <code>preInit()</code>
      * @param version The config version
      */
-    public AConfig(FMLPreInitializationEvent event, String version) {
+    public AConfig(final FMLPreInitializationEvent event, final String version) {
         if (event == null || version == null) throw new ParameterIsNullOrEmpty();
         this.createFiles(event.getSuggestedConfigurationFile(), version);
     }
@@ -43,7 +43,7 @@ public abstract class AConfig {
      * @param folderName The name of the folder - have to respect usual folder naming rules (no checks will be performed)
      * @param fileName The name of the config file (don't add ".cfg" extension, it will be added by the code)
      */
-    public AConfig(FMLPreInitializationEvent event, String folderName, String fileName) {
+    public AConfig(final FMLPreInitializationEvent event, final String folderName, final String fileName) {
         if (event == null || folderName == null || fileName == null) throw new ParameterIsNullOrEmpty();
         File folder = new File(event.getModConfigurationDirectory(), folderName);
         folder.mkdirs();
@@ -57,7 +57,7 @@ public abstract class AConfig {
      * @param fileName The name of the config file (don't add ".cfg" extension, it will be added by the code)
      * @param version The config version
      */
-    public AConfig(FMLPreInitializationEvent event, String folderName, String fileName, String version) {
+    public AConfig(final FMLPreInitializationEvent event, final String folderName, final String fileName, final String version) {
         if (event == null || folderName == null || fileName == null || version == null) throw new ParameterIsNullOrEmpty();
         File folder = new File(event.getModConfigurationDirectory(), folderName);
         folder.mkdirs();
@@ -68,7 +68,7 @@ public abstract class AConfig {
      * @param fileName The name of the config file (don't add ".cfg" extension, it will be added by the code)
      * @param event The event from <code>preInit()</code>
      */
-    public AConfig(String fileName, FMLPreInitializationEvent event) {
+    public AConfig(final String fileName, final FMLPreInitializationEvent event) {
         this(event, tnmxDir, fileName);
     }
     /**
@@ -77,7 +77,7 @@ public abstract class AConfig {
      * @param event The event from <code>preInit()</code>
      * @param version The config version
      */
-    public AConfig(String fileName, FMLPreInitializationEvent event, String version) {
+    public AConfig(final String fileName, final FMLPreInitializationEvent event, final String version) {
         this(event, tnmxDir, fileName, version);
     }
 
@@ -86,7 +86,7 @@ public abstract class AConfig {
      * <p>Be sure to check the ".cfg" for the file name, and everything else concerning intermediate folders</p>
      * @param configFile The config file instance
      */
-    public AConfig(File configFile) {
+    public AConfig(final File configFile) {
         if (configFile == null) throw new ParameterIsNullOrEmpty();
         this.createFiles(configFile);
     }
@@ -97,7 +97,7 @@ public abstract class AConfig {
      * @param configFile The config file instance
      * @param version The config version
      */
-    public AConfig(File configFile, String version) {
+    public AConfig(final File configFile, final String version) {
         if (configFile == null || version == null) throw new ParameterIsNullOrEmpty();
         this.createFiles(configFile, version);
     }
@@ -105,13 +105,13 @@ public abstract class AConfig {
     /**
      * Private method used by the constructors to initialize the Configuration file
      */
-    private void createFiles(File configFile) {
+    private void createFiles(final File configFile) {
         this.config = new Configuration(configFile);
     }
     /**
      * Private method used by the constructors to initialize the Configuration file
      */
-    private void createFiles(File configFile, String version) {
+    private void createFiles(final File configFile, final String version) {
         this.config = new Configuration(configFile, version);
     }
 
@@ -138,7 +138,7 @@ public abstract class AConfig {
      * @param key The entry key
      * @return The value of the entry
      */
-    protected boolean newEntry(String category, String key) {
+    protected boolean newEntry(final String category, final String key) {
         return newEntry(category, key, true);
     }
     /**
@@ -148,7 +148,7 @@ public abstract class AConfig {
      * @param comment A comment that will be shown on the line above
      * @return The value of the entry
      */
-    protected boolean newEntry(String category, String key, String comment) {
+    protected boolean newEntry(final String category, final String key, final String comment) {
         return newEntry(category,key, true, comment);
     }
     /**
@@ -158,7 +158,7 @@ public abstract class AConfig {
      * @param enabled The default value of the entry
      * @return The value of the entry
      */
-    protected boolean newEntry(String category, String key, boolean enabled) {
+    protected boolean newEntry(final String category, final String key, final boolean enabled) {
         return config.get(category, key, enabled).getBoolean(enabled);
     }
     /**
@@ -169,7 +169,7 @@ public abstract class AConfig {
      * @param enabled The default value of the entry
      * @return The value of the entry
      */
-    protected boolean newEntry(String category, String key, boolean enabled, String comment) {
+    protected boolean newEntry(final String category, final String key, final boolean enabled, final String comment) {
         return config.get(category, key, enabled, comment).getBoolean(enabled);
     }
 
@@ -180,7 +180,7 @@ public abstract class AConfig {
      * @param value The default value
      * @return The value of the entry
      */
-    protected int newEntry(String category, String key, int value) {
+    protected int newEntry(final String category, final String key, final int value) {
         return config.get(category, key, value).getInt(value);
     }
     /**
@@ -191,7 +191,7 @@ public abstract class AConfig {
      * @param comment A comment that will be shown on the line above
      * @return The value of the entry
      */
-    protected int newEntry(String category, String key, int value, String comment) {
+    protected int newEntry(final String category, final String key, final int value, final String comment) {
         return config.get(category, key, value, comment).getInt(value);
     }
     /**
@@ -203,7 +203,7 @@ public abstract class AConfig {
      * @param max Maximum value
      * @return The value of the entry
      */
-    protected int newEntry(String category, String key, int value, int min, int max) {
+    protected int newEntry(final String category, final String key, final int value, final int min, final int max) {
         return config.get(category, key, value, null, min, max).getInt(value);
     }
     /**
@@ -216,7 +216,7 @@ public abstract class AConfig {
      * @param comment A comment that will be shown on the line above
      * @return The value of the entry
      */
-    protected int newEntry(String category, String key, int value, int min, int max, String comment) {
+    protected int newEntry(final String category, final String key, final int value, final int min, final int max, final String comment) {
         return config.get(category, key, value, comment, min, max).getInt(value);
     }
 
@@ -227,7 +227,7 @@ public abstract class AConfig {
      * @param values The default values
      * @return The values of the entry
      */
-    protected String[] newEntry(String category, String key, String ... values) {
+    protected String[] newEntry(final String category, final String key, final String ... values) {
         return config.get(category, key, values).getStringList();
     }
     /**
@@ -238,7 +238,7 @@ public abstract class AConfig {
      * @param comment A comment that will be shown on the line above
      * @return The values of the entry
      */
-    protected String[] newEntry(String category, String key, String comment, String ... values) {
+    protected String[] newEntry(final String category, final String key, final String comment, final String ... values) {
         return config.get(category, key, values, comment).getStringList();
     }
 
@@ -247,7 +247,7 @@ public abstract class AConfig {
      * @param category The category
      * @param comment The comment
      */
-    protected void comment(String category, String comment) {
+    protected void comment(final String category, final String comment) {
         config.addCustomCategoryComment(category, comment);
     }
 }

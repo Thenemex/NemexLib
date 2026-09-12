@@ -7,13 +7,13 @@ import java.util.ArrayList;
 @SuppressWarnings("UnusedReturnValue")
 public interface IRecipeFinder<TRecipe> {
 
-    TRecipe findRecipeItem(ItemStack output);
-    TRecipe findRecipeAmount(ItemStack output);
-    TRecipe findRecipeMeta(ItemStack output);
-    TRecipe findRecipePrecise(ItemStack output);
+    TRecipe findRecipeItem(final ItemStack output);
+    TRecipe findRecipeAmount(final ItemStack output);
+    TRecipe findRecipeMeta(final ItemStack output);
+    TRecipe findRecipePrecise(final ItemStack output);
 
-    ArrayList<TRecipe> findRecipesItem(ItemStack output);
-    ArrayList<TRecipe> findRecipesAmount(ItemStack output);
-    ArrayList<TRecipe> findRecipesMeta(ItemStack output);
-    ArrayList<TRecipe> findRecipesPrecise(ItemStack output);
+    ArrayList<TRecipe> findRecipesItem(final ItemStack output);
+    ArrayList<TRecipe> findRecipesAmount(final ItemStack output);
+    ArrayList<TRecipe> findRecipesMeta(final ItemStack output);
+    ArrayList<TRecipe> findRecipesPrecise(final ItemStack output);
 }

@@ -25,7 +25,7 @@ public class CommandFindResearchFromRecipe extends NemexLibCommand {
     }
 
     @Override
-    public void processCommand(ICommandSender sender, String[] args) {
+    public void processCommand(final ICommandSender sender, final String[] args) {
         if (args.length >= 3 && args[0].equalsIgnoreCase(crucible) && args[1].equalsIgnoreCase(output)) {
             // Item output extraction
             ItemStack output = null;
@@ -56,7 +56,7 @@ public class CommandFindResearchFromRecipe extends NemexLibCommand {
     }
 
     @Override
-    public List addTabCompletionOptions(ICommandSender sender, String[] args) {
+    public List addTabCompletionOptions(final ICommandSender sender, final String[] args) {
         switch (args.length) {
             case 1: return getListOfStringsMatchingLastWord(args, crucible);
             case 2: return getListOfStringsMatchingLastWord(args, output);
@@ -65,7 +65,7 @@ public class CommandFindResearchFromRecipe extends NemexLibCommand {
     }
 
     @Override
-    public void chatNull(ICommandSender sender, String message) {
+    public void chatNull(final ICommandSender sender, final String message) {
         if (!message.equals("null")) {
             chat(sender, "§6 Research found : §r".concat(message));
         } else chat(sender, "§6 No recipes found !");

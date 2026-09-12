@@ -17,7 +17,7 @@ public class DeepCopy {
      * @param item The Itemstack to deep-copy
      * @return The deep-copy made
      */
-    public static ItemStack i(ItemStack item) {
+    public static ItemStack i(final ItemStack item) {
         if (item == null) throw new ParameterIsNullOrEmpty();
         return new ItemStack(item.getItem(), item.stackSize, item.getItemDamage());
     }
@@ -27,7 +27,7 @@ public class DeepCopy {
      * @param nb The new stacksize
      * @return The deep-copy made
      */
-    public static ItemStack i(ItemStack item, int nb) {
+    public static ItemStack i(final ItemStack item, final int nb) {
         if (item == null) throw new ParameterIsNullOrEmpty();
         if (nb < 1) throw new ParameterValueIsNegativeOrZero(nb);
         return new ItemStack(item.getItem(), nb, item.getItemDamage());
@@ -38,7 +38,7 @@ public class DeepCopy {
      * @param nb The new stacksize
      * @return The deep-copy made
      */
-    public static ItemStack[] i(ItemStack[] items, int nb) {
+    public static ItemStack[] i(final ItemStack[] items, final int nb) {
         if (items.length == 0) throw new ParameterIsNullOrEmpty();
         ItemStack[] deepCopy = new ItemStack[items.length];
         for (int i = 0; i < items.length; i++)

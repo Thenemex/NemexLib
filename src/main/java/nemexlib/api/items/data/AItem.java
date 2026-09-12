@@ -16,7 +16,7 @@ public abstract class AItem extends Item implements IITem {
      * <p>Default max stack size set at 64</p>
      * @param unlocalizedName The unlocalized name
      */
-    public AItem(String unlocalizedName) {
+    public AItem(final String unlocalizedName) {
         this(unlocalizedName, 64);
     }
     /**
@@ -26,7 +26,7 @@ public abstract class AItem extends Item implements IITem {
      * @param unlocalizedName The unlocalized name
      * @param textureName The texture name
      */
-    public AItem(String unlocalizedName, String textureName) {
+    public AItem(final String unlocalizedName, final String textureName) {
         this(unlocalizedName, textureName, null);
     }
     /**
@@ -36,7 +36,7 @@ public abstract class AItem extends Item implements IITem {
      * @param unlocalizedName The unlocalized name
      * @param tab The creative tab
      */
-    public AItem(String unlocalizedName, CreativeTabs tab) {
+    public AItem(final String unlocalizedName, final CreativeTabs tab) {
         this(unlocalizedName, tab, 64);
     }
     /**
@@ -46,7 +46,7 @@ public abstract class AItem extends Item implements IITem {
      * @param unlocalizedName The unlocalized name
      * @param maxStackSize The max stack size
      */
-    public AItem(String unlocalizedName, int maxStackSize) {
+    public AItem(final String unlocalizedName, final int maxStackSize) {
         this(unlocalizedName, (CreativeTabs) null, maxStackSize);
     }
     /**
@@ -56,7 +56,7 @@ public abstract class AItem extends Item implements IITem {
      * @param tab The creative tab
      * @param maxStackSize The max stack size
      */
-    public AItem(String unlocalizedName, CreativeTabs tab, int maxStackSize) {
+    public AItem(final String unlocalizedName, final CreativeTabs tab, final int maxStackSize) {
         this(unlocalizedName, NemexLib.modID.toLowerCase().concat(":").concat(unlocalizedName), tab, 64);
     }
     /**
@@ -66,7 +66,7 @@ public abstract class AItem extends Item implements IITem {
      * @param textureName The texture name
      * @param maxStackSize The max stack size
      */
-    public AItem(String unlocalizedName, String textureName, int maxStackSize) {
+    public AItem(final String unlocalizedName, final String textureName, final int maxStackSize) {
         this(unlocalizedName, textureName, null, maxStackSize);
     }
     /**
@@ -76,7 +76,7 @@ public abstract class AItem extends Item implements IITem {
      * @param textureName The texture name
      * @param tab The creative tab
      */
-    public AItem(String unlocalizedName, String textureName, CreativeTabs tab) {
+    public AItem(final String unlocalizedName, final String textureName, final CreativeTabs tab) {
         this(unlocalizedName, textureName, tab, 64);
     }
     /**
@@ -88,7 +88,7 @@ public abstract class AItem extends Item implements IITem {
      * @throws ParameterIsNullOrEmpty If <code>unlocalizedName</code> or <code>textureName</code> are null or empty
      * @throws IllegalStackSizeValue If <code>maxStackSize</code> is not contained between 1 and 64
      */
-    public AItem(String unlocalizedName, String textureName, CreativeTabs tab, int maxStackSize) {
+    public AItem(final String unlocalizedName, final String textureName, final CreativeTabs tab, final int maxStackSize) {
         if (unlocalizedName == null || unlocalizedName.isEmpty() || textureName == null || textureName.isEmpty()) throw new ParameterIsNullOrEmpty();
         if (tab != null) this.setCreativeTab(tab);
         if (maxStackSize < 1 || maxStackSize > 64) throw new IllegalStackSizeValue(maxStackSize);
@@ -101,7 +101,7 @@ public abstract class AItem extends Item implements IITem {
         GameRegistry.registerItem(this, getUnlocalizedName());
         return this;
     }
-    @Override public IITem setFull3D(boolean value) {
+    @Override public IITem setFull3D(final boolean value) {
         this.bFull3D = value;
         return this;
     }

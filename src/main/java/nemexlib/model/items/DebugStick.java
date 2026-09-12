@@ -19,7 +19,7 @@ public class DebugStick extends AItem {
     }
 
     @Override
-    public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity) {
+    public boolean onLeftClickEntity(final ItemStack stack, final EntityPlayer player, final Entity entity) {
         // Trick to call it only once and not twice
         if (!called) {
             NBTTagCompound nbt = new NBTTagCompound();

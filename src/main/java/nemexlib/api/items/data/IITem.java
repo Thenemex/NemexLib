@@ -5,5 +5,5 @@ public interface IITem {
 
     IITem register();
 
-    IITem setFull3D(boolean value);
+    IITem setFull3D(final boolean value);
 }
