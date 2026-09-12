@@ -47,7 +47,7 @@ public abstract class WandEventHandler implements IWandTriggerManager {
      * @param block The trigger to be registered
      * @throws ParameterIsNullOrEmpty If blocks is null or empty
      */
-    public WandEventHandler(BlockType block) {
+    public WandEventHandler(final BlockType block) {
         registerTriggerEvent(block);
     }
     /**
@@ -57,7 +57,7 @@ public abstract class WandEventHandler implements IWandTriggerManager {
      * @param vis The primal aspects that will be consumed on the held wand by the recipe
      * @throws ParameterIsNullOrEmpty If blocks is null or empty
      */
-    public WandEventHandler(BlockType block, Aspects vis) {
+    public WandEventHandler(final BlockType block, final Aspects vis) {
         this(block);
         setVis(vis);
     }
@@ -68,7 +68,7 @@ public abstract class WandEventHandler implements IWandTriggerManager {
      * @param blocks The triggers to be registered
      * @throws ParameterIsNullOrEmpty If blocks is null or empty
      */
-    public WandEventHandler(BlockType[] blocks) {
+    public WandEventHandler(final BlockType[] blocks) {
         registerTriggerEvent(blocks);
     }
     /**
@@ -79,7 +79,7 @@ public abstract class WandEventHandler implements IWandTriggerManager {
      * @param vis The primal aspects that will be consumed on the held wand by the recipe
      * @throws ParameterIsNullOrEmpty If blocks is null or empty
      */
-    public WandEventHandler(BlockType[] blocks, Aspects vis) {
+    public WandEventHandler(final BlockType[] blocks, final Aspects vis) {
         this(blocks);
         setVis(vis);
     }
@@ -96,7 +96,7 @@ public abstract class WandEventHandler implements IWandTriggerManager {
      * @param tag The research tag
      * @return Itself
      */
-    public WandEventHandler setTag(String tag) {
+    public WandEventHandler setTag(final String tag) {
         this.researchTag = tag;
         return this;
     }
@@ -114,7 +114,7 @@ public abstract class WandEventHandler implements IWandTriggerManager {
      * @param vis The aspect vis
      * @return Itself
      */
-    public WandEventHandler setVis(Aspects vis) {
+    public WandEventHandler setVis(final Aspects vis) {
         this.vis = vis;
         this.isVisNeeded = true;
         return this;
@@ -144,7 +144,7 @@ public abstract class WandEventHandler implements IWandTriggerManager {
      * @param blocks The blocks that trigger the event
      * @throws ParameterIsNullOrEmpty If blocks is null or empty
      */
-    public void registerTriggerEvent(BlockType[] blocks) {
+    public void registerTriggerEvent(final BlockType[] blocks) {
         if (blocks == null || blocks.length == 0) throw new ParameterIsNullOrEmpty();
         for (int i = 0; i < blocks.length; i++)
             registerTriggerEvent(blocks[i], i);
@@ -155,7 +155,7 @@ public abstract class WandEventHandler implements IWandTriggerManager {
      * @param event The event number
      * @throws ParameterIsNullOrEmpty If block is null
      */
-    public void registerTriggerEvent(BlockType block, int event) {
+    public void registerTriggerEvent(final BlockType block, int event) {
         if (block == null) throw new ParameterIsNullOrEmpty();
         WandTriggerRegistry.registerWandBlockTrigger(this, event, block.block(), block.meta(), modID);
     }
@@ -165,7 +165,7 @@ public abstract class WandEventHandler implements IWandTriggerManager {
      * @param block The block that trigger the event
      * @throws ParameterIsNullOrEmpty If blocks is null
      */
-    public void registerTriggerEvent(BlockType block) {
+    public void registerTriggerEvent(final BlockType block) {
         registerTriggerEvent(block, 0);
     }
     /**
@@ -175,7 +175,7 @@ public abstract class WandEventHandler implements IWandTriggerManager {
      * @param event The event number
      * @throws ParameterIsNullOrEmpty If block is null
      */
-    public void registerTriggerEvent(Block block, int event) {
+    public void registerTriggerEvent(final Block block, final int event) {
         if (block == null) throw new ParameterIsNullOrEmpty();
         WandTriggerRegistry.registerWandBlockTrigger(this, event, block, 0, modID);
     }
@@ -185,53 +185,8 @@ public abstract class WandEventHandler implements IWandTriggerManager {
      * @param block The block that trigger the event
      * @throws ParameterIsNullOrEmpty If block is null
      */
-    public void registerTriggerEvent(Block block) {
+    public void registerTriggerEvent(final Block block) {
         registerTriggerEvent(block, 0);
-    }
-
-    /**
-     * Tests if the player had done a specific research
-     * @param player The player
-     * @param tag The research tag
-     * @return True if the research is done, else false
-     */
-    protected boolean isResearchNotComplete(EntityPlayer player, String tag) {
-        return !ResearchManager.isResearchComplete(player.getCommandSenderName(), tag);
-    }
-
-    /**
-     * Spawns an <code>EntityItem</code> at the coordinates
-     * <p>No checks are processed on the arguments !</p>
-     * @param world The world (should be not remote
-     * @param x X
-     * @param y Y
-     * @param z Z
-     * @param item The ItemStack
-     * @return If the spawning did process rightfully
-     */
-    protected boolean spawnItem(World world, int x, int y, int z, ItemStack item) {
-        EntityItem drops = new EntityItem(world, (float) x + 0.5F, (float) y + 0.5F, (float) z + 0.5F, item);
-        return world.spawnEntityInWorld(drops);
-    }
-
-    public boolean handleBlockParticles(World world, int x, int y, int z) {
-
-        // Getting the block infos
-        Block block = world.getBlock(x, y, z);
-        int metadata = world.getBlockMetadata(x, y, z);
-        String particleName = "blockcrack_" + Block.getIdFromBlock(block) + "_" + metadata;
-
-        // Fire particles on WorldServer
-        if (world instanceof WorldServer) {
-            ((WorldServer) world).func_147487_a( particleName,
-                    (double) x + 0.5, (double) y + 0.5, (double) z + 0.5, //Block coords
-                    32, // Particle quantity
-                    0.2D, 0.2D, 0.2D, //Particle spread
-                    0.1D //Velocity
-            );
-        }
-
-        return true;
     }
 
     /**
@@ -247,5 +202,87 @@ public abstract class WandEventHandler implements IWandTriggerManager {
      * @return True is the trigger have been executed properly, false if not
      */
     @Override
-    public abstract boolean performTrigger(World world, ItemStack wand, EntityPlayer player, int x, int y, int z, int side, int event);
+    public abstract boolean performTrigger(World world, ItemStack wand, final EntityPlayer player, final int x, final int y, final int z, final int side, final int event);
+
+    /**
+     * Tests if the player had done a specific research
+     * @param player The player
+     * @param tag The research tag
+     * @return True if the research is done, else false
+     */
+    protected boolean isResearchNotComplete(final EntityPlayer player, final String tag) {
+        return !ResearchManager.isResearchComplete(player.getCommandSenderName(), tag);
+    }
+
+    /**
+     * Spawns an <code>EntityItem</code> at the coordinates
+     * <p>No checks are processed on the arguments !</p>
+     * @param world The world (shouldn't be remote)
+     * @param x X
+     * @param y Y
+     * @param z Z
+     * @param item The ItemStack
+     * @return If the spawning did process rightfully
+     */
+    protected boolean spawnItem(World world, final int x, final  int y, final int z, final ItemStack item) {
+        EntityItem drops = new EntityItem(world, (float) x + 0.5F, (float) y + 0.5F, (float) z + 0.5F, item);
+        return world.spawnEntityInWorld(drops);
+    }
+
+    /**
+     * Fire particles on the server, to be seen by the client
+     * @param world The world (should be a server)
+     * @param x X
+     * @param y Y
+     * @param z Z
+     * @return True if the particles are fired, false otherwise
+     */
+    protected boolean fireBlockParticles(World world, final int x, final int y, final int z) {
+        return fireBlockParticles(world, x, y, z, world.getBlock(x, y, z), world.getBlockMetadata(x, y, z));
+    }
+    /**
+     * Fire particles on the server, to be seen by the client
+     * @param world The world (should be a server)
+     * @param x X
+     * @param y Y
+     * @param z Z
+     * @param type The BlockType from which the particles are gonna be extracted, alongside the metadata
+     * @return True if the particles are fired, false otherwise
+     */
+    protected boolean fireBlockParticles(World world, final int x, final int y, final int z, final BlockType type) {
+        return fireBlockParticles(world, x, y, z, type.block(), type.meta());
+    }
+    /**
+     * Fire particles on the server, to be seen by the client
+     * @param world The world (should be a server)
+     * @param x X
+     * @param y Y
+     * @param z Z
+     * @param block The block from which the particles are gonna be extracted
+     * @param metadata The metadata of the block
+     * @return True if the particles are fired, false otherwise
+     */
+    protected boolean fireBlockParticles(World world, final int x, final int y, final int z, final Block block, final int metadata) {
+        if (world instanceof WorldServer)
+            return fireBlockParticles((WorldServer) world, x, y, z, block, metadata);
+        else return false;
+    }
+    /**
+     * Fire particles on the server, to be seen by the client
+     * @param worldServer The WorldServer
+     * @param x X
+     * @param y Y
+     * @param z Z
+     * @param block The block from which the particles are gonna be extracted
+     * @param metadata The metadata of the block
+     * @return True if the particles are fired, false otherwise
+     */
+    protected boolean fireBlockParticles(WorldServer worldServer, final int x, final int y, final int z, final Block block, final int metadata) {
+        worldServer.func_147487_a("blockcrack_" + Block.getIdFromBlock(block) + "_" + metadata,
+                (double) x + 0.5, (double) y + 0.5, (double) z + 0.5, // Block coords
+                32, // Particle quantity
+                0.2D, 0.2D, 0.2D, //Particle spread
+                0.1D ); //Velocity
+        return true;
+    }
 }
