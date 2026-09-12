@@ -55,6 +55,7 @@ public abstract class SingleBlockWithDropsHandlerWithoutUpgrade extends WandEven
             return false;
         world.setBlockToAir(x, y, z);
         spawnItem(world, x, y, z, getDrops());
+        fireBlockParticles(world, x, y, z);
         return true;
     }
 
