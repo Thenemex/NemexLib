@@ -184,8 +184,8 @@ public class API {
             Field modifiers = Field.class.getDeclaredField("modifiers");
             modifiers.setAccessible(true);
             modifiers.setInt(fieldRow, fieldRow.getModifiers() & ~Modifier.FINAL);
-            fieldRow.set(research, x);
-            fieldCol.set(research, y);
+            fieldRow.set(research, y);
+            fieldCol.set(research, x);
             // Locking the fields again
             modifiers.setAccessible(false);
             fieldRow.setAccessible(false);
