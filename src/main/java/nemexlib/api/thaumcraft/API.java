@@ -165,10 +165,19 @@ public class API {
      * @return The research
      */
     public static ResearchItem moveResearch(final String tag, final int x, final int y) {
-        ResearchItem research = getResearch(tag);
+        return moveResearch(getResearch(tag), x, y);
+    }
+    /**
+     * Moves research to the desired new coordinates in the same tab
+     * @param research The research
+     * @param x X
+     * @param y Y
+     * @return The research
+     */
+    public static ResearchItem moveResearch(ResearchItem research, final int x, final int y) {
         try {
             Field fieldRow = research.getClass().getDeclaredField("displayRow"),
-                  fieldCol = research.getClass().getDeclaredField("displayColumn");
+                    fieldCol = research.getClass().getDeclaredField("displayColumn");
             fieldRow.setAccessible(true);
             fieldCol.setAccessible(true);
             // Removing final modifier
