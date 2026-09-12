@@ -33,7 +33,7 @@ public class API {
      * @param tag Tab tag
      * @param icon The icon
      */
-    public static void newCategory(String tag, ResourceLocation icon) {
+    public static void newCategory(final String tag, final ResourceLocation icon) {
         registerCategory(tag, icon, new ResourceLocation("thaumcraft","textures/gui/gui_researchback.png"));
     }
 
@@ -43,7 +43,7 @@ public class API {
      * @throws ParameterIsNullOrEmpty If parameter tab is null
      * @throws TabDoesNotExists If the Thaumonomicon tab cannot be found within the registries
      */
-    public static void resizeTab(String tab) {
+    public static void resizeTab(final String tab) {
         if (tab == null) throw new ParameterIsNullOrEmpty();
         ResearchCategoryList rl = ResearchCategories.getResearchList(tab);
         if (rl == null) throw new TabDoesNotExists(tab);
@@ -54,7 +54,7 @@ public class API {
      * @param rl The research category
      * @throws ParameterIsNullOrEmpty If parameter tab is null
      */
-    public static void resizeTab(ResearchCategoryList rl) {
+    public static void resizeTab(final ResearchCategoryList rl) {
         if (rl == null) throw new ParameterIsNullOrEmpty();
         int minCol = 0, maxCol = 0, minRow = 0, maxRow = 0;
         for (ResearchItem ri : rl.research.values()) {
@@ -86,7 +86,7 @@ public class API {
      * @param icon The item's icon
      * @return The research
      */
-    public static Research newResearch(String tag, String tab, AspectList aspects, int x, int y, int complexity, ItemStack icon) {
+    public static Research newResearch(final String tag, final String tab, final AspectList aspects, final int x, final int y, final int complexity, final ItemStack icon) {
         if (tag == null || tab == null || icon == null) throw new ParameterIsNullOrEmpty();
         return new Research(tag, tab, aspects, x, y, complexity, icon);
     }
@@ -99,7 +99,7 @@ public class API {
      * @throws ParameterIsNullOrEmpty If one of the parameters is null
      * @throws ResearchDoesNotExists If no research with such tab and tag is found
      */
-    public static ResearchItem getResearch(String tag) {
+    public static ResearchItem getResearch(final String tag) {
         if (tag == null) throw new ParameterIsNullOrEmpty();
         for (ResearchCategoryList rl : researchCategories.values())
             for (ResearchItem ri : rl.research.values())
@@ -116,7 +116,7 @@ public class API {
      * @throws ParameterIsNullOrEmpty If one of the parameters is null
      * @throws ResearchDoesNotExists If no research with such tab and tag is found
      */
-    public static ResearchItem getResearch(String tab, String tag) {
+    public static ResearchItem getResearch(final String tab, final String tag) {
         if (tab == null || tag == null) throw new ParameterIsNullOrEmpty();
         ResearchItem research = researchCategories.get(tab).research.get(tag);
         if (research == null) throw new ResearchDoesNotExists(tab, tag);
@@ -133,7 +133,7 @@ public class API {
      * @throws ResearchDoesNotExists If no research with such tab and tag is found
      * @throws NullPointerException If the Thaumonomicon tab cannot be accessed - Should never happen
      */
-    public static ResearchItem removeResearch(String tab, String tag) {
+    public static ResearchItem removeResearch(final String tab, final String tag) {
         ResearchItem research = getResearch(tab, tag);
         ResearchCategoryList rl = ResearchCategories.getResearchList(tab);
         if (!rl.research.remove(tag, research)) throw new ResearchRemovalException(tab, tag);
@@ -151,7 +151,7 @@ public class API {
      * @throws ResearchDoesNotExists If no research with such tab and tag is found
      * @throws NullPointerException If the Thaumonomicon tab cannot be accessed - Should never happen
      */
-    public static ResearchItem removeResearch(ResearchItem research) {
+    public static ResearchItem removeResearch(final ResearchItem research) {
         if (research == null) throw new ParameterIsNullOrEmpty();
         removeResearch(research.category, research.key);
         return research;
@@ -174,7 +174,7 @@ public class API {
      * @param y Y
      * @return The research
      */
-    public static ResearchItem moveResearch(ResearchItem research, final int x, final int y) {
+    public static ResearchItem moveResearch(final ResearchItem research, final int x, final int y) {
         try {
             Field fieldRow = research.getClass().getDeclaredField("displayRow"),
                     fieldCol = research.getClass().getDeclaredField("displayColumn");
@@ -201,7 +201,7 @@ public class API {
      * @throws ParameterIsNullOrEmpty If one of the parameter is null, or that the array is empty
      * @throws ResearchDoesNotExists If no research with such tab and tag is found
      */
-    public static void addParents(String tab, String tag, boolean hidden, String ... parentsToAdd) {
+    public static void addParents(final String tab, final String tag, final boolean hidden, final String ... parentsToAdd) {
         if (parentsToAdd == null || parentsToAdd.length == 0) throw new ParameterIsNullOrEmpty();
         addParents(getResearch(tab, tag), hidden, parentsToAdd);
     }
@@ -212,7 +212,7 @@ public class API {
      * @param parentsToAdd The parentsToAdd to add
      * @throws ParameterIsNullOrEmpty If one of the parameter is null, or that the array is empty
      */
-    public static void addParents(ResearchItem research, boolean hidden, String ... parentsToAdd) {
+    public static void addParents(final ResearchItem research, final boolean hidden, final String ... parentsToAdd) {
         if (research == null || parentsToAdd == null || parentsToAdd.length == 0) throw new ParameterIsNullOrEmpty();
         if (hidden) {
             if (research.parentsHidden == null)
@@ -234,7 +234,7 @@ public class API {
      * @return The research to which the parents where removed
      * @throws ParameterIsNullOrEmpty If one of the parameter is null or empty
      */
-    public static ResearchItem removeParents(String tab, String tag, boolean hidden, String ... toRemove) {
+    public static ResearchItem removeParents(final String tab, final String tag, final boolean hidden, final String ... toRemove) {
         if (tab == null || tag == null || toRemove == null || toRemove.length == 0) throw new ParameterIsNullOrEmpty();
         return removeParents(getResearch(tab, tag), hidden, toRemove);
     }
@@ -246,7 +246,7 @@ public class API {
      * @return The research to which the parents where removed
      * @throws ParameterIsNullOrEmpty If one of the parameter is null or empty
      */
-    public static ResearchItem removeParents(ResearchItem research, boolean hidden, String ... toRemove) {
+    public static ResearchItem removeParents(final ResearchItem research, final boolean hidden, final String ... toRemove) {
         if (research == null || toRemove == null || toRemove.length == 0) throw new ParameterIsNullOrEmpty();
         if (hidden && research.parentsHidden != null)
             research.setParentsHidden(Util.deepCopyAndRemove(research.parentsHidden, new String[0], toRemove));
@@ -258,7 +258,7 @@ public class API {
      * Removes a certain research key from all registered Thaumcraft researches
      * @param toRemove The research key
      */
-    public static void removeParentsAll(String toRemove) {
+    public static void removeParentsAll(final String toRemove) {
         for (ResearchCategoryList rl : researchCategories.values())
             for (ResearchItem ri : rl.research.values()) {
                 if (Util.contains(ri.parents, toRemove)) {
