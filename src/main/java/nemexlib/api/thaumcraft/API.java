@@ -15,6 +15,8 @@ import thaumcraft.api.research.ResearchCategoryList;
 import thaumcraft.api.research.ResearchItem;
 import thaumcraft.api.research.ResearchPage;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -152,6 +154,30 @@ public class API {
     public static ResearchItem removeResearch(ResearchItem research) {
         if (research == null) throw new ParameterIsNullOrEmpty();
         removeResearch(research.category, research.key);
+        return research;
+    }
+
+    /**
+     * Moves research to the desired new coordinates in the same tab
+     * @param tag Research tag/key
+     * @param x X
+     * @param y Y
+     * @return The research
+     */
+    public static ResearchItem moveResearch(final String tag, final int x, final int y) {
+        ResearchItem research = getResearch(tag);
+        try {
+            Field fieldRow = research.getClass().getDeclaredField("displayRow"),
+                  fieldCol = research.getClass().getDeclaredField("displayColumn");
+            fieldRow.setAccessible(true);
+            fieldCol.setAccessible(true);
+            // Removing final modifier
+            Field modifiers = Field.class.getDeclaredField("modifiers");
+            modifiers.setAccessible(true);
+            modifiers.setInt(fieldRow, fieldRow.getModifiers() & ~Modifier.FINAL);
+            fieldRow.set(research, x);
+            fieldCol.set(research, y);
+        } catch (Exception ignored) {}
         return research;
     }
 
