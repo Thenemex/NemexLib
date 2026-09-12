@@ -5,6 +5,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import nemexlib.api.items.types.BlockType;
 import nemexlib.api.thaumcraft.aspects.Aspects;
 import nemexlib.api.util.exceptions.ParameterIsNullOrEmpty;
@@ -211,6 +212,26 @@ public abstract class WandEventHandler implements IWandTriggerManager {
     protected boolean spawnItem(World world, int x, int y, int z, ItemStack item) {
         EntityItem drops = new EntityItem(world, (float) x + 0.5F, (float) y + 0.5F, (float) z + 0.5F, item);
         return world.spawnEntityInWorld(drops);
+    }
+
+    public boolean handleBlockParticles(World world, int x, int y, int z) {
+
+        // Getting the block infos
+        Block block = world.getBlock(x, y, z);
+        int metadata = world.getBlockMetadata(x, y, z);
+        String particleName = "blockcrack_" + Block.getIdFromBlock(block) + "_" + metadata;
+
+        // Fire particles on WorldServer
+        if (world instanceof WorldServer) {
+            ((WorldServer) world).func_147487_a( particleName,
+                    (double) x + 0.5, (double) y + 0.5, (double) z + 0.5, //Block coords
+                    32, // Particle quantity
+                    0.2D, 0.2D, 0.2D, //Particle spread
+                    0.1D //Velocity
+            );
+        }
+
+        return true;
     }
 
     /**

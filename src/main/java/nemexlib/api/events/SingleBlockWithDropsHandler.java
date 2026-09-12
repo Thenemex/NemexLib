@@ -108,6 +108,7 @@ public abstract class SingleBlockWithDropsHandler extends WandEventHandler {
         if (!player.isSneaking()) return false; // Player needs to be sneaking
         // Code for editing world
         ItemStack item;
+        this.handleBlockParticles(world, x, y, z);
         world.setBlockToAir(x, y, z);
         // Checks if upgradable
         if (isUpgradable) {
@@ -121,6 +122,10 @@ public abstract class SingleBlockWithDropsHandler extends WandEventHandler {
 
         EntityItem drops = new EntityItem(world, (float) x + 0.5F, (float) y + 0.5F, (float) z + 0.5F, item);
         world.spawnEntityInWorld(drops);
+        world.playSoundEffect((double) x + 0.5, (double) y + 0.5, (double) z + 0.5, //Block coords
+                                "dig.wood", //Desired sound effect
+                                0.5F, //Volume
+                                1.0F); //Pitch
         return true;
         // ToDo Make the handler work with all block faces/orientations
     }
