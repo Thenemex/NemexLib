@@ -186,6 +186,10 @@ public class API {
             modifiers.setInt(fieldRow, fieldRow.getModifiers() & ~Modifier.FINAL);
             fieldRow.set(research, x);
             fieldCol.set(research, y);
+            // Locking the fields again
+            modifiers.setAccessible(false);
+            fieldRow.setAccessible(false);
+            fieldCol.setAccessible(false);
         } catch (Exception ignored) {}
         return research;
     }
