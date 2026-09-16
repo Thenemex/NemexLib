@@ -100,6 +100,7 @@ public abstract class SingleBlockWithDropsHandler extends WandEventHandler {
      * <p>Mainly used for code splitting</p>
      */
     protected boolean dropWoodPlanks(final World world, final ItemStack heldItem, final EntityPlayer player, final int x, final int y, final int z, final int event) {
+        boolean upgradedCraft = false;
         if (world.isRemote) return false;
         if (getTag() != null)
             if (isResearchNotComplete(player, getTag())) return false; // Needs research to perform recipe
@@ -108,24 +109,36 @@ public abstract class SingleBlockWithDropsHandler extends WandEventHandler {
         if (!player.isSneaking()) return false; // Player needs to be sneaking
         // Code for editing world
         ItemStack item;
+        this.fireBlockParticles(world, x, y, z); // Particles needs to be before setBlockToAir at the moment or particles will be wrong
         world.setBlockToAir(x, y, z);
         // Checks if upgradable
         if (isUpgradable) {
             // Checks if upgrade research is done
             if (isResearchNotComplete(player, upgradeResearchTag)) item = getDrops(event, false);
-            // Checks if vis is needed
-            else if (isVisNeeded()) item = getDrops(event, wand.consumeAllVisCrafting(heldItem, player, getVis(), true));
+            // Checks if vis is needed and wand has enough vis for the upgraded craft
+            else if (isVisNeeded() && wand.consumeAllVisCrafting(heldItem, player, getVis(), true)){
+                item = getDrops(event, true);
+                upgradedCraft = true;
+            }
             // Else get standard output
-            else item = getDrops(event, true);
+            else item = getDrops(event, false);
+
         } else item = getDrops(event, false);
 
-        EntityItem drops = new EntityItem(world, (float) x + 0.5F, (float) y + 0.5F, (float) z + 0.5F, item);
-        world.spawnEntityInWorld(drops);
-        world.playSoundEffect((double) x + 0.5, (double) y + 0.5, (double) z + 0.5, //Block coords
+        if(!upgradedCraft) {
+           world.playSoundEffect((double) x + 0.5, (double) y + 0.5, (double) z + 0.5, //Block coords
                                 "dig.wood", //Desired sound effect
                                 0.5F, //Volume
                                 1.0F); //Pitch
-        this.fireBlockParticles(world, x, y, z);
+        } else {
+            world.playSoundEffect((double) x + 0.5, (double) y + 0.5, (double) z + 0.5,
+                                "thaumcraft:ice", 0.01F, 0.5F);
+            world.playSoundEffect((double) x + 0.5, (double) y + 0.5, (double) z + 0.5,
+                                "dig.wood", 0.5F, 0.5F);
+        }
+        
+        EntityItem drops = new EntityItem(world, (float) x + 0.5F, (float) y + 0.5F, (float) z + 0.5F, item);
+        world.spawnEntityInWorld(drops);
         return true;
         // ToDo Make the handler work with all block faces/orientations
     }
